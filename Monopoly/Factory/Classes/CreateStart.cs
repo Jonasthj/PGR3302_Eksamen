@@ -7,7 +7,7 @@ namespace Monopoly.Factory.Classes
     {
         public override ISquare BuildSquare()
         {
-            throw new System.NotImplementedException();
+            return new Start();
         }
     }
 }
