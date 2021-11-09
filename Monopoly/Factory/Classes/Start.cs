@@ -1,7 +1,12 @@
-﻿namespace Monopoly.Factory.Classes
+﻿using Monopoly.Factory.Interface;
+
+namespace Monopoly.Factory.Classes
 {
-    public class Start
+    public class Start : ISquare
     {
-        
+        public void PrintSquare()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
