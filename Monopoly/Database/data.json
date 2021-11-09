@@ -1,0 +1,38 @@
+{
+  "Cards": {
+    "Index": {
+      "0": { 
+        "_id": 0, 
+        "_name": "Start", 
+        "_color": "White",
+        "_info": "null"
+      },
+      "1": {
+        "_id": 1,
+        "_name": "Grensen",
+        "_color": "Brown",
+        "_purchase": 100,
+        "_rent": 30
+      },
+      "2": {
+        "_id": 2,
+        "_name": "Urtegata",
+        "_color": "Brown",
+        "_purchase": 100,
+        "_rent": 30
+      },
+      "Chance": {
+        "_id": -1,
+        "_name": "Chance",
+        "_color": "White",
+        "_list": [
+          "Move to start and collect 100",
+          "Get out of jail for free",
+          "Pay a parking fine of 50"
+        ]
+        }
+      }
+    }
+  }
+}
+
