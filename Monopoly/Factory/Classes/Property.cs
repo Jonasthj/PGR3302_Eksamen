@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using Monopoly.Factory.Interface;
 
 namespace Monopoly.Factory.Classes
@@ -7,7 +8,7 @@ namespace Monopoly.Factory.Classes
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Color { get; set; }
+        public Color Color { get; set; }
         public bool IsAvailable { get; set; }
         public int BuyPrice { get; set; }
         public int RentPrice { get; set; }
