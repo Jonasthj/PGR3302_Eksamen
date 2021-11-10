@@ -6,12 +6,12 @@ namespace Monopoly.Factory.Classes
 {
     public class Property : ISquare
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public Color Color { get; set; }
+        private int Id { get;}
+        private string Name { get;}
+        private Color Color { get;}
+        private int BuyPrice { get;}
+        private int RentPrice { get;}
         public bool IsAvailable { get; set; }
-        public int BuyPrice { get; set; }
-        public int RentPrice { get; set; }
         public int OwnerId { get; set; }
 
         public Property(int id, string name, Color color, int buyPrice, int rentPrice)
@@ -21,6 +21,8 @@ namespace Monopoly.Factory.Classes
             Color = color;
             BuyPrice = buyPrice;
             RentPrice = rentPrice;
+            // Property is always available at the beginning of the game.
+            IsAvailable = true;
         }
         
         public void PrintSquare()

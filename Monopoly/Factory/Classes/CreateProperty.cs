@@ -6,11 +6,11 @@ namespace Monopoly.Factory.Classes
 {
     public class CreateProperty : CreateSquare
     {
-        private int _id;
-        private string _name;
-        private Color _color;
-        private int _buyPrice;
-        private int _rentPrice;
+        private readonly int _id;
+        private readonly string _name;
+        private readonly Color _color;
+        private readonly int _buyPrice;
+        private readonly int _rentPrice;
 
         public CreateProperty(int id, string name, Color color, int buyPrice, int rentPrice)
         {

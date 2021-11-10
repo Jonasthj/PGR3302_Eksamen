@@ -5,9 +5,9 @@ namespace Monopoly.Factory.Classes
 {
     public class CreateChance : CreateSquare
     {
-        private int _id;
-        private string _name;
-        private string _description;
+        private readonly int _id;
+        private readonly string _name;
+        private readonly string _description;
         public CreateChance(int id, string name, string description)
         {
             _id = id;

@@ -5,8 +5,8 @@ namespace Monopoly.Factory.Classes
 {
     public class Prison : ISquare
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        private int Id { get;}
+        private string Name { get;}
 
         public Prison(int id, string name)
         {

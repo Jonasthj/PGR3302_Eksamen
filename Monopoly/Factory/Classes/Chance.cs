@@ -5,9 +5,9 @@ namespace Monopoly.Factory.Classes
 {
     public class Chance : ISquare
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+        private int Id { get; }
+        private string Name { get; }
+        private string Description { get; }
 
         public Chance(int id, string name, string description)
         {
