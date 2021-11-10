@@ -14,6 +14,15 @@ namespace Monopoly.Factory.Classes
         public int RentPrice { get; set; }
         public int OwnerId { get; set; }
 
+        public Property(int id, string name, Color color, int buyPrice, int rentPrice)
+        {
+            Id = id;
+            Name = name;
+            Color = color;
+            BuyPrice = buyPrice;
+            RentPrice = rentPrice;
+        }
+        
         public void PrintSquare()
         {
             Console.WriteLine(ToString());
