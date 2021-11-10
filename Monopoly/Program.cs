@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using Monopoly.Database;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Monopoly
 {
@@ -9,19 +11,30 @@ namespace Monopoly
     {
         static void Main(string[] args)
         {
-            Card1 card1 = new();
-            Card2 card2 = new();
             
-            card1.CreateCard();
-            card2.CreateCard();
+            // JSON Path.
+            string jsonData = @"../../../Database/data.json";
 
-            File.WriteAllText(@"data.json", JsonConvert.SerializeObject(card1));
-            
-            // read file into a string and deserialize JSON to a type
-            Card1 newCard1 = JsonConvert.DeserializeObject<Card1>(File.ReadAllText(@"data.json"));
-            
-            Console.WriteLine(newCard1.ToString());
-            
+            // Read JSON file.
+            var details = JObject.Parse(File.ReadAllText(jsonData));
+
+
+            for (int i = 1; i < 16; i++)
+            {
+                if(details["Card"][i.ToString()] != null) {
+                    string name = details["Card"][i.ToString()]["name"].ToString();
+                    Color color = Color.FromName(details["Card"][i.ToString()]["color"].ToString());
+                    int purchase = (int) details["Card"][i.ToString()]["purchase"];
+                    int rent = (int) details["Card"][i.ToString()]["rent"];
+
+                    Card newCard = new Card(i, name, color, purchase, rent);
+
+                    Console.WriteLine(newCard);
+
+                } 
+
+
+            }
 
 
         }
