@@ -3,7 +3,7 @@
     public class Wallet
     {
         public int Balance { get; }
-        
+
         public Wallet(int balance)
         {
             Balance = balance;
