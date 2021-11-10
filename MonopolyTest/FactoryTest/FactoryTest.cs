@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Monopoly.Factory.Classes;
 using Monopoly.Factory.Interface;
 using NUnit.Framework;
@@ -66,30 +67,32 @@ namespace MonopolyTest.FactoryTest
 
         
         [Test]
-        public void GenerateSomething()
+        public void ShouldReadRandomSquareString()
         {
-            ISquare squareMaker = new Prison();
-            squareMaker.PrintSquare();
-            string squareOutput = Console.ReadLine();
-            Console.WriteLine(squareOutput);
-
+            using (StringWriter stringWriter = new StringWriter())
+            {
+                Console.SetOut(stringWriter);
+                ISquare square = GenerateRandomSquare();
+                square.PrintSquare();
+                string consoleOutput = stringWriter.ToString();
+                
+                Assert.AreEqual(consoleOutput, square.ToString() + "\r\n");
+            }
         }
-
         
-        
-        public static ISquare GenerateRandomSquare()
+        private static ISquare GenerateRandomSquare()
         {
             Random random= new Random();
-            int randomNum=random.Next(4);
+            int randomNum=random.Next(3);
 
             if(randomNum==0)
                 return new Chance();
-            else if(randomNum==1)
+            if(randomNum==1)
                 return new Prison();
-            else if(randomNum==2)
+            if(randomNum==2)
                 return new Property();
-            else
-                return new Start();
+            
+            return new Start();
         }
 
         
