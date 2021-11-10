@@ -73,7 +73,8 @@
             "chanceList":  [
             {"text": "Move to start and collect 100", "value": 100, "index":  0},
             {"text": "Pay a parking fine of 50", "value": -50, "index":  -1},
-            {"text": "You receive a gift of 50", "value": 50, "index":  -1}
+            {"text": "You receive a gift of 50", "value": 50, "index":  -1}, 
+            {"text": "Move back three squares", "value": 50, "index":  -3}
             ],
             "comment": "text is the card content, value is the amount that the player gets/loses. If this is -1 he doesn't get or lose anything. index is the index on tha map where the player needs to go. Does not count if value is -1."
         }
