@@ -8,10 +8,10 @@ namespace Monopoly.Factory.Classes
         private int Id { get;}
         private string Name { get;}
 
-        public Start(int id, string name)
+        public Start()
         {
-            Id = id;
-            Name = name;
+            Id = 0;
+            Name = "Start";
         }
         
         public void PrintSquare()

@@ -69,12 +69,10 @@
         },
         "Chance": {
             "name": "Chance",
-            "color": "White",
             "chanceList":  [
                 {"text": "Move to start and collect 100", "value": 100, "newIndex": 0},
                 {"text": "Pay a parking fine of 50", "value": -50, "newIndex": -1},
-                {"text": "You receive a gift of 50", "value": 50, "newIndex": -1}, 
-                {"text": "Move back three squares", "value": 0, "newIndex": -3},
+                {"text": "You receive a gift of 50", "value": 50, "newIndex": -1},
                 {"text": "Go directly to prison and skip one round", "value": 0, "newIndex": 8},
                 {"text": "Go to Grunerløkka", "value": 0, "newIndex": 5},
                 {"text": "You inherit 200", "value": 200, "newIndex": -1},
@@ -83,8 +81,8 @@
                 {"text": "There has been a fire in your house, pay 50", "value": -50, "newIndex": -1}
             ],
             "_comment1": "Text is the card content, value is the amount that the player gets/loses.",
-            "_comment2": "If this is -1 he doesn't get or lose anything. index is the index on tha map where the player needs to go.",
-            "_comment3": "Does not count if value is -1. If the value is lower than -1, e.g: -3 or -10, is it actually a value."
+            "_comment2": "If this is 0, he doesn't get or lose anything. newIndex is the index on tha map where the player needs to go.",
+            "_comment3": "Does not count if value is -1."
         }
     }
 }
