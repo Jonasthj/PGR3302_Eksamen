@@ -8,13 +8,22 @@ namespace MonopolyTest.FlyweightTest
     {
 
         [Test]
-        public void ShouldDoSomething()
+        public void ShouldRetrievePlayerInfo()
+        {
+            Guid uuid = Guid.NewGuid();
+            Player player = GenerateRandomPlayer();
+            player.SetExtrinsicPart(uuid.ToString() ,new Wallet(500));
+
+            StringAssert.Contains(uuid.ToString(), player.ToString());
+        }
+
+        private Player GenerateRandomPlayer()
         {
             PlayerGenerator playerGenerator = new();
-            Player1 player1 = playerGenerator.Get(1);
-
-            player1.SetExctrinsicPart("Goat");
-            Console.WriteLine(player1.Name);
+            Random random = new();
+            int randomNum = random.Next(1, 4);
+            Player player = playerGenerator.Get(randomNum);
+            return player;
         }
     }
 }
