@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using Monopoly.Factory.Classes;
 using Monopoly.Factory.Interface;
@@ -30,29 +31,17 @@ namespace MonopolyTest.FactoryTest
         
 
 
-        /*[Test]
+        [Test]
         public void ShouldReturnPropertyString()
         {
+            Guid uuid = Guid.NewGuid();
+            CreateProperty property = new CreateProperty(5, uuid.ToString(), Color.Blue, 123, 123);
+            ISquare square = property.BuildSquare();
             
-            Property property = new();
-            property.Id = 30;
-            property.Name = "Ullevål Sykehus";
-            property.Color = "Blue";
-            property.IsAvailable = true;
-            property.BuyPrice = 123;
-            property.RentPrice = 33;
-            property.OwnerId = 2;
-            
-            Assert.AreEqual("Id: " + property.Id + "\n" +
-                            "Name: " + property.Name + "\n" +
-                            "Color: " + property.Color + "\n" +
-                            "IsAvailable: " + property.IsAvailable + "\n" +
-                            "BuyPrice: " + property.BuyPrice + "\n" +
-                            "RentPrice: " + property.RentPrice + "\n" +
-                            "OwnerId: " + property.OwnerId + "\n", property.ToString());
+            StringAssert.Contains(uuid.ToString(), square.ToString());
         }
 
-        [Test]
+        /*[Test]
         public void ShouldReturnStartString()
         {
             Start start = new();
