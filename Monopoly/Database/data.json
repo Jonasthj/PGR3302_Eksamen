@@ -23,11 +23,13 @@
         "_id": -1,
         "_name": "Chance",
         "_color": "White",
-        "_chanceList": 
-          {"text": "Move to start and collect 100", "value": 100},
-          {"text": "Pay a parking fine of 50", "value": 50},
-          {"text": "Move to start and collect 100", "value": 100}
-}
+        "_chanceList":  [
+          {"text": "Move to start and collect 100", "value": 100, "index":  0},
+          {"text": "Pay a parking fine of 50", "value": -50, "index":  -1},
+          {"text": "You receive a gift of 50", "value": 50, "index":  -1}
+        ],
+        "_comment": "text is the card content, value is the amount that the player gets/loses. If this is -1 he doesn't get or lose anything. index is the index on tha map where the player needs to go. Does not count if value is -1."
+      }
 }
 
 
