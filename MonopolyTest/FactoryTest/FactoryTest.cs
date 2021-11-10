@@ -64,10 +64,34 @@ namespace MonopolyTest.FactoryTest
                             "Name: " + start.Name, start.ToString());
         }
 
-        private void GenerateRandomSquare()
+        
+        [Test]
+        public void GenerateSomething()
         {
-            ISquare aqu
+            ISquare squareMaker = new Prison();
+            squareMaker.PrintSquare();
+            string squareOutput = Console.ReadLine();
+            Console.WriteLine(squareOutput);
+
         }
+
+        
+        
+        public static ISquare GenerateRandomSquare()
+        {
+            Random random= new Random();
+            int randomNum=random.Next(4);
+
+            if(randomNum==0)
+                return new Chance();
+            else if(randomNum==1)
+                return new Prison();
+            else if(randomNum==2)
+                return new Property();
+            else
+                return new Start();
+        }
+
         
         
     }
