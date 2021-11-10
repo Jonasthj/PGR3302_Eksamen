@@ -60,7 +60,7 @@ namespace MonopolyTest.FactoryTest
             start.Name = "Start";
             
             Assert.AreEqual("Id: " + start.Id + "\n" +
-                            "Name: " + start.Name + "\n", start.ToString());
+                            "Name: " + start.Name, start.ToString());
         }
         
         
