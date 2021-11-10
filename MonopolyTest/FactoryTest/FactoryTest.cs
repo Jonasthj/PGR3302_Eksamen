@@ -1,5 +1,6 @@
 ﻿using System;
 using Monopoly.Factory.Classes;
+using Monopoly.Factory.Interface;
 using NUnit.Framework;
 
 namespace MonopolyTest.FactoryTest
@@ -61,6 +62,11 @@ namespace MonopolyTest.FactoryTest
             
             Assert.AreEqual("Id: " + start.Id + "\n" +
                             "Name: " + start.Name, start.ToString());
+        }
+
+        private void GenerateRandomSquare()
+        {
+            ISquare aqu
         }
         
         

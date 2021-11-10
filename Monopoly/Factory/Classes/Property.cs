@@ -1,4 +1,5 @@
-﻿using Monopoly.Factory.Interface;
+﻿using System;
+using Monopoly.Factory.Interface;
 
 namespace Monopoly.Factory.Classes
 {
@@ -14,7 +15,7 @@ namespace Monopoly.Factory.Classes
 
         public void PrintSquare()
         {
-            throw new System.NotImplementedException();
+            Console.WriteLine(ToString());
         }
 
         public override string ToString()
