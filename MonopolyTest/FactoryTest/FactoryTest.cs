@@ -9,6 +9,8 @@ namespace MonopolyTest.FactoryTest
 {
     public class FactoryTest
     {
+        #region Tests
+        
         [Test]
         public void ShouldReturnChanceString()
         {
@@ -29,9 +31,6 @@ namespace MonopolyTest.FactoryTest
             StringAssert.Contains(uuid.ToString(), square.ToString());
         }
         
-
-
-
         [Test]
         public void ShouldReturnPropertyString()
         {
@@ -51,8 +50,7 @@ namespace MonopolyTest.FactoryTest
             
             StringAssert.Contains(uuid.ToString(), square.ToString());
         }
-/*
-        
+
         [Test]
         public void ShouldReadRandomSquareString()
         {
@@ -66,20 +64,45 @@ namespace MonopolyTest.FactoryTest
                 Assert.AreEqual(consoleOutput, square.ToString() + "\r\n");
             }
         }
+        #endregion
+
+        #region HelperMethods
         
         private static ISquare GenerateRandomSquare()
         {
             Random random= new Random();
             int randomNum=random.Next(3);
-
-            if(randomNum==0)
-                return new Chance();
-            if(randomNum==1)
-                return new Prison();
-            if(randomNum==2)
-                return new Property();
+            Guid uuid = Guid.NewGuid();
             
-            return new Start();
-        }*/
+            // Must be initialized.
+            ISquare square = null;
+
+            if (randomNum == 0)
+            {
+                CreateChance chance = new CreateChance(1,"Chance", uuid.ToString());
+                square = chance.BuildSquare();
+            }
+
+            if (randomNum == 1)
+            {
+                CreatePrison prison = new CreatePrison(1, uuid.ToString());
+                square = prison.BuildSquare();
+            }
+
+            if (randomNum == 2)
+            {
+                CreateProperty property = new CreateProperty(5, uuid.ToString(), Color.Blue, 123, 123);
+                square = property.BuildSquare();
+            }
+
+            if (randomNum == 3)
+            {
+                CreateStart start = new CreateStart(2, uuid.ToString());
+                square = start.BuildSquare();
+            }
+
+            return square;
+        }
+        #endregion
     }
 }
