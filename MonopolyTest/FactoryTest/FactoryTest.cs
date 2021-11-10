@@ -11,10 +11,11 @@ namespace MonopolyTest.FactoryTest
         [Test]
         public void ShouldReturnChanceString()
         {
-            CreateChance chance = new CreateChance(1,"Chance", "Two steps back");
+            Guid uuid = Guid.NewGuid();
+            CreateChance chance = new CreateChance(1,"Chance", uuid.ToString());
             ISquare square = chance.BuildSquare();
             
-            StringAssert.Contains();
+            StringAssert.Contains(uuid.ToString(),square.ToString());
         }
 
         /*[Test]
