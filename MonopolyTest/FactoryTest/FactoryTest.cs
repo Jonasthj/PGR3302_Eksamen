@@ -18,16 +18,16 @@ namespace MonopolyTest.FactoryTest
             StringAssert.Contains(uuid.ToString(),square.ToString());
         }
 
-        /*[Test]
+       [Test]
         public void ShouldReturnPrisonString()
         {
-            Prison prison = new();
-            prison.Id = 2;
-            prison.Name = "Prison";
-            Assert.AreEqual("Id: " + prison.Id + "\n" +
-                                   "Name: " + prison.Name, prison.ToString());
+            Guid uuid = Guid.NewGuid();
+            CreatePrison prison = new CreatePrison(1, uuid.ToString());
+            ISquare square = prison.BuildSquare();
+            
+            StringAssert.Contains(uuid.ToString(), square.ToString());
         }
-        */
+        
 
 
         /*[Test]
@@ -92,8 +92,5 @@ namespace MonopolyTest.FactoryTest
             
             return new Start();
         }*/
-
-        
-        
     }
 }
