@@ -31,6 +31,7 @@ namespace MonopolyTest.FactoryTest
         
 
 
+
         [Test]
         public void ShouldReturnPropertyString()
         {
@@ -41,17 +42,16 @@ namespace MonopolyTest.FactoryTest
             StringAssert.Contains(uuid.ToString(), square.ToString());
         }
 
-        /*[Test]
+        [Test]
         public void ShouldReturnStartString()
         {
-            Start start = new();
-            start.Id = 1;
-            start.Name = "Start";
+            Guid uuid = Guid.NewGuid();
+            CreateStart start = new CreateStart(2, uuid.ToString());
+            ISquare square = start.BuildSquare();
             
-            Assert.AreEqual("Id: " + start.Id + "\n" +
-                            "Name: " + start.Name, start.ToString());
+            StringAssert.Contains(uuid.ToString(), square.ToString());
         }
-
+/*
         
         [Test]
         public void ShouldReadRandomSquareString()
