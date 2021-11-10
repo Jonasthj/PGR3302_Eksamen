@@ -1,6 +1,4 @@
 {
-  "Cards": {
-    "Index": {
       "0": { 
         "_id": 0, 
         "_name": "Start", 
@@ -25,14 +23,11 @@
         "_id": -1,
         "_name": "Chance",
         "_color": "White",
-        "_list": [
-          "Move to start and collect 100",
-          "Get out of jail for free",
-          "Pay a parking fine of 50"
-        ]
-        }
-      }
-    }
-  }
+        "_chanceList": 
+          {"text": "Move to start and collect 100", "value": 100},
+          {"text": "Pay a parking fine of 50", "value": 50},
+          {"text": "Move to start and collect 100", "value": 100}
 }
+}
+
 
