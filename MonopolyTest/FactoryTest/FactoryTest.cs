@@ -11,8 +11,8 @@ namespace MonopolyTest.FactoryTest
         [Test]
         public void ShouldReturnChanceString()
         {
-            CreateChance chance = new CreateChance(1,"Chance", "Two steps back");
-            ISquare square = chance.BuildSquare();
+            // CreateChance chance = new CreateChance(1,"Chance", "Two steps back");
+            // ISquare square = chance.BuildSquare();
             
             // StringAssert.Contains();
         }

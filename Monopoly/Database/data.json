@@ -68,11 +68,15 @@
             "rentPrice": 130
         },
         "Chance": {
-            "name": "Chance",
+            "indexList": [
+                3,
+                6,
+                13
+            ],
             "chanceList":  [
                 {"text": "Move to start and collect 100", "value": 100, "newIndex": 0},
                 {"text": "Pay a parking fine of 50", "value": -50, "newIndex": -1},
-                {"text": "You receive a gift of 50", "value": 50, "newIndex": -1},
+                {"text": "You receive a gift of 50", "value": 50, "newIndex": -1},  
                 {"text": "Go directly to prison and skip one round", "value": 0, "newIndex": 8},
                 {"text": "Go to Grunerløkka", "value": 0, "newIndex": 5},
                 {"text": "You inherit 200", "value": 200, "newIndex": -1},

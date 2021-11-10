@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using Monopoly.Database;
+using Monopoly.Factory.Classes;
 using Newtonsoft.Json.Linq;
 
 namespace Monopoly
@@ -18,13 +19,21 @@ namespace Monopoly
             // Read JSON file.
             var jsonData = JObject.Parse(File.ReadAllText(jsonPath));
             
-            PropertyJson propertyJson = new PropertyJson(jsonData);
+            // PropertyJson propertyJson = new PropertyJson(jsonData);
+            //
+            // for (int i = 0; i < 16; i++)
+            // {
+            //     Console.WriteLine(propertyJson.Retrieve(i));
+            // }
 
-            for (int i = 0; i < 16; i++)
+            ChanceJson chanceJson = new ChanceJson(jsonData);
+
+            foreach (var chanceCard in chanceJson.RetrieveAll())
             {
-                Console.WriteLine(propertyJson.Retrieve(i));
+                Console.WriteLine(chanceCard.ToString());
             }
-            
+
+
         }
     }
 }
