@@ -5,9 +5,14 @@ namespace Monopoly.Factory.Classes
 {
     public class Start : ISquare
     {
-        
         public int Id { get; set; }
         public string Name { get; set; }
+
+        public Start(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
         
         public void PrintSquare()
         {

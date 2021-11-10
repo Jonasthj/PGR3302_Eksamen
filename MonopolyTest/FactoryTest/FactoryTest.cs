@@ -11,17 +11,13 @@ namespace MonopolyTest.FactoryTest
         [Test]
         public void ShouldReturnChanceString()
         {
-            Chance chance = new();
-            chance.Id = 2;
-            chance.Name = "Chance";
-            chance.Description = "Move two steps forward";
+            CreateChance chance = new CreateChance(1,"Chance", "Two steps back");
+            ISquare square = chance.BuildSquare();
             
-            Assert.AreEqual("Id: " + chance.Id + "\n" +
-                          "Name: " + chance.Name + "\n" +
-                          "Description: " + chance.Description, chance.ToString());
+            StringAssert.Contains();
         }
 
-        [Test]
+        /*[Test]
         public void ShouldReturnPrisonString()
         {
             Prison prison = new();
@@ -30,9 +26,10 @@ namespace MonopolyTest.FactoryTest
             Assert.AreEqual("Id: " + prison.Id + "\n" +
                                    "Name: " + prison.Name, prison.ToString());
         }
+        */
 
 
-        [Test]
+        /*[Test]
         public void ShouldReturnPropertyString()
         {
             
@@ -93,7 +90,7 @@ namespace MonopolyTest.FactoryTest
                 return new Property();
             
             return new Start();
-        }
+        }*/
 
         
         
