@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Monopoly.Flyweight;
 
 namespace Monopoly.Factory.Classes
 {
@@ -11,16 +12,20 @@ namespace Monopoly.Factory.Classes
             for (int i = 1; i < playersCount+1; i++)
             {
                 BoardMap.Players.Add(i, 0);
-                Player player = new PlayerGenerator.Get(i);
+                
             }
-            
+
             foreach (KeyValuePair<int, int> player in BoardMap.Players)
             {
                 Console.WriteLine("Key: {0}, Index: {1}", 
                     player.Key, player.Value);
             }
-            
-            
+        }
+
+        public void FillPlayersInfo(string name, int id)
+        {
+            Player player = PlayerGenerator.Get(id);
+            player.SetExtrinsicPart(name, new Wallet(600), false);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Monopoly.Flyweight
 {
     public static class PlayerGenerator
     {
-        private static readonly Dictionary<int, Player> Players = new();
+        public static readonly Dictionary<int, Player> Players = new();
         public static Player Get(int id)
         {
             Player player = null;
@@ -38,6 +38,11 @@ namespace Monopoly.Flyweight
 
             return player;
 
+        }
+
+        public static void Delete(int id)
+        {
+            Players.Remove(id);
         }
     }
 }
