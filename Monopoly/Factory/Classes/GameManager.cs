@@ -10,7 +10,6 @@ namespace Monopoly.Factory.Classes
         //Create x players (as defined in menuUI) and put them in start position on boardmap
         public void CreatePlayers(int playersCount)
         {
-            
             for (int i = 1; i < playersCount+1; i++)
             {
                 boardMap.Players.Add(i, 0); 
