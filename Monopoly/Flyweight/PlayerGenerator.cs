@@ -1,17 +1,18 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Monopoly.Flyweight
 {
-    public class PlayerGenerator
+    public static class PlayerGenerator
     {
-        private readonly Dictionary<int, Player> _players = new();
-        public Player Get(int id)
+        private static readonly Dictionary<int, Player> Players = new();
+        public static Player Get(int id)
         {
             Player player = null;
-            if (_players.ContainsKey(id))
+            if (Players.ContainsKey(id))
             {
-                player = _players[id];
+                player = Players[id];
             }
             else
             {
@@ -29,8 +30,10 @@ namespace Monopoly.Flyweight
                     case 4:
                         player = new Player4();
                         break;
+                    default:
+                        throw new IndexOutOfRangeException("Max amount of players is 4!");
                 }
-                _players.Add(id, player);
+                Players.Add(id, player);
             }
 
             return player;

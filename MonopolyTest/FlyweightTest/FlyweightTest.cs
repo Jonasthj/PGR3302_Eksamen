@@ -47,10 +47,9 @@ namespace MonopolyTest.FlyweightTest
         
         private Player GenerateRandomPlayer()
         {
-            PlayerGenerator playerGenerator = new();
             Random random = new();
             int randomNum = random.Next(1, 4);
-            Player player = playerGenerator.Get(randomNum);
+            Player player = PlayerGenerator.Get(randomNum);
             return player;
         }
     }

@@ -1,10 +1,16 @@
-﻿namespace Monopoly
+﻿using System;
+using Monopoly.Flyweight;
+
+namespace Monopoly
 {
     public class WalletCalculator
     {
-        public void CheckBalance()
+        public int CheckBalance(int playerId)
         {
+
+            Player player = PlayerGenerator.Get(playerId);
             
+            return player.Wallet.Balance;
         }
 
         public void AddBalance()
