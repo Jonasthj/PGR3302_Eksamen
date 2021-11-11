@@ -6,7 +6,15 @@
         {
             
         }
-        
-        public void 
+
+        public void AddBalance()
+        {
+            
+        }
+
+        public void SubtractBalance()
+        {
+            
+        }
     }
 }
