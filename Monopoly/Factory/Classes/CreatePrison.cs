@@ -23,10 +23,10 @@ namespace Monopoly.Factory.Classes
         #endregion
 
         #region Overrides
-
+        
         public override ISquare BuildSquare()
         {
-            return new Prison(_id, _name);
+            return new Prison();
         }
 
         #endregion

@@ -48,7 +48,7 @@ namespace Monopoly.Factory.Classes
         {
             return "Id: " + Id + "\n" +
                    "Name: " + Name + "\n" +
-                   "Color: " + Color + "\n" +
+                   Color + "\n" +
                    "IsAvailable: " + IsAvailable + "\n" +
                    "BuyPrice: " + BuyPrice + "\n" +
                    "RentPrice: " + RentPrice + "\n" +

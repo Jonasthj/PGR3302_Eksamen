@@ -26,7 +26,7 @@ namespace Monopoly.Factory.Classes
 
         public override ISquare BuildSquare()
         {
-            return new Start(_id, _name);
+            return new Start();
         }
 
         #endregion
