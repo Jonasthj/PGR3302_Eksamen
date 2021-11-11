@@ -13,7 +13,6 @@ namespace Monopoly
 
             GameManager game = new GameManager();
             game.CreatePlayers(4);
-            
         }
     }
 }

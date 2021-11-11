@@ -7,7 +7,7 @@ namespace Monopoly
         public Dictionary<int, string> MapIndex = new Dictionary<int, string>();
 
         //<playerId, index>
-        public Dictionary<int, int> Players = new Dictionary<int, int>();
+        public static Dictionary<int, int> Players = new Dictionary<int, int>();
 
     }
 }
