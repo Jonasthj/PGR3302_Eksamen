@@ -16,7 +16,7 @@ namespace Monopoly.Factory.Classes
 
         #endregion
 
-        #region Constructor
+        #region Constructors
 
         public CreateProperty(int id, string name, Color color, int buyPrice, int rentPrice)
         {
@@ -37,6 +37,5 @@ namespace Monopoly.Factory.Classes
         }
 
         #endregion
-        
     }
 }

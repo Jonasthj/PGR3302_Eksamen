@@ -35,10 +35,10 @@ namespace Monopoly.Database
                     
                 string name = jsonCard["name"].ToString();
                 Color color = Color.FromName(jsonCard["color"].ToString());
-                int purchase = (int) jsonCard["purchase"];
-                int rent = (int) jsonCard["rent"];
+                int buyPrice = (int) jsonCard["buyPrice"];
+                int rentPrice = (int) jsonCard["rentPrice"];
 
-                CreateProperty property = new CreateProperty(id, name, color, purchase, rent);
+                CreateProperty property = new CreateProperty(id, name, color, buyPrice, rentPrice);
                     
                 ISquare square = property.BuildSquare();
                 

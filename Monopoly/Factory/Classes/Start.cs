@@ -14,10 +14,10 @@ namespace Monopoly.Factory.Classes
 
         #region Constructors
 
-        public Start(int id, string name)
+        public Start()
         {
-            Id = id;
-            Name = name;
+            Id = 0;
+            Name = "Start";
         }
 
         #endregion
