@@ -2,12 +2,18 @@
 
 namespace Monopoly.UI
 {
-    public class ConsoleOutput
+    public static class ConsoleOutput
     {
-        public void PrintString(string value)
+        public static void Print(string value)
         {
             Console.WriteLine(value);
         }
+
+        public static void Print(int value)
+        {
+            
+        } 
+        
         
     }
 }
