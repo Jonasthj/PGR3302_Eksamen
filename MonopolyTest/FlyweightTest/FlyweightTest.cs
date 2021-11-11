@@ -12,7 +12,7 @@ namespace MonopolyTest.FlyweightTest
         {
             Guid uuid = Guid.NewGuid();
             Player player = GenerateRandomPlayer();
-            player.SetExtrinsicPart(uuid.ToString() ,new Wallet(500));
+            player.SetExtrinsicPart(uuid.ToString() ,new Wallet(500), false);
             
             Console.WriteLine(player.ToString());
             StringAssert.Contains(uuid.ToString(), player.ToString());
@@ -23,7 +23,7 @@ namespace MonopolyTest.FlyweightTest
         public void ShouldRetrievePlayerName()
         {
             Player player = GenerateRandomPlayer();
-            player.SetExtrinsicPart("Kjartan", new Wallet(200));
+            player.SetExtrinsicPart("Kjartan", new Wallet(200), false);
             
             Assert.AreEqual("Kjartan", player.Name);
         }
@@ -32,9 +32,17 @@ namespace MonopolyTest.FlyweightTest
         public void ShouldRetrievePlayerWallet()
         {
             Player player = GenerateRandomPlayer();
-            player.SetExtrinsicPart("Petter", new Wallet(200));
+            player.SetExtrinsicPart("Petter", new Wallet(200), false);
             
             Assert.AreEqual(200, player.Wallet.Balance);
+        }
+
+        [Test]
+        public void ShouldRetrievePlayerPrisonStatus()
+        {
+            Player player = GenerateRandomPlayer();
+            player.SetExtrinsicPart("Kjartan", new Wallet(0), true);
+            Assert.AreEqual(true, player.InPrison);
         }
         
         private Player GenerateRandomPlayer()
