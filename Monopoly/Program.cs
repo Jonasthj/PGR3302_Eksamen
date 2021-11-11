@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using Monopoly.Database;
+using Monopoly.Factory.Classes;
 using Newtonsoft.Json.Linq;
 
 namespace Monopoly
@@ -9,6 +10,7 @@ namespace Monopoly
     {
         static void Main(string[] args)
         {
+            /*
             // JSON Path.
             string jsonPath = @"data.json";
             
@@ -23,7 +25,10 @@ namespace Monopoly
             for (int i = 0; i < 16; i++)
             {
                 Console.WriteLine(propertyJson.Retrieve(i));
-            }
+            }*/
+
+            GameManager game = new GameManager();
+            game.CreatePlayers(4);
             
         }
     }
