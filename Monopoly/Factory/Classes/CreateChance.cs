@@ -9,7 +9,6 @@ namespace Monopoly.Factory.Classes
         #region Fields
         
         private readonly int _id;
-        private readonly string _name;
         private readonly ArrayList _chanceList;
         public CreateChance(int id, ArrayList chanceList)
         {

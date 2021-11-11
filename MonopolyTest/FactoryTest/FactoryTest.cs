@@ -15,7 +15,7 @@ namespace MonopolyTest.FactoryTest
         public void ShouldReturnChanceString()
         {
             Guid uuid = Guid.NewGuid();
-            CreateChance chance = new CreateChance(1,"Chance", uuid.ToString());
+            CreateChance chance = new CreateChance(1,null);
             ISquare square = chance.BuildSquare();
             
             StringAssert.Contains(uuid.ToString(),square.ToString());
@@ -79,7 +79,7 @@ namespace MonopolyTest.FactoryTest
 
             if (randomNum == 0)
             {
-                CreateChance chance = new CreateChance(1,"Chance", uuid.ToString());
+                CreateChance chance = new CreateChance(1,null);
                 square = chance.BuildSquare();
             }
 
