@@ -8,13 +8,13 @@ namespace Monopoly.Factory.Classes
     {
         private int Id { get; }
         private string Name { get; }
-        private ArrayList ChanceList { get; }
+        private ArrayList ChanceCards { get; }
 
-        public Chance(int id, ArrayList chanceList)
+        public Chance(int id, ArrayList chanceCards)
         {
             Id = id;
             Name = "Chance";
-            ChanceList = chanceList;
+            ChanceCards = chanceCards;
         }
         
         public void PrintSquare()
@@ -24,17 +24,17 @@ namespace Monopoly.Factory.Classes
 
         public override string ToString()
         {
-            string list = "";
+            string cards = "";
                 
-            foreach (var chance in ChanceList)
+            foreach (var chance in ChanceCards)
             {
-                list += "    " + chance + "\n";
+                cards += "    " + chance + "\n";
             }
             
             
             return "Id: " + Id + "\n" +
                    "Name: " + Name + "\n" +
-                   "ChanceList: \n" + list;
+                   "ChanceCards: \n" + cards;
         }
     }
 }

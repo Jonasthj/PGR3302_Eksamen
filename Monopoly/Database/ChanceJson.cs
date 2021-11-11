@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Monopoly.Factory.Classes;
 using Monopoly.Factory.Interface;
 using Newtonsoft.Json.Linq;
@@ -30,45 +31,47 @@ namespace Monopoly.Database
             // Get the specific card, e.g: Card 1.
             var jsonCard = _jsonData["Card"]["Chance"];
 
-                
-            // Only create cards that exist in the json file.
-            if(jsonCard != null)
+            var indexes = JArray.Parse(jsonCard["indexList"].ToString());
+            var cards = JArray.Parse(jsonCard["chanceCards"].ToString());
+
+            ArrayList squares = new ArrayList();
+            ArrayList chanceCards = new ArrayList();
+            
+            foreach (var index in indexes)
             {
-                ArrayList chanceCards = new ArrayList();
-                
-                JArray indexes = (JArray)jsonCard["indexList"];
-                int indexesLength = indexes.Count;
+                int squareId = (int) index;
 
-                ArrayList chanceList = new ArrayList();
-                
-                for (int i = 0; i < indexesLength; i++)
+                // Only make the cards if they haven't already been made.
+                if (chanceCards.Count == 0)
                 {
-                    int index = (int) indexes[i];
+                    int i = 0;
                     
-                    JArray chances = (JArray)jsonCard["chanceList"];
-                    int chancesLength = chances.Count;
-
-                    for (int j = 0; j < chancesLength; j++)
+                    foreach (var card in cards)
                     {
-                        string text = chances[j]["text"].ToString();
-                        int value = (int) chances[j]["value"];
-                        int newIndex = (int) chances[j]["newIndex"];
-
-                        chanceList.Add(new ChanceList(text, value, newIndex));
-                    }
-
-                    CreateChance chance = new CreateChance(index, chanceList);
-
-                    ISquare square = chance.BuildSquare();
-                    chanceCards.Add(square);
+                        var jsonChance = jsonCard["chanceCards"];
                     
-                }
-                
-                return chanceCards;
+                        int cardId = (int) jsonChance[i]["id"];
+                        string cardContent = jsonChance[i]["content"].ToString();
+                        int cardValue = (int) jsonChance[i]["value"];
+                        int cardMoveIndex = (int) jsonChance[i]["moveIndex"];
 
+                        ChanceCard chanceCard = new ChanceCard(cardId, cardContent, cardValue, cardMoveIndex);
+                        chanceCards.Add(chanceCard);
+
+                        i++;
+
+                    }
+                }
+
+                // The squares contains the same amount and info about the cards.
+                CreateChance chance = new CreateChance(squareId, chanceCards);
+                ISquare square = chance.BuildSquare();
+
+                squares.Add(square);
             }
 
-            return null;
+            // Return the list of all the squares.
+            return squares;
         }
 
         #endregion

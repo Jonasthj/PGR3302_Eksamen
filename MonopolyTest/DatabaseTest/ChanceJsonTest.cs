@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Monopoly.Database;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
@@ -10,38 +11,20 @@ namespace MonopolyTest.DatabaseTest
         [Test]
         public void ShouldReturnAllChanceCards()
         {
-            string jsonData = ExampleChance();
+            var jsonContent = JsonFileReader.GetJsonData();
             
-            var jsonContent = JObject.Parse(jsonData);
-
             ChanceJson chanceJson = new ChanceJson(jsonContent);
 
-            Console.WriteLine(chanceJson.RetrieveAll());
             
-        }
+            Assert.True(chanceJson.RetrieveAll()[0].ToString().Contains("3"));
+            Assert.True(chanceJson.RetrieveAll()[0].ToString().Contains("Move to start and collect 100"));
+            
+            Assert.True(chanceJson.RetrieveAll()[1].ToString().Contains("6"));
+            Assert.True(chanceJson.RetrieveAll()[1].ToString().Contains("Go directly to prison and skip one round"));
+            
+            Assert.True(chanceJson.RetrieveAll()[2].ToString().Contains("13"));
 
-        private string ExampleChance()
-        {
-            return @"
-            {
-                'Card': {
-                    'Chance': {
-                        'indexList': [
-                            3,
-                            6,
-                            10
-                        ],
-                        'chanceList': [
-                            {'text': 'Go home', 'value': 100, 'newIndex': 0},
-                            {'text': 'Stay', 'value': 0, 'newIndex': 0},
-                            {'text': 'Move!', 'value': -50, 'newIndex': 2},
-                            {'text': 'Move and become rich', 'value': 200, 'newIndex': 5}
-                        ]
-                    
-                    }
-                }
-                
-            }";
+
         }
     }
 }
