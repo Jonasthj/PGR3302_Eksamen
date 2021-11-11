@@ -26,7 +26,7 @@ namespace Monopoly.Flyweight
             return "Balance: " + Balance;
         }
         
-        //TODO: Operator overloads
+        // TODO: Operator overloads?
 
         #endregion
     }

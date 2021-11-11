@@ -7,20 +7,23 @@ namespace Monopoly
     {
         public int CheckBalance(int playerId)
         {
-
             Player player = PlayerGenerator.Get(playerId);
             
             return player.Wallet.Balance;
         }
 
-        public void AddBalance()
+        public void AddBalance(int playerId, int amount)
         {
-            
+            Player player = PlayerGenerator.Get(playerId);
+
+            player.SetWallet(new Wallet(player.Wallet.Balance + amount));
         }
 
-        public void SubtractBalance()
+        public void SubtractBalance(int playerId, int amount)
         {
+            Player player = PlayerGenerator.Get(playerId);
             
+            player.SetWallet(new Wallet(player.Wallet.Balance - amount));
         }
     }
 }
