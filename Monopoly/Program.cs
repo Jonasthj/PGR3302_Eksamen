@@ -1,4 +1,5 @@
-﻿using System;
+
+using System;
 using System.IO;
 using Monopoly.Database;
 using Monopoly.Factory.Classes;
@@ -10,7 +11,6 @@ namespace Monopoly
     {
         static void Main(string[] args)
         {
-
             GameManager game = new GameManager();
             game.CreatePlayers(4);
         }

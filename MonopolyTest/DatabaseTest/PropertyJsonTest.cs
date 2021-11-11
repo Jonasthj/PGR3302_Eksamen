@@ -10,7 +10,7 @@ namespace MonopolyTest.DatabaseTest
         [Test]
         public void ShouldRetrieveCardFromJson()
         {
-            string jsonData = exampleData("Grensen", "Brown", 100, 30);
+            string jsonData = exampleData(1, "Grensen", "Brown", 100, 30);
 
             var jsonContent = JObject.Parse(jsonData);
             
@@ -19,19 +19,21 @@ namespace MonopolyTest.DatabaseTest
             Assert.That(propertyJson.Retrieve(1).ToString().Contains("Grensen"));
         }
 
-        private string exampleData(string name, string color, int purchase, int rent)
+        private string exampleData(int id, string name, string color, int buyPrice, int rentPrice)
         {
-            string example = "{" +
-            "'Card': {" +
-                "'1': {" +
-                    $"'name': '{name}'," +
-                    $"'color': '{color}'," +
-                    $"'purchase': {purchase}," +
-                    $"'rent': {rent}" +
-                "}" +
-            "}}";
+            string example = @"
+            {
+                'Card': {
+                    '" + id + @"': {
+                        'name': '" + name + @"',
+                        'color': '" + color + @"',
+                        'buyPrice': " + buyPrice + @",
+                        'rentPrice': " + rentPrice + @"
+                    }
+                }
+            }";
 
-            return @example;
+            return example;
         }
     }
 }

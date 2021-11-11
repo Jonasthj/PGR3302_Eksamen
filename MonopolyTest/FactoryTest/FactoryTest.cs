@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using Monopoly.Factory.Classes;
 using Monopoly.Factory.Interface;
@@ -8,61 +9,48 @@ namespace MonopolyTest.FactoryTest
 {
     public class FactoryTest
     {
+        #region Tests
+        
         [Test]
         public void ShouldReturnChanceString()
         {
-            CreateChance chance = new CreateChance(1,"Chance", "Two steps back");
+            Guid uuid = Guid.NewGuid();
+            CreateChance chance = new CreateChance(1,null);
             ISquare square = chance.BuildSquare();
             
-            // StringAssert.Contains();
+            StringAssert.Contains(uuid.ToString(),square.ToString());
         }
 
-        /*[Test]
+       [Test]
         public void ShouldReturnPrisonString()
         {
-            Prison prison = new();
-            prison.Id = 2;
-            prison.Name = "Prison";
-            Assert.AreEqual("Id: " + prison.Id + "\n" +
-                                   "Name: " + prison.Name, prison.ToString());
+            Guid uuid = Guid.NewGuid();
+            CreatePrison prison = new CreatePrison(1, uuid.ToString());
+            ISquare square = prison.BuildSquare();
+            
+            StringAssert.Contains(uuid.ToString(), square.ToString());
         }
-        */
-
-
-        /*[Test]
+        
+        [Test]
         public void ShouldReturnPropertyString()
         {
+            Guid uuid = Guid.NewGuid();
+            CreateProperty property = new CreateProperty(5, uuid.ToString(), Color.Blue, 123, 123);
+            ISquare square = property.BuildSquare();
             
-            Property property = new();
-            property.Id = 30;
-            property.Name = "Ullevål Sykehus";
-            property.Color = "Blue";
-            property.IsAvailable = true;
-            property.BuyPrice = 123;
-            property.RentPrice = 33;
-            property.OwnerId = 2;
-            
-            Assert.AreEqual("Id: " + property.Id + "\n" +
-                            "Name: " + property.Name + "\n" +
-                            "Color: " + property.Color + "\n" +
-                            "IsAvailable: " + property.IsAvailable + "\n" +
-                            "BuyPrice: " + property.BuyPrice + "\n" +
-                            "RentPrice: " + property.RentPrice + "\n" +
-                            "OwnerId: " + property.OwnerId + "\n", property.ToString());
+            StringAssert.Contains(uuid.ToString(), square.ToString());
         }
 
         [Test]
         public void ShouldReturnStartString()
         {
-            Start start = new();
-            start.Id = 1;
-            start.Name = "Start";
+            Guid uuid = Guid.NewGuid();
+            CreateStart start = new CreateStart(2, uuid.ToString());
+            ISquare square = start.BuildSquare();
             
-            Assert.AreEqual("Id: " + start.Id + "\n" +
-                            "Name: " + start.Name, start.ToString());
+            StringAssert.Contains(uuid.ToString(), square.ToString());
         }
 
-        
         [Test]
         public void ShouldReadRandomSquareString()
         {
@@ -76,23 +64,45 @@ namespace MonopolyTest.FactoryTest
                 Assert.AreEqual(consoleOutput, square.ToString() + "\r\n");
             }
         }
+        #endregion
+
+        #region HelperMethods
         
         private static ISquare GenerateRandomSquare()
         {
             Random random= new Random();
             int randomNum=random.Next(3);
-
-            if(randomNum==0)
-                return new Chance();
-            if(randomNum==1)
-                return new Prison();
-            if(randomNum==2)
-                return new Property();
+            Guid uuid = Guid.NewGuid();
             
-            return new Start();
-        }*/
+            // Must be initialized.
+            ISquare square = null;
 
-        
-        
+            if (randomNum == 0)
+            {
+                CreateChance chance = new CreateChance(1,null);
+                square = chance.BuildSquare();
+            }
+
+            if (randomNum == 1)
+            {
+                CreatePrison prison = new CreatePrison(1, uuid.ToString());
+                square = prison.BuildSquare();
+            }
+
+            if (randomNum == 2)
+            {
+                CreateProperty property = new CreateProperty(5, uuid.ToString(), Color.Blue, 123, 123);
+                square = property.BuildSquare();
+            }
+
+            if (randomNum == 3)
+            {
+                CreateStart start = new CreateStart(2, uuid.ToString());
+                square = start.BuildSquare();
+            }
+
+            return square;
+        }
+        #endregion
     }
 }

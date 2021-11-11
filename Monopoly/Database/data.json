@@ -3,82 +3,95 @@
         "1": {
             "name": "Grensen",
             "color": "Brown",
-            "purchase": 100,
-            "rent": 30
+            "buyPrice": 100,
+            "rentPrice": 30
         },
         "2": {
             "name": "Urtegata",
             "color": "Brown",
-            "purchase": 100,
-            "rent": 30
+            "buyPrice": 100,
+            "rentPrice": 30
         },
         "4": {
             "name": "Sinsen",
             "color": "Blue",
-            "purchase": 150,
-            "rent": 45
+            "buyPrice": 150,
+            "rentPrice": 45
         },
         "5": {
             "name": "Grunerløkka",
             "color": "Blue",
-            "purchase": 170,
-            "rent":50
+            "buyPrice": 170,
+            "rentPrice":50
         },
         "7": {
             "name": "Kirkeveien",
             "color": "Orange",
-            "purchase": 200,
-            "rent": 60
+            "buyPrice": 200,
+            "rentPrice": 60
         },
         "9": {
             "name": "Øvre Slottsgate",
             "color": "Yellow",
-            "purchase": 210,
-            "rent": 65
+            "buyPrice": 210,
+            "rentPrice": 65
         },
         "10": {
             "name": "Parkveien",
             "color": "Yellow",
-            "purchase": 240,
-            "rent": 75
+            "buyPrice": 240,
+            "rentPrice": 75
         },
         "11": {
             "name": "Bogstadveien",
             "color": "Green",
-            "purchase": 290,
-            "rent": 90
+            "buyPrice": 290,
+            "rentPrice": 90
         },
         "12": {
             "name": "Bydgøy Allé",
             "color": "Green",
-            "purchase": 350,
-            "rent": 105
+            "buyPrice": 350,
+            "rentPrice": 105
         },
         "14": {
             "name": "Pilestredet",
             "color": "Blue",
-            "purchase": 350,
-            "rent": 110
+            "buyPrice": 350,
+            "rentPrice": 110
         },
         
         "15": {
             "name": "Ullevål hageby",
             "color": "Blue",
-            "purchase": 400,
-            "rent": 130
+            "buyPrice": 400,
+            "rentPrice": 130
         },
         "Chance": {
-            "name": "Chance",
-            "chanceList":  [
-                {"text": "Move to start and collect 100", "value": 100, "newIndex": 0},
-                {"text": "Pay a parking fine of 50", "value": -50, "newIndex": -1},
-                {"text": "You receive a gift of 50", "value": 50, "newIndex": -1},
-                {"text": "Go directly to prison and skip one round", "value": 0, "newIndex": 8},
-                {"text": "Go to Grunerløkka", "value": 0, "newIndex": 5},
-                {"text": "You inherit 200", "value": 200, "newIndex": -1},
-                {"text": "Doctors fee 100", "value": -100, "newIndex": -1},
-                {"text": "Stock market is going up, collect 100", "value": 100, "newIndex": -1},
-                {"text": "There has been a fire in your house, pay 50", "value": -50, "newIndex": -1}
+            "indexList": [
+                3,
+                6,
+                13
+            ],
+            "chanceCards":  [
+                {
+                    "id": 0, "content": "Move to start and collect 100", "value": 100, "moveIndex": 0},
+                {
+                    "id": 1, "content": "Pay a parking fine of 50", "value": -50, "moveIndex": -1},
+                {
+                    "id": 2, "content": "You receive a gift of 50", "value": 50, "moveIndex": -1},  
+                {
+                    "id": 3, "content": "Go directly to prison and skip one round", "value": 0, "moveIndex": 8},
+                {
+                    "id": 4, "content": "Go to Grunerløkka", "value": 0, "moveIndex": 5},
+                {
+                    "id": 5, "content": "You inherit 200", "value": 200, "moveIndex": -1},
+                {
+                    "id": 6, "content": "Doctors fee 100", "value": -100, "moveIndex": -1},
+                {
+                    "id": 7, "content": "Stock market is going up, collect 100", "value": 100, "moveIndex": -1},
+                {
+                    "id": 8, "content": "There has been a fire in your house, pay 50", "value": -50, "moveIndex": -1}
             ],
             "_comment1": "Text is the card content, value is the amount that the player gets/loses.",
             "_comment2": "If this is 0, he doesn't get or lose anything. newIndex is the index on tha map where the player needs to go.",
