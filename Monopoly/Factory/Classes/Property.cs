@@ -6,6 +6,8 @@ namespace Monopoly.Factory.Classes
 {
     public class Property : ISquare
     {
+        #region Properties
+
         private int Id { get;}
         private string Name { get;}
         private Color Color { get;}
@@ -13,6 +15,10 @@ namespace Monopoly.Factory.Classes
         private int RentPrice { get;}
         public bool IsAvailable { get; set; }
         public int OwnerId { get; set; }
+
+        #endregion
+
+        #region Constructors
 
         public Property(int id, string name, Color color, int buyPrice, int rentPrice)
         {
@@ -24,11 +30,19 @@ namespace Monopoly.Factory.Classes
             // Property is always available at the beginning of the game.
             IsAvailable = true;
         }
-        
+
+        #endregion
+
+        #region Implemented
+
         public void PrintSquare()
         {
             Console.WriteLine(ToString());
         }
+
+        #endregion
+
+        #region Overrides
 
         public override string ToString()
         {
@@ -40,5 +54,8 @@ namespace Monopoly.Factory.Classes
                    "RentPrice: " + RentPrice + "\n" +
                    "OwnerId: " + OwnerId + "\n";
         }
+
+        #endregion
+        
     }
 }
