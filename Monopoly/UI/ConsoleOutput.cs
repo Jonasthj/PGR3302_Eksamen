@@ -9,6 +9,5 @@ namespace Monopoly.UI
             Console.WriteLine(value);
         }
         
-        public void
     }
 }
