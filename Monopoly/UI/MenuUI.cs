@@ -1,4 +1,5 @@
 ﻿using System;
+using Monopoly.Factory.Classes;
 
 namespace Monopoly.UI
 {
@@ -7,12 +8,14 @@ namespace Monopoly.UI
 
         public void StartGame()
         {
+            GameManager manager = new();
+            
             ConsoleOutput.Print("--- Welcome to Monopoly! ---\n");
             ConsoleOutput.Print("How many players are you ( 2-4 )");
 
             int playersCount = GetPlayerCount();
             
-            
+            manager.CreatePlayers(playersCount);
             
         }
 
