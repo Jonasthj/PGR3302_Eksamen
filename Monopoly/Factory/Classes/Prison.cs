@@ -10,7 +10,6 @@ namespace Monopoly.Factory.Classes
         private int Id { get;}
         private string Name { get;}
 
-        
         #endregion
 
         #region Constructors
