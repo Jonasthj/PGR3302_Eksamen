@@ -1,22 +1,23 @@
 ﻿using System;
 using Monopoly.Factory.Classes;
+using Monopoly.Flyweight;
 
 namespace Monopoly.UI
 {
     public class MenuUI
     {
+        private readonly GameManager _manager = new();
 
         public void StartGame()
         {
-            GameManager manager = new();
-            
             ConsoleOutput.Print("--- Welcome to Monopoly! ---\n");
             ConsoleOutput.Print("How many players are you ( 2-4 )");
 
             int playersCount = GetPlayerCount();
+            _manager.CreatePlayers(playersCount);
             
-            manager.CreatePlayers(playersCount);
-            
+            SetPlayers(playersCount);
+
         }
 
         private void PrintState()
@@ -38,10 +39,20 @@ namespace Monopoly.UI
                 else
                     ConsoleOutput.Print("- You must be minimum 2 players and maximum 4!");
             }
-            
-            ConsoleOutput.Print($"You are {value} players!");
 
             return value;
+        }
+
+        private void SetPlayers(int count)
+        {
+            foreach (var player in PlayerGenerator.Players)
+            {
+                ConsoleOutput.Print($"Type in name for player {player.Key}");
+                string name = ConsoleInput.ReadString();
+                
+                _manager.SetPlayersInfo(name, player.Key);
+            }
+            
         }
         
     }
