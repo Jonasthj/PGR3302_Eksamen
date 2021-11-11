@@ -5,9 +5,31 @@ namespace Monopoly.Factory.Classes
 {
     public class CreateStart : CreateSquare
     {
+        #region Fields
+
+        private int _id;
+        private string _name;
+
+        #endregion
+
+        #region Constructors
+
+        public CreateStart(int id, string name)
+        {
+            _id = id;
+            _name = name;
+        }
+        
+        #endregion
+
+        #region Overrides
+
         public override ISquare BuildSquare()
         {
             return new Start();
         }
+
+        #endregion
+        
     }
 }

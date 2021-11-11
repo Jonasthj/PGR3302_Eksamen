@@ -29,7 +29,7 @@ namespace Monopoly.Factory.Classes
 
         #endregion
 
-        #region Methods
+        #region Overrides
 
         public override ISquare BuildSquare()
         {
@@ -37,7 +37,5 @@ namespace Monopoly.Factory.Classes
         }
 
         #endregion
-        
-        
     }
 }

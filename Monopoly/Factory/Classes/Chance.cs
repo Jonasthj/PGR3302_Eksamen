@@ -6,6 +6,7 @@ namespace Monopoly.Factory.Classes
 {
     public class Chance : ISquare
     {
+        #region Properties
         private int Id { get; }
         private string Name { get; }
         private ArrayList ChanceCards { get; }
@@ -17,11 +18,19 @@ namespace Monopoly.Factory.Classes
             ChanceCards = chanceCards;
         }
         
+        #endregion
+
+        #region Implemented
+        
         public void PrintSquare()
         {
             Console.WriteLine(ToString());
         }
+        
+        #endregion
 
+        #region ToString
+        
         public override string ToString()
         {
             string cards = "";
@@ -36,5 +45,7 @@ namespace Monopoly.Factory.Classes
                    "Name: " + Name + "\n" +
                    "ChanceCards: \n" + cards;
         }
+        
+        #endregion
     }
 }
