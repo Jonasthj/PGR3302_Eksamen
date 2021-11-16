@@ -29,6 +29,11 @@ namespace Monopoly.Factory.Classes
             Console.WriteLine(ToString());
         }
 
+        public int GetId()
+        {
+            return Id;
+        }
+
         #endregion
 
         #region Overrides

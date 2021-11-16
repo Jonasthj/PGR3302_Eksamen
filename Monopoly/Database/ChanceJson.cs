@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using Monopoly.Factory.Classes;
 using Monopoly.Factory.Interface;
 using Newtonsoft.Json.Linq;
@@ -26,7 +27,7 @@ namespace Monopoly.Database
 
         #region Methods
 
-        public ArrayList RetrieveAll()
+        public List<ISquare> RetrieveAll()
         {
             // Get the specific card, e.g: Card 1.
             var jsonCard = _jsonData["Card"]["Chance"];
@@ -34,8 +35,8 @@ namespace Monopoly.Database
             var indexes = JArray.Parse(jsonCard["indexList"].ToString());
             var cards = JArray.Parse(jsonCard["chanceCards"].ToString());
 
-            ArrayList squares = new ArrayList();
-            ArrayList chanceCards = new ArrayList();
+            List<ISquare> squares = new List<ISquare>();
+            List<ChanceCard> chanceCards = new List<ChanceCard>();
             
             foreach (var index in indexes)
             {
@@ -66,6 +67,7 @@ namespace Monopoly.Database
                 // The squares contains the same amount and info about the cards.
                 CreateChance chance = new CreateChance(squareId, chanceCards);
                 ISquare square = chance.BuildSquare();
+                
 
                 squares.Add(square);
             }

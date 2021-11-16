@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using Monopoly.Factory.Abstract;
 using Monopoly.Factory.Interface;
 
@@ -9,8 +10,8 @@ namespace Monopoly.Factory.Classes
         #region Fields
         
         private readonly int _id;
-        private readonly ArrayList _chanceList;
-        public CreateChance(int id, ArrayList chanceList)
+        private readonly List<ChanceCard> _chanceList;
+        public CreateChance(int id, List<ChanceCard> chanceList)
         {
             _id = id;
             _chanceList = chanceList;

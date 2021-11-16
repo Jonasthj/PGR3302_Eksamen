@@ -3,5 +3,7 @@
     public interface ISquare
     {
         void PrintSquare();
+
+        int GetId();
     }
 }

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
 using Monopoly.Factory.Interface;
 
 namespace Monopoly.Factory.Classes
@@ -7,11 +7,12 @@ namespace Monopoly.Factory.Classes
     public class Chance : ISquare
     {
         #region Properties
+
         private int Id { get; }
         private string Name { get; }
-        private ArrayList ChanceCards { get; }
+        private List<ChanceCard> ChanceCards { get; }
 
-        public Chance(int id, ArrayList chanceCards)
+        public Chance(int id, List<ChanceCard> chanceCards)
         {
             Id = id;
             Name = "Chance";
@@ -26,7 +27,12 @@ namespace Monopoly.Factory.Classes
         {
             Console.WriteLine(ToString());
         }
-        
+
+        public int GetId()
+        {
+            return Id;
+        }
+
         #endregion
 
         #region ToString
