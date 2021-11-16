@@ -1,12 +1,27 @@
 using System;
 using System.Collections.Generic;
+using Monopoly.Database;
 using Monopoly.Flyweight;
 
 namespace Monopoly.Factory.Classes
 {
     public class GameManager
     {
-        public BoardMap map = new();
+        public BoardMap map;
+        
+        public BoardMap CreateBoardMap()
+        {
+            map = new BoardMap();
+
+            PropertyJson propertyJson = new(JsonFileReader.GetJsonData());
+            
+            for (int i = 0; i < 20; i++)
+            {
+                map.MapSquares[i] = propertyJson.Retrieve(i);
+            }
+
+            return map;
+        }
         
         
         //Create x players (as defined in menuUI) and put them in start position on boardmap

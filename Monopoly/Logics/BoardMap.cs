@@ -8,7 +8,7 @@ namespace Monopoly
     public class BoardMap
     {
         // <mapIndex, Square>
-        public Dictionary<int, ISquare> MapIndex = new ();
+        public Dictionary<int, ISquare> MapSquares = new ();
 
         // <playerId, index>
         public Dictionary<int, int> Players = new ();
