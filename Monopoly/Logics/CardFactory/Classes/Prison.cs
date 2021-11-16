@@ -16,7 +16,7 @@ namespace Monopoly.Factory.Classes
         
         public Prison()
         {
-            Id = 8;
+            Id = 6;
             Name = "Prison";
         }
 

@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using Monopoly.Factory.Abstract;
 using Monopoly.Factory.Interface;
 
@@ -10,7 +11,7 @@ namespace Monopoly.Factory.Classes
 
         private readonly int _id;
         private readonly string _name;
-        private readonly Color _color;
+        private readonly ConsoleColor _color;
         private readonly int _buyPrice;
         private readonly int _rentPrice;
 
@@ -18,7 +19,7 @@ namespace Monopoly.Factory.Classes
 
         #region Constructors
 
-        public CreateProperty(int id, string name, Color color, int buyPrice, int rentPrice)
+        public CreateProperty(int id, string name, ConsoleColor color, int buyPrice, int rentPrice)
         {
             _id = id;
             _name = name;

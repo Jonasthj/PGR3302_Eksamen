@@ -10,7 +10,7 @@ namespace Monopoly.Factory.Classes
 
         private int Id { get;}
         private string Name { get;}
-        private Color Color { get;}
+        private ConsoleColor Color { get;}
         private int BuyPrice { get;}
         private int RentPrice { get;}
         public bool IsAvailable { get; set; }
@@ -20,7 +20,7 @@ namespace Monopoly.Factory.Classes
 
         #region Constructors
 
-        public Property(int id, string name, Color color, int buyPrice, int rentPrice)
+        public Property(int id, string name, ConsoleColor color, int buyPrice, int rentPrice)
         {
             Id = id;
             Name = name;
@@ -28,7 +28,8 @@ namespace Monopoly.Factory.Classes
             BuyPrice = buyPrice;
             RentPrice = rentPrice;
             // Property is always available at the beginning of the game.
-            IsAvailable = true;
+            IsAvailable = false;
+            OwnerId = 1;
         }
 
         #endregion
@@ -51,13 +52,36 @@ namespace Monopoly.Factory.Classes
 
         public override string ToString()
         {
-            return "Id: " + Id + "\n" +
-                   "Name: " + Name + "\n" +
-                   Color + "\n" +
-                   "IsAvailable: " + IsAvailable + "\n" +
-                   "BuyPrice: " + BuyPrice + "\n" +
-                   "RentPrice: " + RentPrice + "\n" +
-                   "OwnerId: " + OwnerId + "\n";
+            var price = CheckAvailable(out var owner);
+
+            // Console.ForegroundColor;
+            Console.ForegroundColor = Color;
+            
+            return "-----------------" +
+                   "\n" +
+                   $"  {Name}\n"+
+                   $"\n  {owner}" +
+                   $"  {price}" +
+                   "\n" +
+                   "-----------------";
+        }
+
+        private string CheckAvailable(out string owner)
+        {
+            string price;
+            owner = "";
+
+            if (IsAvailable)
+            {
+                price = $"Buy: {BuyPrice}M";
+            }
+            else
+            {
+                price = $"Rent: {RentPrice}M";
+                owner = $"Owner: Player {OwnerId}\n";
+            }
+
+            return price;
         }
 
         #endregion

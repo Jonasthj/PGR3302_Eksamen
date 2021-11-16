@@ -7,7 +7,6 @@ namespace Monopoly.UI
     {
         public static void Print(string value)
         {
-            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(value);
         }
         
@@ -16,6 +15,7 @@ namespace Monopoly.UI
             Console.ForegroundColor = color;
             Console.WriteLine(value);
             Console.ForegroundColor = ConsoleColor.White;
+            
         }
 
         public static void Print(int value)

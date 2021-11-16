@@ -33,7 +33,8 @@ namespace Monopoly.UI
 
         private void PrintState()
         {
-            
+            // Console.Clear();
+
             ConsoleOutput.PrintNewLine();
             ConsoleOutput.Print(
                 "------- Board Map -------\n" +
@@ -76,9 +77,6 @@ namespace Monopoly.UI
 
         private void NextTurn(int playerId)
         {
-            
-            ConsoleInput.ReadString();
-            
             ConsoleOutput.PrintNewLine();
             ConsoleOutput.Print($"Your turn: \n{PlayerGenerator.Players[playerId]}");
             
@@ -90,6 +88,8 @@ namespace Monopoly.UI
             ConsoleOutput.Print($"You rolled: {diceThrow}", ConsoleColor.Magenta);
             
             MovePlayer(playerId, diceThrow);
+            int playerIndex = _map.Players[playerId];
+            ConsoleOutput.Print(_map.MapSquares[playerIndex].ToString());
 
             /*** NextTurn()
          * Show board card
@@ -104,7 +104,7 @@ namespace Monopoly.UI
             int newIndex = diceThrow + playerIndex;
             int squareCount = _map.BoardSquares.Count;
 
-            if (newIndex > squareCount)
+            if (newIndex >= squareCount)
             {
                 int restSquares = squareCount - playerIndex;
                 int move = diceThrow - restSquares;

@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using Monopoly.Factory.Classes;
 using Monopoly.Factory.Interface;
 using Newtonsoft.Json.Linq;
@@ -32,9 +33,8 @@ namespace Monopoly.Database
                 
             // Only create cards that exist in the json file.
             if(jsonCard != null) {
-                    
                 string name = jsonCard["name"].ToString();
-                Color color = Color.FromName(jsonCard["color"].ToString());
+                ConsoleColor color = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), jsonCard["color"].ToString());
                 int buyPrice = (int) jsonCard["buyPrice"];
                 int rentPrice = (int) jsonCard["rentPrice"];
 
