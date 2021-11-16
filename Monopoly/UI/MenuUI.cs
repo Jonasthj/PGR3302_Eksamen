@@ -7,9 +7,13 @@ namespace Monopoly.UI
     public class MenuUI
     {
         private readonly GameManager _manager = new();
+        private readonly BoardMap map = new ();
 
         public void StartGame()
         {
+            ConsoleOutput.Print(map.ToString());
+
+            
             ConsoleOutput.Print("--- Welcome to Monopoly! ---\n");
             ConsoleOutput.Print("How many players are you ( 2-4 )");
 
@@ -29,6 +33,7 @@ namespace Monopoly.UI
              * Player action (buy, end)
              * End turn
              */
+
         }
 
         private void PrintState()
