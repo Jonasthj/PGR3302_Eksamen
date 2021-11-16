@@ -13,11 +13,22 @@ namespace Monopoly.UI
             ConsoleOutput.Print("--- Welcome to Monopoly! ---\n");
             ConsoleOutput.Print("How many players are you ( 2-4 )");
 
+            // Set players:
+            
             int playersCount = GetPlayerCount();
             _manager.CreatePlayers(playersCount);
             
             SetPlayers(playersCount);
-
+            
+            // Print Info (BoardMap, Players + wallet):
+            
+            /*** NextTurn()
+             * Which player?
+             * Dice,
+             * Show board card
+             * Player action (buy, end)
+             * End turn
+             */
         }
 
         private void PrintState()
