@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using Monopoly.Factory.Classes;
 using Monopoly.Flyweight;
 
@@ -24,8 +25,10 @@ namespace Monopoly.UI
             SetPlayers(playersCount);
             
             // Print Info (BoardMap, Players + wallet):
-            
-            PrintState();
+            while (PlayerGenerator.Players.Count > 1)
+            {
+                PrintState();
+            }
         }
 
         private void PrintState()
@@ -70,14 +73,25 @@ namespace Monopoly.UI
             
         }
 
-        private void NextTurn(int index)
+        private void NextTurn(int playerId)
         {
-            ConsoleOutput.Print($"Your turn: \n{PlayerGenerator.Players[index]}");
+            ConsoleInput.ReadString();
             
+            ConsoleOutput.PrintNewLine();
+            ConsoleOutput.Print($"Your turn: \n{PlayerGenerator.Players[playerId]}");
+            
+            ConsoleOutput.PrintNewLine();
+            ConsoleOutput.Print("Press enter to roll the dice", ConsoleColor.Cyan);
+            
+            ConsoleInput.ReadString();
+            int diceThrow = Dice.RollDice();
+            ConsoleOutput.Print($"You rolled: {diceThrow}", ConsoleColor.Magenta);
 
+            int tmp = _map.Players[playerId] += diceThrow;
+
+            ConsoleOutput.Print(_map.Players[playerId]);
 
             /*** NextTurn()
-         * Which player?
          * Dice,
          * Show board card
          * Player action (buy, end)

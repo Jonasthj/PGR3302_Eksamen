@@ -25,7 +25,7 @@ namespace Monopoly.UI
 
         public static void PrintNewLine()
         {
-            Console.WriteLine("\n");
+            Console.WriteLine();
         }
         
         
