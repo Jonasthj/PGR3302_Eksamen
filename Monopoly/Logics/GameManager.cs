@@ -16,8 +16,10 @@ namespace Monopoly.Factory.Classes
         {
             map = new BoardMap();
 
-            PropertyJson propertyJson = new(JsonFileReader.GetJsonData());
-            ChanceJson chanceJson = new(JsonFileReader.GetJsonData());
+            var jsonData = JsonFileReader.GetJsonData();
+            
+            PropertyJson propertyJson = new(jsonData);
+            ChanceJson chanceJson = new(jsonData);
             
             Prison prison = new Prison();
             Start start = new Start();
