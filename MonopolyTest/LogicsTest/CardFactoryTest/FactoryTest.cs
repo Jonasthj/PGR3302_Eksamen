@@ -35,7 +35,7 @@ namespace MonopolyTest.FactoryTest
         public void ShouldReturnPropertyString()
         {
             Guid uuid = Guid.NewGuid();
-            CreateProperty property = new CreateProperty(5, uuid.ToString(), Color.Blue, 123, 123);
+            CreateProperty property = new CreateProperty(5, uuid.ToString(), ConsoleColor.Blue, 123, 123);
             ISquare square = property.BuildSquare();
             
             StringAssert.Contains(uuid.ToString(), square.ToString());
@@ -91,7 +91,7 @@ namespace MonopolyTest.FactoryTest
 
             if (randomNum == 2)
             {
-                CreateProperty property = new CreateProperty(5, uuid.ToString(), Color.Blue, 123, 123);
+                CreateProperty property = new CreateProperty(5, uuid.ToString(), ConsoleColor.Blue, 123, 123);
                 square = property.BuildSquare();
             }
 

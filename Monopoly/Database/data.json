@@ -1,0 +1,120 @@
+{
+    "Card": {
+        "1": {
+            "name": "Grensen",
+            "color": "DarkYellow",
+            "buyPrice": 100,
+            "rentPrice": 30
+        },
+        "2": {
+            "name": "Urtegata",
+            "color": "DarkYellow",
+            "buyPrice": 100,
+            "rentPrice": 30
+        },
+        "4": {
+            "name": "Sinsen",
+            "color": "Blue",
+            "buyPrice": 150,
+            "rentPrice": 45
+        },
+        "5": {
+            "name": "Grunerløkka",
+            "color": "Blue",
+            "buyPrice": 170,
+            "rentPrice":50
+        },
+        "7": {
+            "name": "Kirkeveien",
+            "color": "Magenta",
+            "buyPrice": 190,
+            "rentPrice": 55
+        },
+        "8": {
+            "name": "Øvre Slottsgate",
+            "color": "Magenta",
+            "buyPrice": 200,
+            "rentPrice": 60
+        },
+        "10": {
+            "name": "Parkveien",
+            "color": "Yellow",
+            "buyPrice": 210,
+            "rentPrice": 65
+        },
+        "11": {
+            "name": "Karl Johans Gate",
+            "color": "Yellow",
+            "buyPrice": 240,
+            "rentPrice": 75
+        },
+        "12": {
+            "name": "Karenslyst Allé",
+            "color": "Red",
+            "buyPrice": 260,
+            "rentPrice": 80
+        },
+        "13": {
+            "name": "Kristinelundveien",
+            "color": "Red",
+            "buyPrice": 260,
+            "rentPrice": 80
+        },
+        "15": {
+            "name": "Bogstadveien",
+            "color": "Green",
+            "buyPrice": 290,
+            "rentPrice": 90
+        },
+        "16": {
+            "name": "Bydgøy Allé",
+            "color": "Green",
+            "buyPrice": 350,
+            "rentPrice": 105
+        },
+        "18": {
+            "name": "Pilestredet",
+            "color": "DarkBlue",
+            "buyPrice": 390,
+            "rentPrice": 110
+        },
+        "19": {
+            "name": "Ullevål hageby",
+            "color": "DarkBlue",
+            "buyPrice": 400,
+            "rentPrice": 130
+        },
+        "Chance": {
+            "indexList": [
+                3,
+                9,
+                14,
+                17
+            ],
+            "chanceCards":  [
+                {
+                    "id": 0, "content": "Move to start and collect 100", "value": 100, "moveIndex": 0},
+                {
+                    "id": 1, "content": "Pay a parking fine of 50", "value": -50, "moveIndex": -1},
+                {
+                    "id": 2, "content": "You receive a gift of 50", "value": 50, "moveIndex": -1},  
+                {
+                    "id": 3, "content": "Go directly to prison and skip one round", "value": 0, "moveIndex": 8},
+                {
+                    "id": 4, "content": "Go to Grunerløkka", "value": 0, "moveIndex": 5},
+                {
+                    "id": 5, "content": "You inherit 200", "value": 200, "moveIndex": -1},
+                {
+                    "id": 6, "content": "Doctors fee 100", "value": -100, "moveIndex": -1},
+                {
+                    "id": 7, "content": "Stock market is going up, collect 100", "value": 100, "moveIndex": -1},
+                {
+                    "id": 8, "content": "There has been a fire in your house, pay 50", "value": -50, "moveIndex": -1}
+            ],
+            "_comment1": "Text is the card content, value is the amount that the player gets/loses.",
+            "_comment2": "If this is 0, he doesn't get or lose anything. newIndex is the index on tha map where the player needs to go.",
+            "_comment3": "Does not count if value is -1."
+        }
+    }
+}
+    
