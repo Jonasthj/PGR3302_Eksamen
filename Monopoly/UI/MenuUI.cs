@@ -11,9 +11,6 @@ namespace Monopoly.UI
 
         public void StartGame()
         {
-            ConsoleOutput.Print(map.ToString());
-
-            
             ConsoleOutput.Print("--- Welcome to Monopoly! ---\n");
             ConsoleOutput.Print("How many players are you ( 2-4 )");
 

@@ -1,162 +1,141 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using Monopoly.UI;
+using Monopoly.Factory.Interface;
 
 namespace Monopoly
 {
     public class BoardMap
     {
-        public Dictionary<int, string> MapIndex = new ();
+        // <mapIndex, Square>
+        public Dictionary<int, ISquare> MapIndex = new ();
 
-        //<playerId, index>
+        // <playerId, index>
         public Dictionary<int, int> Players = new ();
         
-        private string hor = "---";
-        private string ver = "|";
-        private int verticalDiff = 1;
+        // Visual display of the squares with all the players positions.
+        private ArrayList _boardSquares;
 
-        private ArrayList _boardSquares = new ();
-
-        private void Test()
+        private string horSpace = "---";
+        private string verSpace = "|";
+        
+        // The difference between the left side of the map and the right side.
+        // Is decided when creating one of the horizontal sides.
+        private int sideDifference = 1;
+        
+        private void InitializeSquares()
         {
-            Players.Add(0, 0);
-            Players.Add(1, 11);
-            Players.Add(2, 19);
-
+            _boardSquares = new ();
+            
+            // Players.Add(0, 1);
+            // Players.Add(1, 0);
+            // Players.Add(2, 14);
+            // Players.Add(3, 14);
+            
+            // TODO: Change length to MapIndex.Count
             for (int i = 0; i < 20; i++)
             {
                 _boardSquares.Add("[]");
             }
         }
         
-        private string MakeHorizontalMapTop(int firstIndex, int lastIndex, Dictionary<int, int> players)
+        private string MakeHorizontalMapTop(int firstIndex, int lastIndex)
         {
-            string map = "";
-
-            for (int i = firstIndex; i < lastIndex; i++)
+            StringBuilder map = new StringBuilder();
+            
+            for (int i = firstIndex; i <= lastIndex; i++)
             {
-
-                foreach (KeyValuePair<int, int> player in players)
+                foreach (KeyValuePair<int, int> player in Players)
                 {
-                    if (i == player.Value)
-                    {
-                        _boardSquares[i] = $"[pos: {player.Value}, player: {player.Key}]";
-
-                    }
-
-                    if (player.Value == lastIndex)
-                    {
-                        _boardSquares[lastIndex] = $"[pos: {player.Value}, player: {player.Key}]";
-                    }
-
+                    MovePlayerPos(i, player);
                 }
 
-                
-                    
-                
-                map += $"{_boardSquares[i]}{hor}";
-                
-                if (i == lastIndex - 1)
-                {
-                    map += $"{_boardSquares[lastIndex]}";
-                    verticalDiff++;
-                }
-                
-                verticalDiff++;
+                map.Append($"{_boardSquares[i]}");
+
+                if (i != lastIndex)
+                    map.Append($"{horSpace}");
+
+                sideDifference++;
             }
 
-            return map;
+            map.Append("\n");
+
+            return map.ToString();
         }
-        
-        private string MakeHorizontalMapBotttom(int firstIndex, int lastIndex, Dictionary<int, int> players)
+
+        private string MakeHorizontalMapBotttom(int firstIndex, int lastIndex)
         {
-            string map = "";
+            StringBuilder map = new StringBuilder();
+            
+            for (int i = lastIndex; i >= firstIndex; i--)
+            {
+
+                foreach (KeyValuePair<int, int> player in Players)
+                {
+                    MovePlayerPos(i, player);
+                }
+
+                map.Append($"{_boardSquares[i]}");
+
+                if (i != firstIndex)
+                    map.Append($"{horSpace}");
+
+            }
+
+            return map.ToString();
+        }
+
+        private string MakeVerticalMap(int firstIndex, int lastIndex)
+        {
+            StringBuilder map = new StringBuilder();
 
             for (int i = lastIndex; i > firstIndex; i--)
             {
-
-                foreach (KeyValuePair<int, int> player in players)
+                foreach (KeyValuePair<int, int> player in Players)
                 {
-                    if (i == player.Value)
-                    {
-                        _boardSquares[i] = $"[pos: {player.Value}, player: {player.Key}]";
-                    }
-                    
-                    if (player.Value == firstIndex)
-                    {
-                        _boardSquares[firstIndex] = $"[pos: {player.Value}, player: {player.Key}]";
-
-                    }
-                }
-                
-                map += $"{_boardSquares[i]}{hor}";
-                
-                if (i == firstIndex + 1)
-                {
-                    map += $"{_boardSquares[firstIndex]}";
+                    MovePlayerPos(i, player);
+                    MovePlayerPos(lastIndex + sideDifference, player);
                 }
 
+                map.Append($"{verSpace}			  {verSpace}\n");
+                map.Append($"{_boardSquares[i]}");
+                map.Append("		    	 ");
+                map.Append($"{_boardSquares[lastIndex + sideDifference]}\n");
+                sideDifference++;
             }
 
-            return map;
+            map.Append($"{verSpace}			  {verSpace}\n");
+                
+            return map.ToString();
         }
 
-        private string MakeVerticalMap(int firstIndex, int lastIndex, Dictionary<int, int> players)
+        private void MovePlayerPos(int i, KeyValuePair<int, int> player)
         {
-            string map = "";
-
-            for (int i = lastIndex; i > firstIndex; i--)
+            // Change the bordSquare-string if there are any players in it.
+            if (i == player.Value)
             {
-                foreach (KeyValuePair<int, int> player in players)
+                if (_boardSquares[i].Equals("[]"))
+                    _boardSquares[i] = $"[{player.Key}]";
+                else
                 {
-                    if (i == player.Value)
-                    {
-                        _boardSquares[i] = $"[pos: {player.Value}, player: {player.Key}]";
-
-                    }
-                    if (lastIndex + verticalDiff == player.Value)
-                    {
-                        _boardSquares[lastIndex + verticalDiff] = $"[pos: {player.Value}, player: {player.Key}]";
-
-                    }
-                    
+                    string prevPlayer = _boardSquares[i].ToString().TrimEnd(']');
+                    _boardSquares[i] = $"{prevPlayer}, {player.Key}]";
                 }
-
-                
-
-                map += $"{ver}			  {ver}\n";
-                map += $"{_boardSquares[i]}			 {_boardSquares[lastIndex + verticalDiff]}\n";
-                verticalDiff++;
             }
-            
-            map += $"{ver}			  {ver}\n";
-            
-
-            return map;
         }
-        
+
         public override string ToString()
         {
+            InitializeSquares();
 
-            Test();
+            // string map = "";
+            StringBuilder map = new StringBuilder();
 
-            string map = "";
+            map.Append(MakeHorizontalMapTop(10, 15));
+            map.Append(MakeVerticalMap(5, 9));
+            map.Append(MakeHorizontalMapBotttom(0, 5));
 
-            int i = 1;
-            
-            map += MakeHorizontalMapTop(10, 15, Players);
-
-            map += "\n";
-
-            map += MakeVerticalMap(5, 9, Players);
-
-            map += MakeHorizontalMapBotttom(0, 5, Players);
-            
-            
-            
-            return map;
+            return map.ToString();
         }
     }
 }
