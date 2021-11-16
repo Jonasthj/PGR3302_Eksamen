@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using Monopoly.Factory.Interface;
+using Monopoly.UI;
 
 namespace Monopoly
 {
@@ -21,7 +22,7 @@ namespace Monopoly
         
         // The difference between the left side of the map and the right side.
         // Is decided when creating one of the horizontal sides.
-        private int sideDifference = 1;
+        private int sideDifference;
         
         private void InitializeSquares()
         {
@@ -37,6 +38,8 @@ namespace Monopoly
             {
                 _boardSquares.Add("[]");
             }
+
+            sideDifference = 1;
         }
         
         private string MakeHorizontalMapTop(int firstIndex, int lastIndex)

@@ -25,7 +25,7 @@ namespace Monopoly.UI
             SetPlayers(playersCount);
             
             // Print Info (BoardMap, Players + wallet):
-            while (PlayerGenerator.Players.Count > 1)
+            while (playersCount > 1)
             {
                 PrintState();
             }
@@ -33,11 +33,11 @@ namespace Monopoly.UI
 
         private void PrintState()
         {
-            
-            ConsoleOutput.PrintNewLine();
+
             ConsoleOutput.Print(
                 "------- Board Map -------\n" +
                 $"{_map}", ConsoleColor.Yellow);
+            
             NextTurn(1);
         }
 
@@ -87,9 +87,7 @@ namespace Monopoly.UI
             int diceThrow = Dice.RollDice();
             ConsoleOutput.Print($"You rolled: {diceThrow}", ConsoleColor.Magenta);
 
-            int tmp = _map.Players[playerId] += diceThrow;
-
-            ConsoleOutput.Print(_map.Players[playerId]);
+            _map.Players[playerId] += diceThrow;
 
             /*** NextTurn()
          * Dice,
