@@ -9,6 +9,7 @@ namespace Monopoly.UI
     {
         private readonly GameManager _manager = new();
         private BoardMap _map = new();
+        private int currentPlayerId = 1;
 
         public void StartGame()
         {
@@ -23,7 +24,7 @@ namespace Monopoly.UI
             _manager.CreatePlayers(playersCount);
             
             SetPlayers(playersCount);
-            
+
             // Print Info (BoardMap, Players + wallet):
             while (playersCount > 1)
             {
@@ -34,11 +35,13 @@ namespace Monopoly.UI
         private void PrintState()
         {
             ConsoleOutput.PrintNewLine();
-            ConsoleOutput.Print(
-                "------- Board Map -------\n" +
-                $"{_map}", ConsoleColor.Yellow);
+            ConsoleOutput.Print("------- Board Map -------\n" + $"{_map}", ConsoleColor.Yellow);
+
+            if (currentPlayerId >= _map.Players.Count + 1)
+                currentPlayerId = 1;
             
-            NextTurn(1);
+            NextTurn(currentPlayerId);
+
 
         }
 
@@ -76,7 +79,10 @@ namespace Monopoly.UI
 
         private void NextTurn(int playerId)
         {
+            // Player starts next turn.
             ConsoleInput.ReadString();
+            currentPlayerId++;
+
             Console.Clear();
 
             ConsoleOutput.PrintNewLine();
@@ -93,7 +99,7 @@ namespace Monopoly.UI
             
             int playerIndex = _map.Players[playerId];
             ConsoleOutput.Print(_map.MapSquares[playerIndex].ToString());
-
+            
             /*** NextTurn()
          * Player action (buy, end)
          * End turn

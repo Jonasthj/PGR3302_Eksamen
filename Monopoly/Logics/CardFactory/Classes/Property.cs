@@ -28,8 +28,7 @@ namespace Monopoly.Factory.Classes
             BuyPrice = buyPrice;
             RentPrice = rentPrice;
             // Property is always available at the beginning of the game.
-            IsAvailable = false;
-            OwnerId = 1;
+            IsAvailable = true;
         }
 
         #endregion
