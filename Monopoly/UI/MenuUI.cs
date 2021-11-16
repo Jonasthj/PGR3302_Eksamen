@@ -95,7 +95,6 @@ namespace Monopoly.UI
             ConsoleOutput.Print(_map.MapSquares[playerIndex].ToString());
 
             /*** NextTurn()
-         * Show board card
          * Player action (buy, end)
          * End turn
          */
