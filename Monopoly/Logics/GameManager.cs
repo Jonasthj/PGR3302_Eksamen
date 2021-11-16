@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Monopoly.Database;
 using Monopoly.Flyweight;
 
@@ -14,10 +15,12 @@ namespace Monopoly.Factory.Classes
             map = new BoardMap();
 
             PropertyJson propertyJson = new(JsonFileReader.GetJsonData());
+            ChanceJson chanceJson = new(JsonFileReader.GetJsonData());
             
             for (int i = 0; i < 20; i++)
             {
                 map.MapSquares[i] = propertyJson.Retrieve(i);
+                map.MapSquares[i] = chanceJson.RetrieveAll();
             }
 
             return map;

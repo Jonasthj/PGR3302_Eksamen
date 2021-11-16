@@ -15,7 +15,7 @@ namespace Monopoly
         public Dictionary<int, int> Players = new ();
         
         // Visual display of the squares with all the players positions.
-        private ArrayList _boardSquares;
+        public ArrayList BoardSquares { get; set; }
 
         private string horSpace = "---";
         private string verSpace = "|";
@@ -26,7 +26,7 @@ namespace Monopoly
         
         private void InitializeSquares()
         {
-            _boardSquares = new ();
+            BoardSquares = new ();
             
             // Players.Add(0, 1);
             // Players.Add(1, 0);
@@ -36,7 +36,7 @@ namespace Monopoly
             // TODO: Change length to MapIndex.Count
             for (int i = 0; i < 20; i++)
             {
-                _boardSquares.Add("[]");
+                BoardSquares.Add("[]");
             }
 
             sideDifference = 1;
@@ -53,7 +53,7 @@ namespace Monopoly
                     MovePlayerPos(i, player);
                 }
 
-                map.Append($"{_boardSquares[i]}");
+                map.Append($"{BoardSquares[i]}");
 
                 if (i != lastIndex)
                     map.Append($"{horSpace}");
@@ -78,7 +78,7 @@ namespace Monopoly
                     MovePlayerPos(i, player);
                 }
 
-                map.Append($"{_boardSquares[i]}");
+                map.Append($"{BoardSquares[i]}");
 
                 if (i != firstIndex)
                     map.Append($"{horSpace}");
@@ -101,9 +101,9 @@ namespace Monopoly
                 }
 
                 map.Append($"{verSpace}			  {verSpace}\n");
-                map.Append($"{_boardSquares[i]}");
+                map.Append($"{BoardSquares[i]}");
                 map.Append("		    	 ");
-                map.Append($"{_boardSquares[lastIndex + sideDifference]}\n");
+                map.Append($"{BoardSquares[lastIndex + sideDifference]}\n");
                 sideDifference++;
             }
 
@@ -117,12 +117,12 @@ namespace Monopoly
             // Change the bordSquare-string if there are any players in it.
             if (i == player.Value)
             {
-                if (_boardSquares[i].Equals("[]"))
-                    _boardSquares[i] = $"[{player.Key}]";
+                if (BoardSquares[i].Equals("[]"))
+                    BoardSquares[i] = $"[{player.Key}]";
                 else
                 {
-                    string prevPlayer = _boardSquares[i].ToString().TrimEnd(']');
-                    _boardSquares[i] = $"{prevPlayer}, {player.Key}]";
+                    string prevPlayer = BoardSquares[i].ToString().TrimEnd(']');
+                    BoardSquares[i] = $"{prevPlayer}, {player.Key}]";
                 }
             }
         }
