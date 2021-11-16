@@ -40,8 +40,12 @@ namespace Monopoly.Factory.Classes
 
         public override string ToString()
         {
-            return "Id: " + Id + "\n" +
-                   "Name: " + Name;
+            return "-----------------" +
+                   "\n" +
+                   $" {Name}\n"+
+                    " Receive 100M" +
+                   "\n" +
+                   "-----------------";
         }
 
         #endregion

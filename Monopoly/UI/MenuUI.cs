@@ -33,14 +33,13 @@ namespace Monopoly.UI
 
         private void PrintState()
         {
-            // Console.Clear();
-
             ConsoleOutput.PrintNewLine();
             ConsoleOutput.Print(
                 "------- Board Map -------\n" +
                 $"{_map}", ConsoleColor.Yellow);
             
             NextTurn(1);
+
         }
 
         private int GetPlayerCount()
@@ -77,6 +76,9 @@ namespace Monopoly.UI
 
         private void NextTurn(int playerId)
         {
+            ConsoleInput.ReadString();
+            Console.Clear();
+
             ConsoleOutput.PrintNewLine();
             ConsoleOutput.Print($"Your turn: \n{PlayerGenerator.Players[playerId]}");
             
@@ -88,6 +90,7 @@ namespace Monopoly.UI
             ConsoleOutput.Print($"You rolled: {diceThrow}", ConsoleColor.Magenta);
             
             MovePlayer(playerId, diceThrow);
+            
             int playerIndex = _map.Players[playerId];
             ConsoleOutput.Print(_map.MapSquares[playerIndex].ToString());
 
@@ -96,6 +99,7 @@ namespace Monopoly.UI
          * Player action (buy, end)
          * End turn
          */
+
         }
 
         private void MovePlayer(int playerId, int diceThrow)

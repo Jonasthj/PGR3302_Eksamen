@@ -59,9 +59,9 @@ namespace Monopoly.Factory.Classes
             
             return "-----------------" +
                    "\n" +
-                   $"  {Name}\n"+
-                   $"\n  {owner}" +
-                   $"  {price}" +
+                   $" {Name}\n"+
+                   $" {owner}" +
+                   $" {price}" +
                    "\n" +
                    "-----------------";
         }
