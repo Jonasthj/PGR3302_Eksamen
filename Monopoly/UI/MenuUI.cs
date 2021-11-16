@@ -11,8 +11,8 @@ namespace Monopoly.UI
 
         public void StartGame()
         {
-            ConsoleOutput.Print("--- Welcome to Monopoly! ---\n");
-            ConsoleOutput.Print("How many players are you ( 2-4 )");
+            ConsoleOutput.Print("--- Welcome to Monopoly! ---\n", ConsoleColor.Magenta);
+            ConsoleOutput.Print("How many players are you ( 2-4 )", ConsoleColor.Magenta);
             
             _map = _manager.CreateBoardMap();
             
@@ -25,14 +25,6 @@ namespace Monopoly.UI
             
             // Print Info (BoardMap, Players + wallet):
             
-            /*** NextTurn()
-             * Which player?
-             * Dice,
-             * Show board card
-             * Player action (buy, end)
-             * End turn
-             */
-
             PrintState();
         }
 
@@ -73,6 +65,8 @@ namespace Monopoly.UI
                 
                 _manager.SetPlayersInfo(name, player.Key);
             }
+            
+            ConsoleOutput.Print("Players set", ConsoleColor.Red);
             
         }
         

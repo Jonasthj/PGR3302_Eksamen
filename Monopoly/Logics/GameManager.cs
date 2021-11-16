@@ -40,5 +40,13 @@ namespace Monopoly.Factory.Classes
             Player player = PlayerGenerator.Get(id);
             player.SetExtrinsicPart(name, new Wallet(600), false);
         }
+        
+        /*** NextTurn()
+             * Which player?
+             * Dice,
+             * Show board card
+             * Player action (buy, end)
+             * End turn
+             */
     }
 }
