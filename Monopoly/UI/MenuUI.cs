@@ -35,7 +35,7 @@ namespace Monopoly.UI
             ConsoleOutput.Print(
                 "------- Board Map -------\n" +
                 $"{_map}", ConsoleColor.Yellow);
-            
+            NextTurn(1);
         }
 
         private int GetPlayerCount()
@@ -65,10 +65,25 @@ namespace Monopoly.UI
                 
                 _manager.SetPlayersInfo(name, player.Key);
             }
-            
+
             ConsoleOutput.Print("Players set", ConsoleColor.Red);
             
         }
-        
+
+        private void NextTurn(int index)
+        {
+            ConsoleOutput.Print($"Your turn: \n{PlayerGenerator.Players[index]}");
+            
+
+
+            /*** NextTurn()
+         * Which player?
+         * Dice,
+         * Show board card
+         * Player action (buy, end)
+         * End turn
+         */
+        }
+
     }
 }
