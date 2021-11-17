@@ -12,7 +12,7 @@ namespace Monopoly.Logics
 
         public BoardMap Create()
         {
-            BoardMap map = GameManager.GetInstance().Map;
+            BoardMap map = new();
             
             var jsonData = JsonFileReader.GetJsonData();
             
