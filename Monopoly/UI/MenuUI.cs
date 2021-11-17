@@ -7,8 +7,8 @@ namespace Monopoly.UI
 {
     public class MenuUI
     {
-        private PlayerGenerator _generator = PlayerGenerator.GetInstance();
-        private readonly GameManager _manager = new();
+        private readonly PlayerGenerator _generator = PlayerGenerator.GetInstance();
+        private readonly GameManager _manager = GameManager.GetInstance();
         private int _currentPlayerId = 1;
 
         public void StartGame()

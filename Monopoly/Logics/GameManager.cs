@@ -6,9 +6,35 @@ using Monopoly.Logics.SquareLogics;
 
 namespace Monopoly.Logics
 {
-    public class GameManager
+    public sealed class GameManager
     {
-        public BoardMap Map = BoardMap.GetInstance();
+        #region Singleton Pattern
+        
+        private static GameManager _instance = new GameManager();
+
+
+        private static readonly object Synclock = new object();
+        
+        public static GameManager GetInstance()
+        {
+            if (_instance == null)
+            {
+                lock (Synclock)
+                {
+                    _instance = new GameManager();
+                }
+            }
+            return _instance;
+        }
+
+        private GameManager()
+        {
+            // Private Constructor
+        }
+
+        #endregion
+
+        public BoardMap Map;
         private readonly PlayerGenerator _generator = PlayerGenerator.GetInstance();
         private Dictionary<string, AbstractLogics> _controllers = new();
 
@@ -53,23 +79,23 @@ namespace Monopoly.Logics
         
         public void MovePlayer(int playerId, int diceThrow)
         {
-            BoardMap map = BoardMap.GetInstance();
             
-            int playerIndex = map.Players[playerId];
+            
+            int playerIndex = Map.Players[playerId];
             int newIndex = diceThrow + playerIndex;
-            int squareCount = map.BoardSquares.Count;
+            int squareCount = Map.BoardSquares.Count;
 
             if (newIndex >= squareCount)
             {
                 int restSquares = squareCount - playerIndex;
                 int move = diceThrow - restSquares;
-                map.Players[playerId] = move;
+                Map.Players[playerId] = move;
                 
                 if(move != 0)
                     SquareController(0, playerId);
             }
             else
-                map.Players[playerId] += diceThrow;
+                Map.Players[playerId] += diceThrow;
         }
     }
 }

@@ -8,6 +8,8 @@ namespace Monopoly.Logics.SquareLogics
 {
     public class ChanceLogics: AbstractLogics
     {
+        private readonly GameManager _manager = GameManager.GetInstance();
+        
         public override void Handle(ISquare square, int playerId)
         {
             Chance chance = (Chance)square;
@@ -25,11 +27,10 @@ namespace Monopoly.Logics.SquareLogics
 
             if (chanceCard.MoveIndex >= 0)
             {
-                BoardMap map = BoardMap.GetInstance();
+                BoardMap map = _manager.Map;
                 map.Players[playerId] = chanceCard.MoveIndex;
                 
-                GameManager manager = new GameManager();
-                manager.SquareController(chanceCard.MoveIndex, playerId);
+                _manager.SquareController(chanceCard.MoveIndex, playerId);
             }
 
             ConsoleOutput.PrintEnter();

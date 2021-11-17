@@ -7,36 +7,8 @@ using Monopoly.UI;
 
 namespace Monopoly
 {
-    public sealed class BoardMap
+    public class BoardMap
     {
-        #region Singleton Pattern
-        
-        private static BoardMap _instance = new BoardMap();
-
-
-        private static readonly object Synclock = new object();
-        
-        public static BoardMap GetInstance()
-        {
-            if (_instance == null)
-            {
-                lock (Synclock)
-                {
-                    _instance = new BoardMap();
-                }
-            }
-            return _instance;
-        }
-
-        private BoardMap()
-        {
-            // Private Constructor
-        }
-        
-        #endregion
-
-        
-        
         // <mapIndex, Square>
         public Dictionary<int, ISquare> MapSquares = new ();
 

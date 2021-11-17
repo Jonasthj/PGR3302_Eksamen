@@ -11,7 +11,7 @@ namespace MonopolyTest
         [Test]
         public void ShouldAddPlayersToBoardMapAndToStartPosition()
         {
-            GameManager manager = new GameManager();
+            GameManager manager = GameManager.GetInstance();
             
             manager.CreatePlayers(4);
             Assert.AreEqual(manager.Map.Players[1], 0);
