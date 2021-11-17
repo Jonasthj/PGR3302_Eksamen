@@ -9,6 +9,11 @@ namespace Monopoly.UI
             return Console.ReadLine();
         }
 
+        public static ConsoleKey ReadKey()
+        {
+            return Console.ReadKey().Key;
+        }
+
         public static int ReadInt()
         {
             string input = Console.ReadLine();

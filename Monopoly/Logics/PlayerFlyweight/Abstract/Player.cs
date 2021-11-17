@@ -34,7 +34,7 @@ namespace Monopoly.Flyweight
         public override string ToString()
         {
             return $"   Player {Id}: {Name} \n"
-                +  $"   Wallet: {Wallet.Balance}";
+                +  $"   Wallet: {Wallet.Balance}M";
         }
     }
 }

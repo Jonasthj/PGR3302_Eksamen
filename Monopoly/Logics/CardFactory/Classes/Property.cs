@@ -1,20 +1,20 @@
 ﻿using System;
-using System.Drawing;
 using Monopoly.Logics.CardFactory.Interface;
+using Monopoly.Logics.PlayerFlyweight.Static;
 
-namespace Monopoly.Factory.Classes
+namespace Monopoly.Logics.CardFactory.Classes
 {
-    public class Property : ISquare
+    public class Property : ISquare, IProperty
     {
         #region Properties
 
         private int Id { get;}
         private string Name { get;}
         private ConsoleColor Color { get;}
-        private int BuyPrice { get;}
-        private int RentPrice { get;}
-        public bool IsAvailable { get; set; }
-        public int OwnerId { get; set; }
+        public int BuyPrice { get;}
+        public int RentPrice { get;}
+        public bool IsAvailable { get; private set; }
+        public int OwnerId { get; private set; }
 
         #endregion
 
@@ -80,14 +80,25 @@ namespace Monopoly.Factory.Classes
             }
             else
             {
+                string playerName = PlayerGenerator.GetInstance().Get(OwnerId).Name;
                 price = $"Rent: {RentPrice}M";
-                owner = $"Owner: Player {OwnerId}\n";
+                owner = $"Owner: {playerName}\n";
             }
 
             return price;
         }
 
+
+        public bool SetAvailability(bool status)
+        {
+            return IsAvailable = status;
+        }
+
+        public int SetOwner(int id)
+        {
+            return OwnerId = id;
+        }
+
         #endregion
-        
     }
 }

@@ -27,11 +27,12 @@ namespace Monopoly.Logics.SquareLogics
 
             if (chanceCard.GetMoveIndex() >= 0)
             {
-                // TODO: make player move.   
+                BoardMap map = BoardMap.GetInstance();
+                map.Players[playerId] = chanceCard.GetMoveIndex();
+                
+                GameManager manager = new GameManager();
+                manager.SquareController(chanceCard.GetMoveIndex(), playerId);
             }
-            
-            Console.WriteLine(chanceCard.GetId());
-
         }
     }
 }

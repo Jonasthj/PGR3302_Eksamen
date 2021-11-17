@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Monopoly.Database;
-using Monopoly.Factory.Classes;
 using Monopoly.Logics.CardFactory.Classes;
 using Monopoly.Logics.CardFactory.Interface;
 using Monopoly.Logics.SquareLogics;
-using Monopoly.UI;
 
 namespace Monopoly.Logics
 {

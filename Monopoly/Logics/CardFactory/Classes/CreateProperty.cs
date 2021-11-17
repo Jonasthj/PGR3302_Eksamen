@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using Monopoly.Factory.Abstract;
+using Monopoly.Logics.CardFactory.Classes;
 using Monopoly.Logics.CardFactory.Interface;
 
 namespace Monopoly.Factory.Classes

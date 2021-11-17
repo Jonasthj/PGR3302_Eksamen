@@ -29,6 +29,7 @@ namespace Monopoly.UI
             _manager.CreatePlayers(playersCount);
             
             SetPlayers(playersCount);
+            PrintMap();
 
             // Print Info (BoardMap, Players + wallet):
             while (playersCount > 1)
@@ -39,15 +40,16 @@ namespace Monopoly.UI
 
         private void PrintState()
         {
-            ConsoleOutput.PrintNewLine();
-            ConsoleOutput.Print("------- Board Map -------\n" + $"{_manager.Map}", ConsoleColor.Yellow);
-
             if (_currentPlayerId >= _manager.Map.Players.Count + 1)
                 _currentPlayerId = 1;
             
             NextTurn(_currentPlayerId);
+        }
 
-
+        private void PrintMap()
+        {
+            ConsoleOutput.PrintNewLine();
+            ConsoleOutput.Print("------- Board Map -------\n" + $"{_manager.Map}", ConsoleColor.Yellow);
         }
 
         private int GetPlayerCount()
@@ -96,14 +98,21 @@ namespace Monopoly.UI
             ConsoleOutput.Print("Press enter to roll the dice", ConsoleColor.Cyan);
             
             ConsoleInput.ReadString();
+            Console.Clear();
+
             int diceThrow = Dice.RollDice();
             ConsoleOutput.Print($"You rolled: {diceThrow}", ConsoleColor.Magenta);
             
             MovePlayer(playerId, diceThrow);
             
             int playerIndex = _manager.Map.Players[playerId];
-            
+
             _manager.SquareController(playerIndex, playerId);
+            PrintMap();
+
+            ConsoleOutput.PrintNewLine();
+            ConsoleOutput.Print($"{_generator.Players[playerId]}", ConsoleColor.White);
+
 
             /*** NextTurn()
          * Player action (buy, end)
@@ -114,21 +123,23 @@ namespace Monopoly.UI
 
         private void MovePlayer(int playerId, int diceThrow)
         {
-            int playerIndex = _manager.Map.Players[playerId];
+            BoardMap map = BoardMap.GetInstance();
+            
+            int playerIndex = map.Players[playerId];
             int newIndex = diceThrow + playerIndex;
-            int squareCount = _manager.Map.BoardSquares.Count;
+            int squareCount = map.BoardSquares.Count;
 
             if (newIndex >= squareCount)
             {
                 int restSquares = squareCount - playerIndex;
                 int move = diceThrow - restSquares;
-                _manager.Map.Players[playerId] = move;
+                map.Players[playerId] = move;
                 
                 if(move != 0)
                     _manager.SquareController(0, playerId);
             }
             else
-                _manager.Map.Players[playerId] += diceThrow;
+                map.Players[playerId] += diceThrow;
         }
     }
 }

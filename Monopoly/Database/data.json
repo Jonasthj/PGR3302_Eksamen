@@ -93,23 +93,23 @@
             ],
             "chanceCards":  [
                 {
-                    "id": 0, "content": "Move to start and collect 100", "value": 100, "moveIndex": 0},
+                    "id": 0, "content": "Move to start and collect 100M", "value": 100, "moveIndex": 0},
                 {
-                    "id": 1, "content": "Pay a parking fine of 50", "value": -50, "moveIndex": -1},
+                    "id": 1, "content": "Pay a parking fine of 50M", "value": -50, "moveIndex": -1},
                 {
-                    "id": 2, "content": "You receive a gift of 50", "value": 50, "moveIndex": -1},  
+                    "id": 2, "content": "You receive a gift of 50M", "value": 50, "moveIndex": -1},  
                 {
                     "id": 3, "content": "Go directly to prison and skip one round", "value": 0, "moveIndex": 6},
                 {
                     "id": 4, "content": "Go to Grunerløkka", "value": 0, "moveIndex": 5},
                 {
-                    "id": 5, "content": "You inherit 200", "value": 200, "moveIndex": -1},
+                    "id": 5, "content": "You inherit 200M", "value": 200, "moveIndex": -1},
                 {
-                    "id": 6, "content": "Doctors fee 100", "value": -100, "moveIndex": -1},
+                    "id": 6, "content": "Doctors fee 100M", "value": -100, "moveIndex": -1},
                 {
-                    "id": 7, "content": "Stock market is going up, collect 100", "value": 100, "moveIndex": -1},
+                    "id": 7, "content": "Stock market is going up, collect 100M", "value": 100, "moveIndex": -1},
                 {
-                    "id": 8, "content": "There has been a fire in your house, pay 50", "value": -50, "moveIndex": -1}
+                    "id": 8, "content": "There has been a fire in your house, pay 50M", "value": -50, "moveIndex": -1}
             ],
             "_comment1": "Text is the card content, value is the amount that the player gets/loses.",
             "_comment2": "If this is 0, he doesn't get or lose anything. newIndex is the index on tha map where the player needs to go.",
