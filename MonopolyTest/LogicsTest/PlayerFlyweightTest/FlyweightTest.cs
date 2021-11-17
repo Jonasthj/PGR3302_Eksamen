@@ -1,8 +1,9 @@
 using System;
 using Monopoly.Flyweight;
+using Monopoly.Logics.PlayerFlyweight.Static;
 using NUnit.Framework;
 
-namespace MonopolyTest.FlyweightTest
+namespace MonopolyTest.LogicsTest.PlayerFlyweightTest
 {
     public class FlyweightTest
     {
@@ -44,12 +45,13 @@ namespace MonopolyTest.FlyweightTest
             player.SetExtrinsicPart("Kjartan", new Wallet(0), true);
             Assert.AreEqual(true, player.InPrison);
         }
-        
+
         private Player GenerateRandomPlayer()
         {
+            PlayerGenerator generator = PlayerGenerator.GetInstance();
             Random random = new();
             int randomNum = random.Next(1, 4);
-            Player player = PlayerGenerator.Get(randomNum);
+            Player player = generator.Get(randomNum);
             return player;
         }
     }

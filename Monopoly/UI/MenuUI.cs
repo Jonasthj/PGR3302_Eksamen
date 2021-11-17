@@ -2,14 +2,17 @@
 using System.CodeDom.Compiler;
 using Monopoly.Factory.Classes;
 using Monopoly.Flyweight;
+using Monopoly.Logics;
+using Monopoly.Logics.PlayerFlyweight.Static;
 
 namespace Monopoly.UI
 {
     public class MenuUI
     {
+        private PlayerGenerator _generator = PlayerGenerator.GetInstance();
         private readonly GameManager _manager = new();
         private BoardMap _map = new();
-        private int currentPlayerId = 1;
+        private int _currentPlayerId = 1;
 
         public void StartGame()
         {
@@ -37,10 +40,10 @@ namespace Monopoly.UI
             ConsoleOutput.PrintNewLine();
             ConsoleOutput.Print("------- Board Map -------\n" + $"{_map}", ConsoleColor.Yellow);
 
-            if (currentPlayerId >= _map.Players.Count + 1)
-                currentPlayerId = 1;
+            if (_currentPlayerId >= _map.Players.Count + 1)
+                _currentPlayerId = 1;
             
-            NextTurn(currentPlayerId);
+            NextTurn(_currentPlayerId);
 
 
         }
@@ -65,7 +68,7 @@ namespace Monopoly.UI
 
         private void SetPlayers(int count)
         {
-            foreach (var player in PlayerGenerator.Players)
+            foreach (var player in _generator.Players)
             {
                 ConsoleOutput.Print($"Type in name for player {player.Key}");
                 string name = ConsoleInput.ReadString();
@@ -81,12 +84,12 @@ namespace Monopoly.UI
         {
             // Player starts next turn.
             ConsoleInput.ReadString();
-            currentPlayerId++;
+            _currentPlayerId++;
 
             Console.Clear();
 
             ConsoleOutput.PrintNewLine();
-            ConsoleOutput.Print($"Your turn: \n{PlayerGenerator.Players[playerId]}");
+            ConsoleOutput.Print($"Your turn: \n{_generator.Players[playerId]}");
             
             ConsoleOutput.PrintNewLine();
             ConsoleOutput.Print("Press enter to roll the dice", ConsoleColor.Cyan);

@@ -1,6 +1,8 @@
 ﻿using System;
 using Monopoly;
 using Monopoly.Flyweight;
+using Monopoly.Logics;
+using Monopoly.Logics.PlayerFlyweight.Static;
 using NUnit.Framework;
 
 namespace MonopolyTest.FlyweightTest
@@ -10,6 +12,7 @@ namespace MonopolyTest.FlyweightTest
         #region Fields
 
         private readonly WalletCalculator _walletCalculator = new WalletCalculator();
+        private PlayerGenerator _generator = PlayerGenerator.GetInstance();
         
         #endregion
 
@@ -18,7 +21,7 @@ namespace MonopolyTest.FlyweightTest
         [Test]
         public void ShouldReturnPlayerBalance()
         {
-            Player player = PlayerGenerator.Get(1);
+            Player player = _generator.Get(1);
             player.SetExtrinsicPart("Test", new Wallet(500), false);
             
             Assert.AreEqual(500, _walletCalculator.CheckBalance(1));
@@ -27,7 +30,7 @@ namespace MonopolyTest.FlyweightTest
         [Test]
         public void ShouldAddMoneyToWallet()
         {
-            Player player = PlayerGenerator.Get(1);
+            Player player = _generator.Get(1);
             player.SetExtrinsicPart("Test", new Wallet(500), false);
             
             _walletCalculator.AddBalance(1, 200);
@@ -38,7 +41,7 @@ namespace MonopolyTest.FlyweightTest
         [Test]
         public void ShouldSubtractMoneyFromWallet()
         {
-            Player player = PlayerGenerator.Get(1);
+            Player player = _generator.Get(1);
             player.SetExtrinsicPart("Test", new Wallet(500), false);
             
             _walletCalculator.SubtractBalance(1, 200);

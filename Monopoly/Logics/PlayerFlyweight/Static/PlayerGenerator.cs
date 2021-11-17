@@ -1,13 +1,36 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using Monopoly.Flyweight;
 
-namespace Monopoly.Flyweight
+namespace Monopoly.Logics.PlayerFlyweight.Static
 {
-    public static class PlayerGenerator
+    public sealed class PlayerGenerator
     {
-        public static readonly Dictionary<int, Player> Players = new();
-        public static Player Get(int id)
+        private static PlayerGenerator _instance = new PlayerGenerator();
+
+
+        private static readonly object Synclock = new object();
+        
+        public static PlayerGenerator GetInstance()
+        {
+            if (_instance == null)
+            {
+                lock (Synclock)
+                {
+                    _instance = new PlayerGenerator();
+                }
+            }
+            return _instance;
+        }
+
+        private PlayerGenerator()
+        {
+            // Private Constructor
+        }
+        
+        
+        public readonly Dictionary<int, Player> Players = new();
+        public Player Get(int id)
         {
             Player player = null;
             if (Players.ContainsKey(id))
@@ -40,7 +63,7 @@ namespace Monopoly.Flyweight
 
         }
 
-        public static void Delete(int id)
+        public void Delete(int id)
         {
             Players.Remove(id);
         }

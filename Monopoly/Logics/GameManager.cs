@@ -1,21 +1,21 @@
-using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using Monopoly.Database;
+using Monopoly.Factory.Classes;
 using Monopoly.Factory.Interface;
 using Monopoly.Flyweight;
-using Monopoly.UI;
+using Monopoly.Logics.PlayerFlyweight.Static;
 
-namespace Monopoly.Factory.Classes
+namespace Monopoly.Logics
 {
     public class GameManager
     {
-        public BoardMap map;
+        public BoardMap Map;
+        private readonly PlayerGenerator _generator = PlayerGenerator.GetInstance();
         
         public BoardMap CreateBoardMap()
         {
-            map = new BoardMap();
-
+            Map = new BoardMap();
+            
             var jsonData = JsonFileReader.GetJsonData();
             
             PropertyJson propertyJson = new(jsonData);
@@ -28,19 +28,19 @@ namespace Monopoly.Factory.Classes
             // Create Property Squares
             for (int i = 0; i < 20; i++)
             {
-                map.MapSquares[i] = propertyJson.Retrieve(i);
+                Map.MapSquares[i] = propertyJson.Retrieve(i);
             }
             // Create Chance Squares
             foreach (var chance in chances)
             {
-                map.MapSquares[chance.GetId()] = chance;
+                Map.MapSquares[chance.GetId()] = chance;
             }
             
             // Create Start and Prison square.
-            map.MapSquares[start.GetId()] = start;
-            map.MapSquares[prison.GetId()] = prison;
+            Map.MapSquares[start.GetId()] = start;
+            Map.MapSquares[prison.GetId()] = prison;
 
-            return map;
+            return Map;
         }
         
         
@@ -49,15 +49,15 @@ namespace Monopoly.Factory.Classes
         {
             for (int i = 1; i < playersCount+1; i++)
             {
-                map.Players.Add(i, 0);
-                
-                PlayerGenerator.Get(i);
+                Map.Players.Add(i, 0);
+                _generator.Get(i);
+                // PlayerGenerator.Get(i);
             }
         }
 
         public void SetPlayersInfo(string name, int id)
         {
-            Player player = PlayerGenerator.Get(id);
+            Player player = _generator.Get(id);
             player.SetExtrinsicPart(name, new Wallet(600), false);
         }
     }
