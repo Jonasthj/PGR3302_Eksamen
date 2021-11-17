@@ -46,9 +46,30 @@ namespace Monopoly.Logics
             }
         }
 
-        public void SetPlayerPos(int playerId, int index)
+        // public void SetPlayerPos(int playerId, int index)
+        // {
+        //     Map.Players[playerId] = index;
+        // }
+        
+        public void MovePlayer(int playerId, int diceThrow)
         {
-            Map.Players[playerId] = index;
+            BoardMap map = BoardMap.GetInstance();
+            
+            int playerIndex = map.Players[playerId];
+            int newIndex = diceThrow + playerIndex;
+            int squareCount = map.BoardSquares.Count;
+
+            if (newIndex >= squareCount)
+            {
+                int restSquares = squareCount - playerIndex;
+                int move = diceThrow - restSquares;
+                map.Players[playerId] = move;
+                
+                if(move != 0)
+                    SquareController(0, playerId);
+            }
+            else
+                map.Players[playerId] += diceThrow;
         }
     }
 }

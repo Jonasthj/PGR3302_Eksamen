@@ -37,8 +37,6 @@ namespace Monopoly
 
         
         
-        
-        
         // <mapIndex, Square>
         public Dictionary<int, ISquare> MapSquares = new ();
 

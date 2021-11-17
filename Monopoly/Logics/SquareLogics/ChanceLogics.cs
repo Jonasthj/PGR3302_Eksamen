@@ -23,15 +23,15 @@ namespace Monopoly.Logics.SquareLogics
             ConsoleOutput.Print(square.ToString());
 
             WalletCalculator calculator = new WalletCalculator();
-            calculator.AddBalance(playerId, chanceCard.GetValue());
+            calculator.AddBalance(playerId, chanceCard.Value);
 
-            if (chanceCard.GetMoveIndex() >= 0)
+            if (chanceCard.MoveIndex >= 0)
             {
                 BoardMap map = BoardMap.GetInstance();
-                map.Players[playerId] = chanceCard.GetMoveIndex();
+                map.Players[playerId] = chanceCard.MoveIndex;
                 
                 GameManager manager = new GameManager();
-                manager.SquareController(chanceCard.GetMoveIndex(), playerId);
+                manager.SquareController(chanceCard.MoveIndex, playerId);
             }
         }
     }

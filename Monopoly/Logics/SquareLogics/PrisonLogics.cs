@@ -1,4 +1,6 @@
-﻿using Monopoly.Logics.CardFactory.Interface;
+﻿using Monopoly.Flyweight;
+using Monopoly.Logics.CardFactory.Interface;
+using Monopoly.Logics.PlayerFlyweight.Static;
 using Monopoly.UI;
 
 namespace Monopoly.Logics.SquareLogics
@@ -8,6 +10,13 @@ namespace Monopoly.Logics.SquareLogics
         public override void Handle(ISquare square, int playerId)
         {
             ConsoleOutput.Print(square.ToString());
+
+            Player player = PlayerGenerator.GetInstance().Get(playerId);
+
+            if (player.InPrison)
+                player.InPrison = false;
+            else if (!player.InPrison)
+                player.InPrison = true;
         }
     }
 }

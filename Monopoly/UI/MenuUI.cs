@@ -1,11 +1,6 @@
 ﻿using System;
-using System.CodeDom.Compiler;
-using System.Collections.Generic;
 using Monopoly.Factory.Classes;
-using Monopoly.Flyweight;
 using Monopoly.Logics;
-using Monopoly.Logics.CardFactory.Classes;
-using Monopoly.Logics.CardFactory.Interface;
 using Monopoly.Logics.PlayerFlyweight.Static;
 
 namespace Monopoly.UI
@@ -24,11 +19,10 @@ namespace Monopoly.UI
             ConsoleOutput.Print("How many players are you ( 2-4 )", ConsoleColor.Magenta);
 
             // Set players:
-            
             int playersCount = GetPlayerCount();
             _manager.CreatePlayers(playersCount);
-            
             SetPlayers(playersCount);
+            
             PrintMap();
 
             // Print Info (BoardMap, Players + wallet):
@@ -36,14 +30,6 @@ namespace Monopoly.UI
             {
                 PrintState();
             }
-        }
-
-        private void PrintState()
-        {
-            if (_currentPlayerId >= _manager.Map.Players.Count + 1)
-                _currentPlayerId = 1;
-            
-            NextTurn(_currentPlayerId);
         }
 
         private void PrintMap()
@@ -81,65 +67,60 @@ namespace Monopoly.UI
             }
 
             ConsoleOutput.Print("Players set", ConsoleColor.Red);
+        }
+
+        private void PrintState()
+        {
+            if (_currentPlayerId >= _manager.Map.Players.Count + 1)
+                _currentPlayerId = 1;
             
+            NextTurn(_currentPlayerId);
         }
 
         private void NextTurn(int playerId)
         {
+            int playerIndex;
+
             // Player starts next turn.
             ConsoleInput.ReadString();
             _currentPlayerId++;
             Console.Clear();
-
+            
             ConsoleOutput.PrintNewLine();
             ConsoleOutput.Print($"Your turn: \n{_generator.Players[playerId]}");
             
-            ConsoleOutput.PrintNewLine();
-            ConsoleOutput.Print("Press enter to roll the dice", ConsoleColor.Cyan);
-            
-            ConsoleInput.ReadString();
-            Console.Clear();
-
-            int diceThrow = Dice.RollDice();
-            ConsoleOutput.Print($"You rolled: {diceThrow}", ConsoleColor.Magenta);
-            
-            MovePlayer(playerId, diceThrow);
-            
-            int playerIndex = _manager.Map.Players[playerId];
-
-            _manager.SquareController(playerIndex, playerId);
-            PrintMap();
-
-            ConsoleOutput.PrintNewLine();
-            ConsoleOutput.Print($"{_generator.Players[playerId]}", ConsoleColor.White);
-
-
-            /*** NextTurn()
-         * Player action (buy, end)
-         * End turn
-         */
-
-        }
-
-        private void MovePlayer(int playerId, int diceThrow)
-        {
-            BoardMap map = BoardMap.GetInstance();
-            
-            int playerIndex = map.Players[playerId];
-            int newIndex = diceThrow + playerIndex;
-            int squareCount = map.BoardSquares.Count;
-
-            if (newIndex >= squareCount)
+            if (!PlayerGenerator.GetInstance().Get(playerId).InPrison)
             {
-                int restSquares = squareCount - playerIndex;
-                int move = diceThrow - restSquares;
-                map.Players[playerId] = move;
+                Dice dice = new Dice();
+                int diceThrow;
                 
-                if(move != 0)
-                    _manager.SquareController(0, playerId);
+                ConsoleOutput.PrintNewLine();
+                ConsoleOutput.Print("Press enter to roll the dice", ConsoleColor.Cyan);
+            
+                ConsoleInput.ReadString();
+                Console.Clear();
+
+                diceThrow = dice.RollDice();
+                ConsoleOutput.Print($"You rolled: {diceThrow}", ConsoleColor.Magenta);
+            
+                _manager.MovePlayer(playerId, diceThrow);
+                playerIndex = _manager.Map.Players[playerId];
+
+                _manager.SquareController(playerIndex, playerId);
+                PrintMap();
+
+                ConsoleOutput.PrintNewLine();
+                ConsoleOutput.Print($"{_generator.Players[playerId]}", ConsoleColor.White);
+            
+                ConsoleOutput.PrintNewLine();
+                ConsoleOutput.Print("Your turn has ended", ConsoleColor.Red);
             }
             else
-                map.Players[playerId] += diceThrow;
+            {
+                ConsoleOutput.PrintNewLine();
+                _manager.SquareController(6, playerId);
+            }
+            
         }
     }
 }

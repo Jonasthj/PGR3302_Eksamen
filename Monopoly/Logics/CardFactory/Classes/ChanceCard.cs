@@ -2,14 +2,14 @@
 
 namespace Monopoly.Logics.CardFactory.Classes
 {
-    public class ChanceCard : IGetFields, IChanceCard 
+    public class ChanceCard
     {
         #region Properties
 
-        private int Id { get; }
-        private string Content { get; }
-        private int Value { get; }
-        private int MoveIndex { get; }
+        public int Id { get; }
+        public string Content { get; }
+        public int Value { get; }
+        public int MoveIndex { get; }
 
         #endregion
 
@@ -30,26 +30,6 @@ namespace Monopoly.Logics.CardFactory.Classes
         public override string ToString()
         {
             return $"{Content}";
-        }
-
-        public int GetId()
-        {
-            return Id;
-        }
-
-        public string GetName()
-        {
-            return Content;
-        }
-
-        public int GetValue()
-        {
-            return Value;
-        }
-
-        public int GetMoveIndex()
-        {
-            return MoveIndex;
         }
 
         #endregion
