@@ -6,6 +6,8 @@ namespace Monopoly.Logics.PlayerFlyweight.Static
 {
     public sealed class PlayerGenerator
     {
+        #region Singleton Pattern
+        
         private static PlayerGenerator _instance = new PlayerGenerator();
 
 
@@ -28,6 +30,8 @@ namespace Monopoly.Logics.PlayerFlyweight.Static
             // Private Constructor
         }
         
+        #endregion
+
         
         public readonly Dictionary<int, Player> Players = new();
         public Player Get(int id)
