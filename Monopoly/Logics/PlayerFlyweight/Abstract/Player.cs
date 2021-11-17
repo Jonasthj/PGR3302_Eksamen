@@ -16,9 +16,14 @@ namespace Monopoly.Flyweight
             InPrison = inPrison;
         }
 
-        public virtual void SetWallet(Wallet wallet)
+        public void AddWallet(int value)
         {
-            Wallet = wallet;
+            Wallet += value;
+        }
+        
+        public void SubtractWallet(int value)
+        {
+            Wallet -= value;
         }
 
         public virtual void SetInPrison(bool inPrison)

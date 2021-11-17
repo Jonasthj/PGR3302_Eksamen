@@ -1,9 +1,7 @@
-﻿namespace Monopoly.Factory.Interface
+﻿namespace Monopoly.Logics.CardFactory.Interface
 {
-    public interface ISquare
+    public interface ISquare : IGetFields
     {
         void PrintSquare();
-
-        int GetId();
     }
 }

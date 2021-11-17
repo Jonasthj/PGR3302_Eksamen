@@ -2,7 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Monopoly.Factory.Classes;
-using Monopoly.Factory.Interface;
+using Monopoly.Logics.CardFactory.Classes;
+using Monopoly.Logics.CardFactory.Interface;
 using Newtonsoft.Json.Linq;
 
 namespace Monopoly.Database

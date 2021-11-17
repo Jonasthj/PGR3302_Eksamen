@@ -1,7 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using Monopoly.Factory.Interface;
+using Monopoly.Logics.CardFactory.Interface;
 using Monopoly.UI;
 
 namespace Monopoly

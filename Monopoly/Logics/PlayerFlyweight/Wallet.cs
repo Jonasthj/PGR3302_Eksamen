@@ -21,6 +21,16 @@ namespace Monopoly.Flyweight
 
         #region Overrides
 
+        public static Wallet operator +(Wallet wallet, int value)
+        {
+            return new Wallet(wallet.Balance + value);
+        }
+        
+        public static Wallet operator -(Wallet wallet, int value)
+        {
+            return new Wallet(wallet.Balance - value);
+        }
+        
         public override string ToString()
         {
             return "Balance: " + Balance;

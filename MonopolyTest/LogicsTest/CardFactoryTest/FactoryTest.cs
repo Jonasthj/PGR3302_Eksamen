@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.IO;
 using Monopoly.Factory.Classes;
-using Monopoly.Factory.Interface;
+using Monopoly.Logics.CardFactory.Interface;
 using NUnit.Framework;
 
 namespace MonopolyTest.FactoryTest

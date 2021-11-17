@@ -1,7 +1,7 @@
 ﻿using System;
-using Monopoly.Factory.Interface;
+using Monopoly.Logics.CardFactory.Interface;
 
-namespace Monopoly.Factory.Classes
+namespace Monopoly.Logics.CardFactory.Classes
 {
     public class Prison : ISquare
     {
@@ -32,6 +32,11 @@ namespace Monopoly.Factory.Classes
         public int GetId()
         {
             return Id;
+        }
+
+        public string GetName()
+        {
+            return Name;
         }
 
         #endregion

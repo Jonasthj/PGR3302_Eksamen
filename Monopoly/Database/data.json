@@ -99,7 +99,7 @@
                 {
                     "id": 2, "content": "You receive a gift of 50", "value": 50, "moveIndex": -1},  
                 {
-                    "id": 3, "content": "Go directly to prison and skip one round", "value": 0, "moveIndex": 8},
+                    "id": 3, "content": "Go directly to prison and skip one round", "value": 0, "moveIndex": 6},
                 {
                     "id": 4, "content": "Go to Grunerløkka", "value": 0, "moveIndex": 5},
                 {

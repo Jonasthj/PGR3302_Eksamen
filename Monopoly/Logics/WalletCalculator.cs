@@ -17,14 +17,14 @@ namespace Monopoly.Logics
         {
             Player player = _generator.Get(playerId);
 
-            player.SetWallet(new Wallet(player.Wallet.Balance + amount));
+            player.AddWallet(amount);
         }
 
         public void SubtractBalance(int playerId, int amount)
         {
             Player player = _generator.Get(playerId);
             
-            player.SetWallet(new Wallet(player.Wallet.Balance - amount));
+            player.SubtractWallet(amount);
         }
     }
 }

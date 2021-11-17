@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using Monopoly.Database;
-using Monopoly.Factory.Classes;
-using Monopoly.Factory.Interface;
 using Monopoly.Flyweight;
+using Monopoly.Logics.CardFactory.Interface;
 using Monopoly.Logics.PlayerFlyweight.Static;
+using Monopoly.Logics.SquareLogics;
 
 namespace Monopoly.Logics
 {
@@ -11,36 +10,14 @@ namespace Monopoly.Logics
     {
         public BoardMap Map;
         private readonly PlayerGenerator _generator = PlayerGenerator.GetInstance();
-        
-        public BoardMap CreateBoardMap()
+        private Dictionary<string, AbstractLogics> _controllers = new();
+
+        public void InitializeMap()
         {
-            Map = new BoardMap();
+            CreateBoardMap createBoardMap = new CreateBoardMap();
             
-            var jsonData = JsonFileReader.GetJsonData();
-            
-            PropertyJson propertyJson = new(jsonData);
-            ChanceJson chanceJson = new(jsonData);
-            
-            Prison prison = new Prison();
-            Start start = new Start();
-            List<ISquare> chances = chanceJson.RetrieveAll();
-
-            // Create Property Squares
-            for (int i = 0; i < 20; i++)
-            {
-                Map.MapSquares[i] = propertyJson.Retrieve(i);
-            }
-            // Create Chance Squares
-            foreach (var chance in chances)
-            {
-                Map.MapSquares[chance.GetId()] = chance;
-            }
-            
-            // Create Start and Prison square.
-            Map.MapSquares[start.GetId()] = start;
-            Map.MapSquares[prison.GetId()] = prison;
-
-            return Map;
+            Map = createBoardMap.Create();
+            _controllers = createBoardMap.GetControllers();
         }
         
         
@@ -51,7 +28,6 @@ namespace Monopoly.Logics
             {
                 Map.Players.Add(i, 0);
                 _generator.Get(i);
-                // PlayerGenerator.Get(i);
             }
         }
 
@@ -59,6 +35,20 @@ namespace Monopoly.Logics
         {
             Player player = _generator.Get(id);
             player.SetExtrinsicPart(name, new Wallet(600), false);
+        }
+
+        public void SquareController(int playerIndex, int playerId)
+        {
+            ISquare mapSquare = Map.MapSquares[playerIndex];
+            if (_controllers.ContainsKey(mapSquare.GetName()))
+            {
+                _controllers[mapSquare.GetName()].Handle(mapSquare, playerId);
+            }
+        }
+
+        public void SetPlayerPos(int playerId, int index)
+        {
+            Map.Players[playerId] = index;
         }
     }
 }

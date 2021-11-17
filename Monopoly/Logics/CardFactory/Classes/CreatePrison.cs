@@ -1,5 +1,6 @@
 ﻿using Monopoly.Factory.Abstract;
-using Monopoly.Factory.Interface;
+using Monopoly.Logics.CardFactory.Classes;
+using Monopoly.Logics.CardFactory.Interface;
 
 namespace Monopoly.Factory.Classes
 {

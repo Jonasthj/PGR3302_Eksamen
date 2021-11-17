@@ -1,8 +1,11 @@
 ﻿using System;
 using System.CodeDom.Compiler;
+using System.Collections.Generic;
 using Monopoly.Factory.Classes;
 using Monopoly.Flyweight;
 using Monopoly.Logics;
+using Monopoly.Logics.CardFactory.Classes;
+using Monopoly.Logics.CardFactory.Interface;
 using Monopoly.Logics.PlayerFlyweight.Static;
 
 namespace Monopoly.UI
@@ -11,16 +14,15 @@ namespace Monopoly.UI
     {
         private PlayerGenerator _generator = PlayerGenerator.GetInstance();
         private readonly GameManager _manager = new();
-        private BoardMap _map = new();
         private int _currentPlayerId = 1;
 
         public void StartGame()
         {
+            _manager.InitializeMap();
+            
             ConsoleOutput.Print("--- Welcome to Monopoly! ---\n", ConsoleColor.Magenta);
             ConsoleOutput.Print("How many players are you ( 2-4 )", ConsoleColor.Magenta);
-            
-            _map = _manager.CreateBoardMap();
-            
+
             // Set players:
             
             int playersCount = GetPlayerCount();
@@ -38,9 +40,9 @@ namespace Monopoly.UI
         private void PrintState()
         {
             ConsoleOutput.PrintNewLine();
-            ConsoleOutput.Print("------- Board Map -------\n" + $"{_map}", ConsoleColor.Yellow);
+            ConsoleOutput.Print("------- Board Map -------\n" + $"{_manager.Map}", ConsoleColor.Yellow);
 
-            if (_currentPlayerId >= _map.Players.Count + 1)
+            if (_currentPlayerId >= _manager.Map.Players.Count + 1)
                 _currentPlayerId = 1;
             
             NextTurn(_currentPlayerId);
@@ -85,7 +87,6 @@ namespace Monopoly.UI
             // Player starts next turn.
             ConsoleInput.ReadString();
             _currentPlayerId++;
-
             Console.Clear();
 
             ConsoleOutput.PrintNewLine();
@@ -100,9 +101,10 @@ namespace Monopoly.UI
             
             MovePlayer(playerId, diceThrow);
             
-            int playerIndex = _map.Players[playerId];
-            ConsoleOutput.Print(_map.MapSquares[playerIndex].ToString());
+            int playerIndex = _manager.Map.Players[playerId];
             
+            _manager.SquareController(playerIndex, playerId);
+
             /*** NextTurn()
          * Player action (buy, end)
          * End turn
@@ -112,18 +114,21 @@ namespace Monopoly.UI
 
         private void MovePlayer(int playerId, int diceThrow)
         {
-            int playerIndex = _map.Players[playerId];
+            int playerIndex = _manager.Map.Players[playerId];
             int newIndex = diceThrow + playerIndex;
-            int squareCount = _map.BoardSquares.Count;
+            int squareCount = _manager.Map.BoardSquares.Count;
 
             if (newIndex >= squareCount)
             {
                 int restSquares = squareCount - playerIndex;
                 int move = diceThrow - restSquares;
-                _map.Players[playerId] = move;
+                _manager.Map.Players[playerId] = move;
+                
+                if(move != 0)
+                    _manager.SquareController(0, playerId);
             }
             else
-                _map.Players[playerId] += diceThrow;
+                _manager.Map.Players[playerId] += diceThrow;
         }
     }
 }

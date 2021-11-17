@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Drawing;
-using Monopoly.Factory.Interface;
+using Monopoly.Logics.CardFactory.Interface;
 
 namespace Monopoly.Factory.Classes
 {
@@ -45,6 +45,11 @@ namespace Monopoly.Factory.Classes
             return Id;
         }
 
+        public string GetName()
+        {
+            return Name;
+        }
+
         #endregion
 
         #region Overrides
@@ -53,7 +58,6 @@ namespace Monopoly.Factory.Classes
         {
             var price = CheckAvailable(out var owner);
 
-            // Console.ForegroundColor;
             Console.ForegroundColor = Color;
             
             return "-----------------" +

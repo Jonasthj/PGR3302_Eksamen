@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Monopoly.Factory.Abstract;
-using Monopoly.Factory.Interface;
+using Monopoly.Logics.CardFactory.Classes;
+using Monopoly.Logics.CardFactory.Interface;
 
 namespace Monopoly.Factory.Classes
 {
@@ -25,7 +26,7 @@ namespace Monopoly.Factory.Classes
         {
             return new Chance(_id, _chanceList);
         }
-        
+
         #endregion
     }
 }
