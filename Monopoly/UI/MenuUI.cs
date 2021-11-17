@@ -81,13 +81,17 @@ namespace Monopoly.UI
             int playerIndex;
 
             // Player starts next turn.
+            ConsoleOutput.PrintEnter();
             ConsoleInput.ReadString();
             _currentPlayerId++;
-            Console.Clear();
+            // Console.Clear();
             
-            ConsoleOutput.Print($"Your turn: \n{_generator.Players[playerId]}");
+            ConsoleOutput.Print("Your turn:", ConsoleColor.White);
+            PrintPlayerInfo(playerId);
+
+            bool playerInPrison = PlayerGenerator.GetInstance().Get(playerId).InPrison;
             
-            if (!PlayerGenerator.GetInstance().Get(playerId).InPrison)
+            if (!playerInPrison)
             {
                 Dice dice = new Dice();
                 int diceThrow;
@@ -95,18 +99,27 @@ namespace Monopoly.UI
                 ConsoleOutput.Print("Press enter to roll the dice", ConsoleColor.Cyan);
             
                 ConsoleInput.ReadString();
-                Console.Clear();
 
                 diceThrow = dice.RollDice();
                 ConsoleOutput.Print($"You rolled: {diceThrow}", ConsoleColor.Magenta);
             
                 _manager.MovePlayer(playerId, diceThrow);
                 playerIndex = _manager.Map.Players[playerId];
-
-                _manager.SquareController(playerIndex, playerId);
                 PrintMap();
 
-                ConsoleOutput.Print($"{_generator.Players[playerId]}", ConsoleColor.White);
+                int prevIndex = playerIndex;
+
+                _manager.SquareController(playerIndex, playerId);
+                
+                int newIndex = _manager.Map.Players[playerId];
+
+                if (prevIndex != newIndex)
+                {
+                    // Console.Clear();
+                    PrintMap();
+                }
+
+                PrintPlayerInfo(playerId);
             
                 ConsoleOutput.Print("Your turn has ended", ConsoleColor.Red);
             }
@@ -115,6 +128,11 @@ namespace Monopoly.UI
                 _manager.SquareController(6, playerId);
             }
             
+        }
+
+        private void PrintPlayerInfo(int playerId)
+        {
+            ConsoleOutput.Print($"{_generator.Players[playerId]}", ConsoleColor.White);
         }
     }
 }

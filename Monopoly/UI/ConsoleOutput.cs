@@ -22,6 +22,11 @@ namespace Monopoly.UI
         {
             Console.WriteLine();
         }
+
+        public static void PrintEnter()
+        {
+            Print("Press enter to continue..", ConsoleColor.Cyan);
+        }
         
         
     }

@@ -8,7 +8,7 @@ namespace Monopoly.Logics
 {
     public class GameManager
     {
-        public BoardMap Map;
+        public BoardMap Map = BoardMap.GetInstance();
         private readonly PlayerGenerator _generator = PlayerGenerator.GetInstance();
         private Dictionary<string, AbstractLogics> _controllers = new();
 

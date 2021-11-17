@@ -55,8 +55,12 @@ namespace Monopoly.Logics
 
         public void ChanceHandler(int playerId, int value)
         {
-            if (CreditCheck(playerId, value))
+            if (value > 0)
+            {
                 _calculator.AddBalance(playerId, value);
+            }
+            else if (CreditCheck(playerId, value))
+                _calculator.SubtractBalance(playerId, value);
             else
                 Bankrupt(playerId);
         }

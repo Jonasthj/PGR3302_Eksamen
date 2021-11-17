@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Monopoly.Flyweight;
 using Monopoly.Logics.CardFactory.Classes;
 using Monopoly.Logics.CardFactory.Interface;
-using Monopoly.Logics.PlayerFlyweight.Static;
 using Monopoly.UI;
 
 namespace Monopoly.Logics.SquareLogics
@@ -33,6 +31,9 @@ namespace Monopoly.Logics.SquareLogics
                 GameManager manager = new GameManager();
                 manager.SquareController(chanceCard.MoveIndex, playerId);
             }
+
+            ConsoleOutput.PrintEnter();
+            ConsoleInput.ReadString();
         }
     }
 }
