@@ -93,7 +93,7 @@
             ],
             "chanceCards":  [
                 {
-                    "id": 0, "content": "Move to start and collect 100M", "value": 100, "moveIndex": 0},
+                    "id": 0, "content": "Move to start and collect 100M", "value": 0, "moveIndex": 0},
                 {
                     "id": 1, "content": "Pay a parking fine of 50M", "value": -50, "moveIndex": -1},
                 {

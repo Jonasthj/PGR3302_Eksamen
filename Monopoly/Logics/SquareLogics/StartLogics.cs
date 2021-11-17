@@ -12,7 +12,7 @@ namespace Monopoly.Logics.SquareLogics
         
         public override void Handle(ISquare square, int playerId)
         {
-            ConsoleOutput.Print(square.ToString());
+            ConsoleOutput.Print(square.ToString(), ConsoleColor.White);
             
             WalletCalculator calculator = new();
             calculator.AddBalance(playerId, _collect);

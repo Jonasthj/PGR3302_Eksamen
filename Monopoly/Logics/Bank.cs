@@ -60,7 +60,7 @@ namespace Monopoly.Logics
                 _calculator.AddBalance(playerId, value);
             }
             else if (CreditCheck(playerId, value))
-                _calculator.SubtractBalance(playerId, value);
+                _calculator.AddBalance(playerId, value);
             else
                 Bankrupt(playerId);
         }
