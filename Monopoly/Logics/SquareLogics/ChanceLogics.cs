@@ -22,8 +22,8 @@ namespace Monopoly.Logics.SquareLogics
             
             ConsoleOutput.Print(square.ToString());
 
-            WalletCalculator calculator = new WalletCalculator();
-            calculator.AddBalance(playerId, chanceCard.Value);
+            Bank bank = new Bank();
+            bank.ChanceHandler(playerId, chanceCard.Value);
 
             if (chanceCard.MoveIndex >= 0)
             {

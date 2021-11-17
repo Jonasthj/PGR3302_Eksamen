@@ -15,7 +15,7 @@ namespace Monopoly.UI
         {
             _manager.InitializeMap();
             
-            ConsoleOutput.Print("--- Welcome to Monopoly! ---\n", ConsoleColor.Magenta);
+            ConsoleOutput.Print("--- Welcome to Monopoly! ---", ConsoleColor.Magenta);
             ConsoleOutput.Print("How many players are you ( 2-4 )", ConsoleColor.Magenta);
 
             // Set players:
@@ -34,7 +34,6 @@ namespace Monopoly.UI
 
         private void PrintMap()
         {
-            ConsoleOutput.PrintNewLine();
             ConsoleOutput.Print("------- Board Map -------\n" + $"{_manager.Map}", ConsoleColor.Yellow);
         }
 
@@ -86,7 +85,6 @@ namespace Monopoly.UI
             _currentPlayerId++;
             Console.Clear();
             
-            ConsoleOutput.PrintNewLine();
             ConsoleOutput.Print($"Your turn: \n{_generator.Players[playerId]}");
             
             if (!PlayerGenerator.GetInstance().Get(playerId).InPrison)
@@ -94,7 +92,6 @@ namespace Monopoly.UI
                 Dice dice = new Dice();
                 int diceThrow;
                 
-                ConsoleOutput.PrintNewLine();
                 ConsoleOutput.Print("Press enter to roll the dice", ConsoleColor.Cyan);
             
                 ConsoleInput.ReadString();
@@ -109,15 +106,12 @@ namespace Monopoly.UI
                 _manager.SquareController(playerIndex, playerId);
                 PrintMap();
 
-                ConsoleOutput.PrintNewLine();
                 ConsoleOutput.Print($"{_generator.Players[playerId]}", ConsoleColor.White);
             
-                ConsoleOutput.PrintNewLine();
                 ConsoleOutput.Print("Your turn has ended", ConsoleColor.Red);
             }
             else
             {
-                ConsoleOutput.PrintNewLine();
                 _manager.SquareController(6, playerId);
             }
             

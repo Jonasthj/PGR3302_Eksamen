@@ -9,12 +9,11 @@ namespace Monopoly.Logics.SquareLogics
     public class PropertyLogics : AbstractLogics
     {
         private Property _property;
-        WalletCalculator calculator = new ();
 
-        
         public override void Handle(ISquare square, int playerId)
         {
             _property = (Property) square;
+            Bank bank = new Bank(_property);
             
             ConsoleOutput.Print(square.ToString());
 
@@ -29,7 +28,7 @@ namespace Monopoly.Logics.SquareLogics
                     ConsoleKey answer = ConsoleInput.ReadKey();
                     if (answer == ConsoleKey.Y)
                     {
-                        BuyProperty(playerId);
+                        bank.BuyProperty(playerId);
                         checkKey = false;
                     }
                     else if (answer == ConsoleKey.N)
@@ -52,7 +51,7 @@ namespace Monopoly.Logics.SquareLogics
                     ConsoleOutput.Print("Someone owns this property!", ConsoleColor.Cyan);
                     ConsoleOutput.Print("Pay up!", ConsoleColor.Cyan);
                     
-                    RentProperty(playerId, _property.OwnerId);
+                    bank.RentProperty(playerId, _property.OwnerId);
                 }
                 else
                 {
@@ -61,20 +60,6 @@ namespace Monopoly.Logics.SquareLogics
                 }
             }
         }
-
-        private void BuyProperty(int playerId)
-        {
-            calculator.SubtractBalance(playerId, _property.BuyPrice);
-            _property.SetAvailability(false);
-            _property.SetOwner(playerId);
-        }
-
-        private void RentProperty(int playerId, int ownerId)
-        {
-            calculator.AddBalance(ownerId, _property.RentPrice);
-            calculator.SubtractBalance(playerId, _property.RentPrice);
-        }
-        
         
     }
 
