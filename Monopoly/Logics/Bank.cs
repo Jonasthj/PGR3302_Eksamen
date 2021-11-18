@@ -9,7 +9,7 @@ namespace Monopoly.Logics
     {
         private readonly Property _property;
         
-        private readonly WalletCalculator _calculator = new WalletCalculator();
+        private readonly WalletCalculator _calculator = new ();
 
         public Bank(Property property)
         {
@@ -53,6 +53,11 @@ namespace Monopoly.Logics
             
         }
 
+        /// <description>
+        /// The chance cards that withdraw money from the account are already set to negative numbers,
+        /// so all calculation is done with Add () since number1 + (-number2) == number1 - number2.
+        /// </description>
+
         public void ChanceHandler(int playerId, int value)
         {
             if (value > 0)
@@ -68,8 +73,21 @@ namespace Monopoly.Logics
         private bool CreditCheck(int playerId, int price)
         {
             PlayerGenerator playerGenerator = PlayerGenerator.GetInstance();
+            int playerBalance = playerGenerator.Get(playerId).Wallet.Balance;
+            int res;
 
-            if (playerGenerator.Get(playerId).Wallet.Balance >= price)
+            if (price < 0)
+            {   
+                // price is negative, so n + (-n).
+                res = playerBalance + price;
+            }
+            else
+            {
+                res = playerBalance - price;
+            }
+            
+            
+            if (res > 0)
                 return true;
 
             return false;

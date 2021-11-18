@@ -10,15 +10,18 @@ namespace Monopoly.Logics.PlayerFlyweight.Abstract
         protected int Id;
         public string Name { get; private set; }
         public Wallet Wallet { get; private set; }
-        public bool InPrison { get; set; }
+        public bool InPrison { get; private set; }
         
         #endregion
         
         #region Methods
-        
-        public virtual void SetExtrinsicPart(string name, Wallet wallet, bool inPrison)
+
+        public void SetExtrinsicPart(string name, Wallet wallet, bool inPrison)
         {
-            Name = name;
+            // Get's default name (easter egg).
+            if(name.Length > 0)
+                Name = name;
+            
             Wallet = wallet;
             InPrison = inPrison;
         }
@@ -27,10 +30,20 @@ namespace Monopoly.Logics.PlayerFlyweight.Abstract
         {
             Wallet += value;
         }
-        
+
+        public void SetName(string name)
+        {
+            Name = name;
+        }
+
         public void SubtractWallet(int value)
         {
             Wallet -= value;
+        }
+
+        public void SetInPrison(bool inPrison)
+        {
+            InPrison = inPrison;
         }
 
         public override string ToString()

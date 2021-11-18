@@ -80,8 +80,6 @@ namespace Monopoly.Logics
         
         public void MovePlayer(int playerId, int diceThrow)
         {
-            
-            
             int playerIndex = Map.Players[playerId];
             int newIndex = diceThrow + playerIndex;
             int squareCount = Map.BoardSquares.Count;
