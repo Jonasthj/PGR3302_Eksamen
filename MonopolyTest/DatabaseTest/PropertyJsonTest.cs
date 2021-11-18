@@ -7,7 +7,8 @@ namespace MonopolyTest.DatabaseTest
 {
     public class PropertyJsonTest
     {
-        [Test]
+        //TODO: Refactor
+        /*[Test]
         public void ShouldRetrieveCardFromJson()
         {
             string jsonData = exampleData(1, "Grensen", "Brown", 100, 30);
@@ -34,6 +35,6 @@ namespace MonopolyTest.DatabaseTest
             }";
 
             return example;
-        }
+        }*/
     }
 }

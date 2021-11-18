@@ -60,8 +60,8 @@ namespace MonopolyTest.LogicsTest.CardFactoryTest
             square.PrintSquare();
             string consoleOutput = stringWriter.ToString();
             
-            //TODO: /r?
-            Assert.AreEqual(consoleOutput, square + "\n");
+            // If testing on Mac / terminal: remove "\r".
+            Assert.AreEqual(consoleOutput, square + "\r\n");
         }
         
         #endregion
