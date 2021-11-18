@@ -12,6 +12,7 @@ namespace Monopoly.Logics.PlayerFlyweight.Abstract
 
         public void SetExtrinsicPart(string name, Wallet wallet, bool inPrison)
         {
+            // Get's default name (easter egg).
             if(name.Length > 0)
                 Name = name;
             
