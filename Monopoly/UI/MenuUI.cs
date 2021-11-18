@@ -6,7 +6,7 @@ using Monopoly.Logics.PlayerFlyweight.Abstract;
 
 namespace Monopoly.UI
 {
-    public class MenuUI
+    public class MenuUi
     {
         /// <summary>
         /// MenuUi handles all the interaction between the user and the program.

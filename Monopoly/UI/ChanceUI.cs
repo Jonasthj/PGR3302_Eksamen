@@ -3,7 +3,7 @@ using Monopoly.Logics.SquareLogics;
 
 namespace Monopoly.UI
 {
-    public class ChanceUI: AbstractLogics
+    public class ChanceUi: AbstractLogics
     {
         private readonly ChanceLogics _chanceLogics = new();
         

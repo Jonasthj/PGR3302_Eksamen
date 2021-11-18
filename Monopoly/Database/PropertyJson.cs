@@ -42,6 +42,7 @@ namespace Monopoly.Database
 
         public int GetCount()
         {
+            // Remove 1 in properties because of the chance square.
             int properties = _jsonData["Card"].Count() - 1;
             int chances = _jsonData["Card"]["Chance"]["indexList"].Count();
 

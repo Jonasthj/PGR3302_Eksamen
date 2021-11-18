@@ -56,7 +56,7 @@ namespace Monopoly.Logics
                 Chance chance = (Chance) square;
                 map.MapSquares[chance.Id] = chance;
 
-                AddController(chance.GetName(), new ChanceUi());
+                AddController(chance.GetName(), new ChanceUI());
             }
         }
 
@@ -70,7 +70,7 @@ namespace Monopoly.Logics
                 map.MapSquares[i] = propertyJson.Retrieve(i);
                 if (map.MapSquares[i] != null)
                 {
-                    AddController(map.MapSquares[i].GetName(), new PropertyUi());
+                    AddController(map.MapSquares[i].GetName(), new PropertyUI());
                 }
             }
         }

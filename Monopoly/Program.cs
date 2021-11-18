@@ -7,7 +7,7 @@ namespace Monopoly
     {
         private static void Main()
         {
-            MenuUi menu = new();
+            MenuUI menu = new();
             menu.StartGame();
 
         }

@@ -12,10 +12,10 @@ namespace Monopoly.Logics
     {
         #region Singleton Pattern
         
-        private static GameManager _instance = new GameManager();
+        private static GameManager _instance = new ();
 
 
-        private static readonly object Synclock = new object();
+        private static readonly object Synclock = new ();
         
         public static GameManager GetInstance()
         {
