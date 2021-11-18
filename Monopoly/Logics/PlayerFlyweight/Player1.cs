@@ -8,6 +8,7 @@ namespace Monopoly.Flyweight
         public Player1()
         {
             Id = 1;
+            SetName("Jessica");
         }
         
         

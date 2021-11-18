@@ -16,9 +16,9 @@ namespace Monopoly.Logics.SquareLogics
             Player player = PlayerGenerator.GetInstance().Get(playerId);
 
             if (player.InPrison)
-                player.InPrison = false;
+                player.SetInPrison(false);
             else if (!player.InPrison)
-                player.InPrison = true;
+                player.SetInPrison(true);
         }
     }
 }
