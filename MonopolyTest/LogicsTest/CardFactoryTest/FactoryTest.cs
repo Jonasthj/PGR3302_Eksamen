@@ -11,27 +11,27 @@ namespace MonopolyTest.LogicsTest.CardFactoryTest
         #region Tests
         
         [Test]
-        public void ShouldReturnChanceString()
+        public void ShouldReturnChanceProperties()
         {
-            Guid uuid = Guid.NewGuid();
-            CreateChance chance = new CreateChance(1,null);
+            CreateChance chance = new CreateChance(53,null);
             ISquare square = chance.BuildSquare();
-            
-            StringAssert.Contains(uuid.ToString(),square.ToString());
+
+            Assert.AreEqual(53, square.GetId());
         }
 
        [Test]
-        public void ShouldReturnPrisonString()
+        public void ShouldReturnPrisonProperties()
         {
             CreatePrison prison = new CreatePrison();
             ISquare square = prison.BuildSquare();
-
+            
+            // Expected = Default Values
             Assert.AreEqual(6, square.GetId());
             Assert.AreEqual("Prison", square.GetName());
         }
         
         [Test]
-        public void ShouldReturnPropertyString()
+        public void ShouldReturnPropertyProperties()
         {
             Guid uuid = Guid.NewGuid();
             CreateProperty property = new CreateProperty(5, uuid.ToString(), ConsoleColor.Blue, 123, 123);
@@ -41,12 +41,12 @@ namespace MonopolyTest.LogicsTest.CardFactoryTest
         }
 
         [Test]
-        public void ShouldReturnStartString()
+        public void ShouldReturnStartProperties()
         {
-            Guid uuid = Guid.NewGuid();
             CreateStart start = new CreateStart();
             ISquare square = start.BuildSquare();
             
+            // Expected = Default values
             Assert.AreEqual(0, square.GetId());
             Assert.AreEqual("Start", square.GetName());
         }
@@ -54,20 +54,17 @@ namespace MonopolyTest.LogicsTest.CardFactoryTest
         [Test]
         public void ShouldReadRandomSquareString()
         {
-            using (StringWriter stringWriter = new StringWriter())
-            {
-                Console.SetOut(stringWriter);
-                ISquare square = GenerateRandomSquare();
-                square.PrintSquare();
-                string consoleOutput = stringWriter.ToString();
+            using StringWriter stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
+            ISquare square = GenerateRandomSquare();
+            square.PrintSquare();
+            string consoleOutput = stringWriter.ToString();
                 
-                Assert.AreEqual(consoleOutput, square.ToString() + "\r\n");
-            }
+            Assert.AreEqual(consoleOutput, square.ToString() + "\r\n");
         }
+        
         #endregion
 
-        #region HelperMethods
-        
         private static ISquare GenerateRandomSquare()
         {
             Random random= new Random();
@@ -103,6 +100,5 @@ namespace MonopolyTest.LogicsTest.CardFactoryTest
 
             return square;
         }
-        #endregion
     }
 }

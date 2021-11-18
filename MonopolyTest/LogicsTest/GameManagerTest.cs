@@ -8,20 +8,20 @@ namespace MonopolyTest
     public class GameManagerTest
     {
         
-        [Test]
+        /*[Test]
         public void ShouldAddPlayersToBoardMapAndToStartPosition()
         {
             GameManager manager = GameManager.GetInstance();
-            
             manager.CreatePlayers(4);
+            
             Assert.AreEqual(manager.Map.Players[1], 0);
             Assert.AreEqual(manager.Map.Players[2], 0);
             Assert.AreEqual(manager.Map.Players[3], 0);
             Assert.AreEqual(manager.Map.Players[4], 0);
-        }
+        }*/
 
         [Test]
-        public void ShoulsAddPlayersAndDeleteOne()
+        public void ShouldAddPlayersAndDeleteOne()
         {
             // GameManager game = new GameManager();
             //

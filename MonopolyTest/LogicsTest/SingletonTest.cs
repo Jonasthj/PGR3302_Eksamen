@@ -1,4 +1,6 @@
-﻿using Monopoly.Flyweight;
+﻿using Monopoly;
+using Monopoly.Flyweight;
+using Monopoly.Logics;
 using Monopoly.Logics.PlayerFlyweight.Abstract;
 using Monopoly.Logics.PlayerFlyweight.Static;
 using NUnit.Framework;
@@ -18,6 +20,15 @@ namespace MonopolyTest.LogicsTest
             
             Assert.AreEqual(a, b);
             Assert.AreEqual(a.Get(1), b.Get(1));
+        }
+        
+        [Test]
+        public void ShouldGetSameInstanceOfGameManager()
+        {
+            GameManager a = GameManager.GetInstance();
+            GameManager b = GameManager.GetInstance();
+            
+            Assert.AreEqual(a, b);
         }
     }
 }
