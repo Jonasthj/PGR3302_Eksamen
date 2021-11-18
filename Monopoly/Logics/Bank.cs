@@ -125,7 +125,7 @@ namespace Monopoly.Logics
                     }
                 }
                 
-                ConsoleOutput.Print("There har been a tax reform!" +
+                ConsoleOutput.Print("There har been a tax reform!\ny" +
                                     $"Therefore taxes have been raised with {raiseValue}M", ConsoleColor.Cyan);
                 _manager.TaxRaise = true;
             }
