@@ -3,6 +3,7 @@ using Monopoly.Database;
 using Monopoly.Logics.CardFactory.Classes;
 using Monopoly.Logics.CardFactory.Interface;
 using Monopoly.Logics.SquareLogics;
+using Monopoly.UI;
 
 namespace Monopoly.Logics
 {
@@ -55,7 +56,7 @@ namespace Monopoly.Logics
                 Chance chance = (Chance) square;
                 map.MapSquares[chance.Id] = chance;
 
-                AddController(chance.GetName(), new ChanceLogics());
+                AddController(chance.GetName(), new ChanceUi());
             }
         }
 
