@@ -9,7 +9,7 @@ namespace Monopoly.Logics
     {
         private readonly Property _property;
         
-        private readonly WalletCalculator _calculator = new WalletCalculator();
+        private readonly WalletCalculator _calculator = new ();
 
         public Bank(Property property)
         {
@@ -60,7 +60,6 @@ namespace Monopoly.Logics
 
         public void ChanceHandler(int playerId, int value)
         {
-         
             if (value > 0)
             {
                 _calculator.AddBalance(playerId, value);
@@ -75,8 +74,18 @@ namespace Monopoly.Logics
         {
             PlayerGenerator playerGenerator = PlayerGenerator.GetInstance();
             int playerBalance = playerGenerator.Get(playerId).Wallet.Balance;
+            int res;
+
+            if (price < 0)
+            {   
+                // price is negative, so n + (-n).
+                res = playerBalance + price;
+            }
+            else
+            {
+                res = playerBalance - price;
+            }
             
-            int res = playerBalance + price;
             
             if (res > 0)
                 return true;
