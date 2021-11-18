@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Monopoly.Logics;
 using Monopoly.Logics.CardFactory.Interface;
 using Monopoly.Logics.PlayerFlyweight.Abstract;
@@ -23,12 +24,13 @@ namespace Monopoly.UI
             int playersCount = _manager.GetPlayerCount();
             _manager.CreatePlayers(playersCount);
             SetPlayers(playersCount);
-            
+        
             // See the start positions.
             PrintMap();
 
             PlayGame();
-        }
+
+            }
 
         private void PlayGame()
         {
@@ -72,12 +74,35 @@ namespace Monopoly.UI
 
         private void PlayerWin()
         {
-            Player winner = PlayerGenerator.GetInstance().Get(_currentPlayerId);
-            
+            var winner = GetWinner();
+
             ConsoleOutput.Print("----------------------------------------------", ConsoleColor.Green);
             ConsoleOutput.Print($"Congratulation! You won the game!", ConsoleColor.Yellow);
             ConsoleOutput.Print(winner.ToString(), ConsoleColor.Yellow);
             ConsoleOutput.Print("----------------------------------------------", ConsoleColor.Green);
+        }
+
+        private static Player GetWinner()
+        {
+            var players = PlayerGenerator.GetInstance().Players;
+            var blacklisted = PlayerGenerator.GetInstance().BlackListed;
+
+            List<int> playerIds = new List<int>();
+            foreach (var player in players)
+            {
+                playerIds.Add(player.Key);
+            }
+
+            List<int> blacklistId = new List<int>();
+            foreach (var player in blacklisted)
+            {
+                blacklistId.Add(player.Id);
+            }
+
+            var winnerId = playerIds.Except(blacklistId);
+
+            Player winner = PlayerGenerator.GetInstance().Get(winnerId.First());
+            return winner;
         }
 
         private void PrintPlayerInfo(int playerId)
@@ -130,7 +155,7 @@ namespace Monopoly.UI
             ConsoleOutput.PrintEnter();
             ConsoleInput.ReadString();
             _currentPlayerId++;
-            Console.Clear();
+            // Console.Clear();
             
             ConsoleOutput.Print("Your turn:", ConsoleColor.White);
             PrintPlayerInfo(playerId);
@@ -156,7 +181,7 @@ namespace Monopoly.UI
                 int newIndex = _manager.Map.Players[playerId];
                 if (playerIndex != newIndex)
                 {
-                    Console.Clear();
+                    // Console.Clear();
                     PrintMap();
                 }
 

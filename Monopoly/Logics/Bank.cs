@@ -9,6 +9,9 @@ namespace Monopoly.Logics
     {
         private readonly Property _property;
         private readonly WalletCalculator _calculator = new ();
+        private readonly GameManager _manager = GameManager.GetInstance();
+        private readonly PlayerGenerator _playerGenerator = PlayerGenerator.GetInstance();
+        private bool _taxRaise;
 
         public Bank(Property property)
         {
@@ -71,8 +74,9 @@ namespace Monopoly.Logics
 
         private bool CreditCheck(int playerId, int price)
         {
-            PlayerGenerator playerGenerator = PlayerGenerator.GetInstance();
-            int playerBalance = playerGenerator.Get(playerId).Wallet.Balance;
+            CheckPlayerRich();
+
+            int playerBalance = _playerGenerator.Get(playerId).Wallet.Balance;
             int res;
 
             if (price < 0)
@@ -92,6 +96,38 @@ namespace Monopoly.Logics
             return false;
         }
 
+        private void CheckPlayerRich()
+        {
+            bool playerRich = true;
+
+            foreach (var player in _playerGenerator.Players)
+            {
+                if (player.Value.Wallet.Balance < 800 && player.Value.Wallet.Balance > 1)
+                {
+                    playerRich = false;
+                }
+            }
+
+            Console.WriteLine(playerRich);
+
+            if (!_taxRaise && playerRich)
+            {
+                int raiseValue = 200;
+                var mapSquares = _manager.Map.MapSquares;
+                foreach (var square in mapSquares)
+                {
+                    if (square.Value is Property property)
+                    {
+                        property.SetBuyPrice(property.BuyPrice + raiseValue);
+                        property.SetRentPrice(property.RentPrice + raiseValue);
+                        _manager.Map.MapSquares[square.Key] = property;
+                    }
+                }
+
+                _taxRaise = true;
+            }
+        }
+
         private void Bankrupt(int playerId)
         {
             PlayerGenerator playerGenerator = PlayerGenerator.GetInstance();
@@ -107,9 +143,7 @@ namespace Monopoly.Logics
         
         private void ResetProperties(int playerId)
         {
-            GameManager manager = GameManager.GetInstance();
-
-            foreach (var square in manager.Map.MapSquares)
+            foreach (var square in _manager.Map.MapSquares)
             {
                 // Convert square to property.
                 if (square.Value is Property property)
@@ -120,13 +154,13 @@ namespace Monopoly.Logics
                         property.SetAvailability(true);
 
                         // CreateProperty create = new CreateProperty(property);
-                        manager.Map.MapSquares[square.Key] = property;
+                        _manager.Map.MapSquares[square.Key] = property;
                     }
                 }
                 
             }
 
-            manager.Map.Players[playerId] = -1;
+            _manager.Map.Players[playerId] = -1;
         }
     }
 }

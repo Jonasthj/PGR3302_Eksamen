@@ -11,8 +11,8 @@ namespace Monopoly.Logics.CardFactory.Classes
         private int Id { get;}
         private string Name { get;}
         public ConsoleColor Color { get;}
-        public int BuyPrice { get;}
-        public int RentPrice { get;}
+        public int BuyPrice { get; private set; }
+        public int RentPrice { get; private set; }
         public bool IsAvailable { get; private set; }
         public int OwnerId { get; private set; }
 
@@ -72,6 +72,16 @@ namespace Monopoly.Logics.CardFactory.Classes
         public int SetOwner(int id)
         {
             return OwnerId = id;
+        }
+
+        public int SetBuyPrice(int value)
+        {
+            return BuyPrice = value;
+        }
+        
+        public int SetRentPrice(int value)
+        {
+            return RentPrice = value;
         }
         
         public override string ToString()
