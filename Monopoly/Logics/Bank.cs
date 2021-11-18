@@ -136,6 +136,8 @@ namespace Monopoly.Logics
             ConsoleOutput.Print("You don't have enough money to cover your rent!", ConsoleColor.Red);
             ConsoleOutput.Print("You are officially bankrupt!", ConsoleColor.Red);
 
+            ConsoleInput.ReadKey();
+            
             playerGenerator.Get(playerId).SetWallet(0);
             
             playerGenerator.Blacklist(playerId);

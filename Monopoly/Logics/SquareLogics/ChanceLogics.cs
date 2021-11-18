@@ -22,7 +22,7 @@ namespace Monopoly.Logics.SquareLogics
             CheckPlayerShouldMove(playerId, chanceCard);
 
             ConsoleOutput.PrintEnter();
-            ConsoleInput.ReadString();
+            ConsoleInput.ReadKey();
         }
 
         private void CheckPlayerShouldMove(int playerId, ChanceCard chanceCard)

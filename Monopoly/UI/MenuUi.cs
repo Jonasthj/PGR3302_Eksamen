@@ -156,7 +156,7 @@ namespace Monopoly.UI
         {
             // Player starts next turn.
             ConsoleOutput.PrintEnter();
-            ConsoleInput.ReadString();
+            ConsoleInput.ReadKey();
             _currentPlayerId++;
             Console.Clear();
             
@@ -169,7 +169,7 @@ namespace Monopoly.UI
             {
                 
                 ConsoleOutput.Print("Press enter to roll the dice", ConsoleColor.Cyan);
-                ConsoleInput.ReadString();
+                ConsoleInput.ReadKey();
 
                 var diceThrow = Dice.RollDice();
                 ConsoleOutput.Print($"You rolled: {diceThrow}", ConsoleColor.Magenta);
