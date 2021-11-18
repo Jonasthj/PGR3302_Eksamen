@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Drawing;
-using Monopoly.Factory.Abstract;
-using Monopoly.Logics.CardFactory.Classes;
+using Monopoly.Logics.CardFactory.Abstract;
 using Monopoly.Logics.CardFactory.Interface;
 
-namespace Monopoly.Factory.Classes
+namespace Monopoly.Logics.CardFactory.Classes
 {
     public class CreateProperty : CreateSquare
     {
@@ -17,9 +15,7 @@ namespace Monopoly.Factory.Classes
         private readonly int _rentPrice;
 
         #endregion
-
-        #region Constructors
-
+        
         public CreateProperty(int id, string name, ConsoleColor color, int buyPrice, int rentPrice)
         {
             _id = id;
@@ -29,15 +25,9 @@ namespace Monopoly.Factory.Classes
             _rentPrice = rentPrice;
         }
 
-        #endregion
-
-        #region Overrides
-
         public override ISquare BuildSquare()
         {
             return new Property(_id, _name, _color, _buyPrice, _rentPrice);
         }
-
-        #endregion
     }
 }

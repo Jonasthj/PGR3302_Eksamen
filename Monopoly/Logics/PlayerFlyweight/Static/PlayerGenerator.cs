@@ -39,17 +39,12 @@ namespace Monopoly.Logics.PlayerFlyweight.Static
         
         #endregion
 
-        #region Fields
-        
         public readonly Dictionary<int, Player> Players = new();
-        
-        #endregion
 
-        #region Methods
-        
         /// <description>
         ///  Either returns the existing player, or returns a newly created one.
         /// </description>
+        
         public Player Get(int id)
         {
             Player player = null;
@@ -87,7 +82,5 @@ namespace Monopoly.Logics.PlayerFlyweight.Static
         {
             Players.Remove(id);
         }
-        
-        #endregion
     }
 }

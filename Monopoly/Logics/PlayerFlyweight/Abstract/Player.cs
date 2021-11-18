@@ -7,15 +7,17 @@ namespace Monopoly.Logics.PlayerFlyweight.Abstract
     /// </summary>
     public abstract class Player
     {
+        #region Properties
+        
         protected int Id;
         public string Name { get; private set; }
         public Wallet Wallet { get; private set; }
         public bool InPrison { get; set; }
-
-        /// <description>
-        /// // Setting the extrinsic part of the player objects.
-        /// </description>
-         
+        
+        #endregion
+        
+        #region Methods
+        
         public virtual void SetExtrinsicPart(string name, Wallet wallet, bool inPrison)
         {
             Name = name;
@@ -43,5 +45,7 @@ namespace Monopoly.Logics.PlayerFlyweight.Abstract
             return $"   Player {Id}: {Name} \n"
                 +  $"   Wallet: {Wallet.Balance}M";
         }
+        
+        #endregion
     }
 }

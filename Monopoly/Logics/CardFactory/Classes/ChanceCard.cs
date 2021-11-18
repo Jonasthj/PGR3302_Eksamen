@@ -4,6 +4,10 @@ namespace Monopoly.Logics.CardFactory.Classes
 {
     public class ChanceCard
     {
+        /// <summary>
+        /// TODO: Comment.
+        /// </summary>
+        
         #region Properties
 
         public int Id { get; }
@@ -13,7 +17,7 @@ namespace Monopoly.Logics.CardFactory.Classes
 
         #endregion
 
-        #region Constructors
+        #region Methods
 
         public ChanceCard(int id, string content, int value, int newIndex)
         {
@@ -22,11 +26,7 @@ namespace Monopoly.Logics.CardFactory.Classes
             Value = value;
             MoveIndex = newIndex;
         }
-
-        #endregion
-
-        #region Overrides
-
+        
         public override string ToString()
         {
             return $"{Content}";

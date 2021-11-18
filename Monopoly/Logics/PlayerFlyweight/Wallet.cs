@@ -9,22 +9,16 @@ namespace Monopoly.Flyweight
         /// Has override methods for symbols '+' & '-',
         /// so that it directly accesses the Wallet.Balance
         /// </summary>
-        #region Properties
 
         public int Balance { get; }
-
-        #endregion
-
-        #region Constructor
-
+        
+        
+        #region Methods
+        
         public Wallet(int balance)
         {
             Balance = balance;
         }
-
-        #endregion
-
-        #region Overrides
 
         public static Wallet operator +(Wallet wallet, int value)
         {
