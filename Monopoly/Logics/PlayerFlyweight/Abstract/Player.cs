@@ -31,7 +31,7 @@ namespace Monopoly.Logics.PlayerFlyweight.Abstract
             Wallet += value;
         }
 
-        public void SetName(string name)
+        protected void SetName(string name)
         {
             Name = name;
         }
