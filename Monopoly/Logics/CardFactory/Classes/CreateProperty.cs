@@ -27,7 +27,7 @@ namespace Monopoly.Logics.CardFactory.Classes
 
         public CreateProperty(Property property)
         {
-            _id = property.GetId();
+            _id = property.Id;
             _name = property.GetName();
             _color = property.Color;
             _buyPrice = property.BuyPrice;

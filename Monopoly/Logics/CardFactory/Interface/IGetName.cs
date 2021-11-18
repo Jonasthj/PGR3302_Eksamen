@@ -1,9 +1,7 @@
 ﻿namespace Monopoly.Logics.CardFactory.Interface
 {
-    public interface IGetFields
+    public interface IGetName
     {
-        int GetId();
-
         string GetName();
     }
 }

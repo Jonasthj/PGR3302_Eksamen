@@ -5,7 +5,7 @@ namespace Monopoly.Logics.CardFactory.Classes
 {
     public class Prison : ISquare
     {
-        private int Id { get;}
+        public int Id { get;}
         private string Name { get;}
 
         public Prison()
@@ -19,11 +19,6 @@ namespace Monopoly.Logics.CardFactory.Classes
         public void PrintSquare()
         {
             Console.WriteLine(ToString());
-        }
-
-        public int GetId()
-        {
-            return Id;
         }
 
         public string GetName()

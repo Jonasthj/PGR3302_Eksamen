@@ -34,16 +34,17 @@ namespace Monopoly.Logics
                 
             }
             // Create Chance Squares
-            foreach (var chance in chances)
+            foreach (var square in chances)
             {
-                map.MapSquares[chance.GetId()] = chance;
+                Chance chance = (Chance) square;
+                map.MapSquares[chance.Id] = chance;
                 
                 AddController(chance.GetName(), new ChanceLogics());
             }
             
             // Create Start and Prison square.
-            map.MapSquares[start.GetId()] = start;
-            map.MapSquares[prison.GetId()] = prison;
+            map.MapSquares[start.Id] = start;
+            map.MapSquares[prison.Id] = prison;
             
             AddController(start.GetName(), new StartLogics());
             AddController(prison.GetName(), new PrisonLogics());

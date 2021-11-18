@@ -13,21 +13,21 @@ namespace MonopolyTest.LogicsTest.CardFactoryTest
         [Test]
         public void ShouldReturnChanceProperties()
         {
-            CreateChance chance = new CreateChance(53,null);
-            ISquare square = chance.BuildSquare();
+            CreateChance createChance = new CreateChance(53,null);
+            Chance chance = (Chance)createChance.BuildSquare();
 
-            Assert.AreEqual(53, square.GetId());
+            Assert.AreEqual(53, chance.Id);
         }
 
        [Test]
         public void ShouldReturnPrisonProperties()
         {
-            CreatePrison prison = new CreatePrison();
-            ISquare square = prison.BuildSquare();
+            CreatePrison createPrison = new CreatePrison();
+            Prison prison = (Prison)createPrison.BuildSquare();
             
             // Expected = Default Values
-            Assert.AreEqual(6, square.GetId());
-            Assert.AreEqual("Prison", square.GetName());
+            Assert.AreEqual(6, prison.Id);
+            Assert.AreEqual("Prison", prison.Id);
         }
         
         [Test]
@@ -43,12 +43,12 @@ namespace MonopolyTest.LogicsTest.CardFactoryTest
         [Test]
         public void ShouldReturnStartProperties()
         {
-            CreateStart start = new CreateStart();
-            ISquare square = start.BuildSquare();
+            CreateStart createStart = new CreateStart();
+            Start start = (Start)createStart.BuildSquare();
             
             // Expected = Default values
-            Assert.AreEqual(0, square.GetId());
-            Assert.AreEqual("Start", square.GetName());
+            Assert.AreEqual(0, start.Id);
+            Assert.AreEqual("Start", start.Id);
         }
 
         [Test]

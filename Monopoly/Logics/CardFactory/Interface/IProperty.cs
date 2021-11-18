@@ -2,8 +2,12 @@
 {
     public interface IProperty
     {
-        bool SetAvailability(bool status);
+        void SetAvailability(bool status);
 
-        int SetOwner(int id);
+        void SetOwner(int id);
+
+        void SetBuyPrice(int value);
+
+        void SetRentPrice(int value);
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Monopoly.Logics.CardFactory.Interface
 {
-    public interface ISquare : IGetFields
+    public interface ISquare : IGetName
     {
         void PrintSquare();
     }

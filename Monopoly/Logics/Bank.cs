@@ -99,6 +99,7 @@ namespace Monopoly.Logics
         private void CheckPlayerRich()
         {
             bool playerRich = true;
+            int raiseValue = 200;
 
             foreach (var player in _playerGenerator.Players)
             {
@@ -107,23 +108,25 @@ namespace Monopoly.Logics
                     playerRich = false;
                 }
             }
-
-            Console.WriteLine(playerRich);
-
+            
+            
             if (!_taxRaise && playerRich)
             {
-                int raiseValue = 200;
                 var mapSquares = _manager.Map.MapSquares;
                 foreach (var square in mapSquares)
                 {
+                    Console.WriteLine(square.Key);
                     if (square.Value is Property property)
                     {
                         property.SetBuyPrice(property.BuyPrice + raiseValue);
+
                         property.SetRentPrice(property.RentPrice + raiseValue);
                         _manager.Map.MapSquares[square.Key] = property;
                     }
                 }
-
+                
+                ConsoleOutput.Print("There har been a tax reform!", ConsoleColor.Cyan);
+                ConsoleOutput.Print($"Therefore taxes have been raised with {raiseValue}M", ConsoleColor.Cyan);
                 _taxRaise = true;
             }
         }

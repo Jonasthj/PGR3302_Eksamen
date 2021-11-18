@@ -7,7 +7,7 @@ namespace Monopoly.Logics.CardFactory.Classes
     {
         #region Properties
 
-        private int Id { get;}
+        public int Id { get;}
         private string Name { get;}
 
         #endregion
@@ -23,11 +23,6 @@ namespace Monopoly.Logics.CardFactory.Classes
         public void PrintSquare()
         {
             Console.WriteLine(ToString());
-        }
-
-        public int GetId()
-        {
-            return Id;
         }
 
         public string GetName()
