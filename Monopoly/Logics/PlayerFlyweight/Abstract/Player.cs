@@ -1,5 +1,3 @@
-using Monopoly.Flyweight;
-
 namespace Monopoly.Logics.PlayerFlyweight.Abstract
 {
     /// <summary>
@@ -33,11 +31,6 @@ namespace Monopoly.Logics.PlayerFlyweight.Abstract
         public void SubtractWallet(int value)
         {
             Wallet -= value;
-        }
-
-        public virtual void SetInPrison(bool inPrison)
-        {
-            InPrison = inPrison;
         }
 
         public override string ToString()

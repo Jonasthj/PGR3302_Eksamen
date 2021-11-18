@@ -1,29 +1,27 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using Monopoly.Logics.CardFactory.Interface;
-using Monopoly.UI;
 
-namespace Monopoly
+namespace Monopoly.Logics
 {
     public class BoardMap
     {
         // <mapIndex, Square>
-        public Dictionary<int, ISquare> MapSquares = new ();
+        public readonly Dictionary<int, ISquare> MapSquares = new ();
 
         // <playerId, index>
-        public Dictionary<int, int> Players = new ();
+        public readonly Dictionary<int, int> Players = new ();
         
         // Visual display of the squares with all the players positions.
-        public ArrayList BoardSquares { get; set; }
+        public ArrayList BoardSquares { get; private set; }
 
         private string horSpace = "---";
         private string verSpace = "|";
         
         // The difference between the left side of the map and the right side.
         // Is decided when creating one of the horizontal sides.
-        private int sideDifference;
+        private int _sideDifference;
         
         private void InitializeSquares()
         {
@@ -40,7 +38,7 @@ namespace Monopoly
                 BoardSquares.Add("[]");
             }
 
-            sideDifference = 1;
+            _sideDifference = 1;
         }
         
         private string MakeHorizontalMapTop(int firstIndex, int lastIndex)
@@ -59,7 +57,7 @@ namespace Monopoly
                 if (i != lastIndex)
                     map.Append($"{horSpace}");
 
-                sideDifference++;
+                _sideDifference++;
             }
 
             map.Append("\n");
@@ -67,7 +65,7 @@ namespace Monopoly
             return map.ToString();
         }
 
-        private string MakeHorizontalMapBotttom(int firstIndex, int lastIndex)
+        private string MakeHorizontalMapBottom(int firstIndex, int lastIndex)
         {
             StringBuilder map = new StringBuilder();
             
@@ -98,14 +96,14 @@ namespace Monopoly
                 foreach (KeyValuePair<int, int> player in Players)
                 {
                     MovePlayerPos(i, player);
-                    MovePlayerPos(lastIndex + sideDifference, player);
+                    MovePlayerPos(lastIndex + _sideDifference, player);
                 }
 
                 map.Append($"{verSpace}			  {verSpace}\n");
                 map.Append($"{BoardSquares[i]}");
                 map.Append("		    	 ");
-                map.Append($"{BoardSquares[lastIndex + sideDifference]}\n");
-                sideDifference++;
+                map.Append($"{BoardSquares[lastIndex + _sideDifference]}\n");
+                _sideDifference++;
             }
 
             map.Append($"{verSpace}			  {verSpace}\n");
@@ -118,6 +116,7 @@ namespace Monopoly
             // Change the bordSquare-string if there are any players in it.
             if (i == player.Value)
             {
+                
                 if (BoardSquares[i].Equals("[]"))
                     BoardSquares[i] = $"[{player.Key}]";
                 else
@@ -137,7 +136,7 @@ namespace Monopoly
 
             map.Append(MakeHorizontalMapTop(10, 15));
             map.Append(MakeVerticalMap(5, 9));
-            map.Append(MakeHorizontalMapBotttom(0, 5));
+            map.Append(MakeHorizontalMapBottom(0, 5));
 
             return map.ToString();
         }

@@ -59,8 +59,9 @@ namespace MonopolyTest.LogicsTest.CardFactoryTest
             ISquare square = GenerateRandomSquare();
             square.PrintSquare();
             string consoleOutput = stringWriter.ToString();
-                
-            Assert.AreEqual(consoleOutput, square.ToString() + "\r\n");
+            
+            // If testing on Mac / terminal: remove "\r".
+            Assert.AreEqual(consoleOutput, square + "\r\n");
         }
         
         #endregion

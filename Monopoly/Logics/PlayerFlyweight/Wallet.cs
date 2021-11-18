@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Monopoly.Flyweight
+﻿namespace Monopoly.Logics.PlayerFlyweight
 {
     public class Wallet
     {

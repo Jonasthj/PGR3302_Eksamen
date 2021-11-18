@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Drawing;
-using Monopoly.Factory.Classes;
 using Monopoly.Logics.CardFactory.Classes;
 using Monopoly.Logics.CardFactory.Interface;
 using Newtonsoft.Json.Linq;

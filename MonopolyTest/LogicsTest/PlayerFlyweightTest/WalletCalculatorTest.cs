@@ -1,5 +1,5 @@
-﻿using Monopoly.Flyweight;
 using Monopoly.Logics;
+using Monopoly.Logics.PlayerFlyweight;
 using Monopoly.Logics.PlayerFlyweight.Abstract;
 using Monopoly.Logics.PlayerFlyweight.Static;
 using NUnit.Framework;

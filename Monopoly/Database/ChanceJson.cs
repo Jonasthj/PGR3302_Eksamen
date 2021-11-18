@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Monopoly.Factory.Classes;
+﻿using System.Collections.Generic;
 using Monopoly.Logics.CardFactory.Classes;
 using Monopoly.Logics.CardFactory.Interface;
 using Newtonsoft.Json.Linq;

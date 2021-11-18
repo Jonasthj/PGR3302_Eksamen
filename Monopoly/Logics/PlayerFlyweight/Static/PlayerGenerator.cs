@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Monopoly.Flyweight;
 using Monopoly.Logics.PlayerFlyweight.Abstract;
 
 namespace Monopoly.Logics.PlayerFlyweight.Static
@@ -15,10 +14,10 @@ namespace Monopoly.Logics.PlayerFlyweight.Static
     {
         #region Singleton Pattern
         
-        private static PlayerGenerator _instance = new PlayerGenerator();
+        private static PlayerGenerator _instance = new();
 
 
-        private static readonly object Synclock = new object();
+        private static readonly object Synclock = new();
         
         public static PlayerGenerator GetInstance()
         {
@@ -47,7 +46,7 @@ namespace Monopoly.Logics.PlayerFlyweight.Static
         
         public Player Get(int id)
         {
-            Player player = null;
+            Player player;
             if (Players.ContainsKey(id))
             {
                 player = Players[id];
