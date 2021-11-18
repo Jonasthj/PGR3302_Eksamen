@@ -11,7 +11,6 @@ namespace Monopoly.Logics
         private readonly WalletCalculator _calculator = new ();
         private readonly GameManager _manager = GameManager.GetInstance();
         private readonly PlayerGenerator _playerGenerator = PlayerGenerator.GetInstance();
-        private bool _taxRaise;
 
         public Bank(Property property)
         {
@@ -110,24 +109,25 @@ namespace Monopoly.Logics
             }
             
             
-            if (!_taxRaise && playerRich)
+            if (!_manager.TaxRaise && playerRich)
             {
                 var mapSquares = _manager.Map.MapSquares;
                 foreach (var square in mapSquares)
                 {
-                    Console.WriteLine(square.Key);
                     if (square.Value is Property property)
                     {
-                        property.SetBuyPrice(property.BuyPrice + raiseValue);
-
-                        property.SetRentPrice(property.RentPrice + raiseValue);
+                        int newBuy = property.BuyPrice + raiseValue;
+                        int newRent = property.RentPrice + raiseValue;
+                        
+                        property.SetBuyPrice(newBuy);
+                        property.SetRentPrice(newRent);
                         _manager.Map.MapSquares[square.Key] = property;
                     }
                 }
                 
-                ConsoleOutput.Print("There har been a tax reform!", ConsoleColor.Cyan);
-                ConsoleOutput.Print($"Therefore taxes have been raised with {raiseValue}M", ConsoleColor.Cyan);
-                _taxRaise = true;
+                ConsoleOutput.Print("There har been a tax reform!" +
+                                    $"Therefore taxes have been raised with {raiseValue}M", ConsoleColor.Cyan);
+                _manager.TaxRaise = true;
             }
         }
 

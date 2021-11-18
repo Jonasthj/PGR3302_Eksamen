@@ -39,6 +39,7 @@ namespace Monopoly.Logics
         public BoardMap Map;
         private Dictionary<string, AbstractLogics> _controllers = new();
         private readonly PlayerGenerator _generator = PlayerGenerator.GetInstance();
+        public bool TaxRaise { get; set; }
 
         public void InitializeMap()
         {
