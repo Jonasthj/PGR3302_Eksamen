@@ -1,0 +1,42 @@
+@startuml
+actor Player
+participant Program
+participant MenuUI
+participant GameManager
+participant CreateBoardMap
+participant Dice
+participant AbstractLogics
+participant PropertyJson
+participant JsonFileReader
+database JSON
+
+Player -> Program: Starts program
+Program -> MenuUI: StartGame()
+MenuUI ->GameManager: InitializeMap()
+GameManager -> CreateBoardMap: Create()
+CreateBoardMap -> JsonFileReader: GetJsonData()
+JsonFileReader -> JSON: Get data
+JsonFileReader <-- JSON: Return data
+CreateBoardMap <-- JsonFileReader: Return data
+CreateBoardMap -> PropertyJson: Set JsonData
+CreateBoardMap -> PropertyJson: Retrieve(id)
+CreateBoardMap <-- PropertyJson: Return square
+GameManager <-- CreateBoardMap: Return map
+MenuUI -> MenuUI: Ask for players
+Player <- MenuUI: Get players
+Player --> MenuUI: Players
+MenuUI -> GameManager: CreatePlayers()
+loop while Players.Count > 1
+MenuUI -> MenuUI: NextTurn()
+Player <- MenuUI: Start turn
+Player --> MenuUI: Start
+MenuUI -> Dice: RollDice()
+MenuUI <-- Dice: randomNumber 1-6
+MenuUI -> GameManager: MovePlayer()
+MenuUI <-- GameManager: Return map
+MenuUI -> GameManager: SquareController(index, id)
+GameManager -> AbstractLogics: Handle(square, playerId)
+GameManager <-- AbstractLogics: Result(PropertyLogic, ChanceLogic..)
+MenuUI <-- GameManager: End Turn
+end
+@enduml
