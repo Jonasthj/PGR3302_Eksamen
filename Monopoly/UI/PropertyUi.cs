@@ -1,14 +1,15 @@
 ﻿using System;
+using Monopoly.Logics;
 using Monopoly.Logics.CardFactory.Classes;
 using Monopoly.Logics.CardFactory.Interface;
-using Monopoly.UI;
+using Monopoly.Logics.SquareLogics;
 
-namespace Monopoly.Logics.SquareLogics
+namespace Monopoly.UI
 {
-    public class PropertyLogics : AbstractLogics
+    public class PropertyUi : AbstractLogics
     {
         private Property _property;
-
+        
         #region Methods
         
         public override void Handle(ISquare square, int playerId)
@@ -67,6 +68,6 @@ namespace Monopoly.Logics.SquareLogics
         }
         
         #endregion
-    }
 
+    }
 }

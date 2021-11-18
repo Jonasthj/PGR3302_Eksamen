@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Monopoly.Database;
 using Monopoly.Logics.CardFactory.Classes;
 using Monopoly.Logics.CardFactory.Interface;
 using Monopoly.Logics.SquareLogics;
+using Monopoly.UI;
 
 namespace Monopoly.Logics
 {
@@ -61,12 +63,15 @@ namespace Monopoly.Logics
 
         private void AddPropertySquares(BoardMap map, PropertyJson propertyJson)
         {
-            for (int i = 0; i < 20; i++)
+            // Does not contain Start and Prison so add 2.
+            int squareCount = propertyJson.GetCount() + 2;
+            
+            for (int i = 0; i < squareCount; i++)
             {
                 map.MapSquares[i] = propertyJson.Retrieve(i);
                 if (map.MapSquares[i] != null)
                 {
-                    AddController(map.MapSquares[i].GetName(), new PropertyLogics());
+                    AddController(map.MapSquares[i].GetName(), new PropertyUi());
                 }
             }
         }

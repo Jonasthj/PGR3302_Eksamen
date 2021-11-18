@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Monopoly.Logics.CardFactory.Classes;
 using Monopoly.Logics.CardFactory.Interface;
 using Newtonsoft.Json.Linq;
@@ -37,5 +39,13 @@ namespace Monopoly.Database
 
             return null;
         }
+
+        public int GetCount()
+        {
+            int properties = _jsonData["Card"].Count() - 1;
+            int chances = _jsonData["Card"]["Chance"]["indexList"].Count();
+
+            return properties + chances;
+        } 
     }
 }
