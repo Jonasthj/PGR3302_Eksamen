@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Drawing;
 using System.IO;
-using Monopoly.Factory.Classes;
+using Monopoly.Logics.CardFactory.Classes;
 using Monopoly.Logics.CardFactory.Interface;
 using NUnit.Framework;
 
-namespace MonopolyTest.FactoryTest
+namespace MonopolyTest.LogicsTest.CardFactoryTest
 {
     public class FactoryTest
     {
@@ -24,11 +23,11 @@ namespace MonopolyTest.FactoryTest
        [Test]
         public void ShouldReturnPrisonString()
         {
-            Guid uuid = Guid.NewGuid();
-            CreatePrison prison = new CreatePrison(1, uuid.ToString());
+            CreatePrison prison = new CreatePrison();
             ISquare square = prison.BuildSquare();
-            
-            StringAssert.Contains(uuid.ToString(), square.ToString());
+
+            Assert.AreEqual(6, square.GetId());
+            Assert.AreEqual("Prison", square.GetName());
         }
         
         [Test]
@@ -45,10 +44,11 @@ namespace MonopolyTest.FactoryTest
         public void ShouldReturnStartString()
         {
             Guid uuid = Guid.NewGuid();
-            CreateStart start = new CreateStart(2, uuid.ToString());
+            CreateStart start = new CreateStart();
             ISquare square = start.BuildSquare();
             
-            StringAssert.Contains(uuid.ToString(), square.ToString());
+            Assert.AreEqual(0, square.GetId());
+            Assert.AreEqual("Start", square.GetName());
         }
 
         [Test]
@@ -85,7 +85,7 @@ namespace MonopolyTest.FactoryTest
 
             if (randomNum == 1)
             {
-                CreatePrison prison = new CreatePrison(1, uuid.ToString());
+                CreatePrison prison = new CreatePrison();
                 square = prison.BuildSquare();
             }
 
@@ -97,7 +97,7 @@ namespace MonopolyTest.FactoryTest
 
             if (randomNum == 3)
             {
-                CreateStart start = new CreateStart(2, uuid.ToString());
+                CreateStart start = new CreateStart();
                 square = start.BuildSquare();
             }
 
