@@ -1,7 +1,8 @@
-using System;
+using Monopoly.Flyweight;
 
-namespace Monopoly.Flyweight
+namespace Monopoly.Logics.PlayerFlyweight.Abstract
 {
+    // 
     public abstract class Player
     {
         protected int Id;

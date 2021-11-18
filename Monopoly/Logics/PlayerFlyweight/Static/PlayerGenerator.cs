@@ -1,9 +1,16 @@
 using System;
 using System.Collections.Generic;
 using Monopoly.Flyweight;
+using Monopoly.Logics.PlayerFlyweight.Abstract;
 
 namespace Monopoly.Logics.PlayerFlyweight.Static
 {
+    /*
+     * The Flyweight-"Factory" class, also uses the singleton design pattern - 
+     * In order to globally make available the same instance of PlayerGenerator.
+     * PlayerGenerator both stores and creates Players. 
+     * 
+     */
     public sealed class PlayerGenerator
     {
         #region Singleton Pattern

@@ -1,3 +1,5 @@
+using Monopoly.Logics.PlayerFlyweight.Abstract;
+
 namespace Monopoly.Flyweight
 {
     public class Player4 : Player
