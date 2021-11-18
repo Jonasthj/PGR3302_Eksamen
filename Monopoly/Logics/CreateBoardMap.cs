@@ -40,7 +40,7 @@ namespace Monopoly.Logics
         private void AddPrisonSquare(BoardMap map, Prison prison)
         {
             map.MapSquares[prison.Id] = prison;
-            AddController(prison.GetName(), new PrisonLogics());
+            AddController(prison.GetName(), new PrisonUI());
         }
 
         private void AddStartSquare(BoardMap map, Start start)

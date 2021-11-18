@@ -1,17 +1,12 @@
-﻿using System;
-using Monopoly.Logics.CardFactory.Interface;
-using Monopoly.Logics.PlayerFlyweight.Abstract;
+﻿using Monopoly.Logics.PlayerFlyweight.Abstract;
 using Monopoly.Logics.PlayerFlyweight.Static;
-using Monopoly.UI;
 
 namespace Monopoly.Logics.SquareLogics
 {
-    public class PrisonLogics : AbstractLogics
+    public class PrisonLogics
     {
-        public override void Handle(ISquare square, int playerId)
+        public void HandlePrisonLogic(int playerId)
         {
-            ConsoleOutput.Print(square.ToString(), ConsoleColor.White);
-
             Player player = PlayerGenerator.GetInstance().Get(playerId);
 
             if (player.InPrison)
