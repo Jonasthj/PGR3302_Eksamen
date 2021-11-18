@@ -7,7 +7,7 @@ namespace Monopoly.Logics.PlayerFlyweight.Abstract
     {
         #region Properties
         
-        protected int Id;
+        public int Id { get; protected init; }
         public string Name { get; private set; }
         public Wallet Wallet { get; private set; }
         public bool InPrison { get; private set; }
@@ -39,6 +39,11 @@ namespace Monopoly.Logics.PlayerFlyweight.Abstract
         public void SubtractWallet(int value)
         {
             Wallet -= value;
+        }
+
+        public void SetWallet(int value)
+        {
+            Wallet = new Wallet(value);
         }
 
         public void SetInPrison(bool inPrison)

@@ -10,7 +10,7 @@ namespace Monopoly.Logics.CardFactory.Classes
 
         private int Id { get;}
         private string Name { get;}
-        private ConsoleColor Color { get;}
+        public ConsoleColor Color { get;}
         public int BuyPrice { get;}
         public int RentPrice { get;}
         public bool IsAvailable { get; private set; }

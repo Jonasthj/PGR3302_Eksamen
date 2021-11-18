@@ -25,6 +25,15 @@ namespace Monopoly.Logics.CardFactory.Classes
             _rentPrice = rentPrice;
         }
 
+        public CreateProperty(Property property)
+        {
+            _id = property.GetId();
+            _name = property.GetName();
+            _color = property.Color;
+            _buyPrice = property.BuyPrice;
+            _rentPrice = property.RentPrice;
+        }
+
         public override ISquare BuildSquare()
         {
             return new Property(_id, _name, _color, _buyPrice, _rentPrice);

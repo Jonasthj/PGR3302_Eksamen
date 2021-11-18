@@ -8,7 +8,6 @@ namespace Monopoly.Logics
     public class Bank
     {
         private readonly Property _property;
-        
         private readonly WalletCalculator _calculator = new ();
 
         public Bank(Property property)
@@ -95,10 +94,39 @@ namespace Monopoly.Logics
 
         private void Bankrupt(int playerId)
         {
+            PlayerGenerator playerGenerator = PlayerGenerator.GetInstance();
+
             ConsoleOutput.Print("You don't have enough money to cover your rent!", ConsoleColor.Red);
             ConsoleOutput.Print("You are officially bankrupt!", ConsoleColor.Red);
-            PlayerGenerator playerGenerator = PlayerGenerator.GetInstance();
-            playerGenerator.Delete(playerId);
+
+            playerGenerator.Get(playerId).SetWallet(0);
+            
+            playerGenerator.Blacklist(playerId);
+            ResetProperties(playerId);
+        }
+        
+        private void ResetProperties(int playerId)
+        {
+            GameManager manager = GameManager.GetInstance();
+
+            foreach (var square in manager.Map.MapSquares)
+            {
+                // Convert square to property.
+                if (square.Value is Property property)
+                {
+                    if (playerId == property.OwnerId)
+                    {
+                        property.SetOwner(0);
+                        property.SetAvailability(true);
+
+                        // CreateProperty create = new CreateProperty(property);
+                        manager.Map.MapSquares[square.Key] = property;
+                    }
+                }
+                
+            }
+
+            manager.Map.Players[playerId] = -1;
         }
     }
 }

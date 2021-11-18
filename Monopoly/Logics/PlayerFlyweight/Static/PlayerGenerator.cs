@@ -39,6 +39,7 @@ namespace Monopoly.Logics.PlayerFlyweight.Static
         #endregion
 
         public readonly Dictionary<int, Player> Players = new();
+        public HashSet<Player> BlackListed = new ();
 
         /// <description>
         ///  Either returns the existing player, or returns a newly created one.
@@ -77,9 +78,9 @@ namespace Monopoly.Logics.PlayerFlyweight.Static
 
         }
 
-        public void Delete(int id)
+        public void Blacklist(int id)
         {
-            Players.Remove(id);
+            BlackListed.Add(Get(id));            
         }
     }
 }

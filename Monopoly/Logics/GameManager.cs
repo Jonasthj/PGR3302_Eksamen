@@ -4,6 +4,7 @@ using Monopoly.Logics.PlayerFlyweight;
 using Monopoly.Logics.PlayerFlyweight.Abstract;
 using Monopoly.Logics.PlayerFlyweight.Static;
 using Monopoly.Logics.SquareLogics;
+using Monopoly.UI;
 
 namespace Monopoly.Logics
 {
@@ -36,8 +37,8 @@ namespace Monopoly.Logics
         #endregion
 
         public BoardMap Map;
-        private readonly PlayerGenerator _generator = PlayerGenerator.GetInstance();
         private Dictionary<string, AbstractLogics> _controllers = new();
+        private readonly PlayerGenerator _generator = PlayerGenerator.GetInstance();
 
         public void InitializeMap()
         {
@@ -47,11 +48,28 @@ namespace Monopoly.Logics
             _controllers = createBoardMap.GetControllers();
         }
         
+        public int GetPlayerCount()
+        {
+            int value = 0;
+            bool playersSet = false;
+            
+            while (!playersSet)
+            {
+                value = ConsoleInput.ReadInt();
+
+                if (value is >= 2 and <= 4)
+                    playersSet = true;
+                else
+                    ConsoleOutput.Print("- You must be minimum 2 players and maximum 4!");
+            }
+
+            return value;
+        }
         
-        //Create x players (as defined in menuUI) and put them in start position on boardmap
+        //Create x players (as defined in menuUI) and put them in start position on board map.
         public void CreatePlayers(int playersCount)
         {
-            for (int i = 1; i < playersCount+1; i++)
+            for (int i = 1; i <= playersCount; i++)
             {
                 Map.Players.Add(i, 0);
                 _generator.Get(i);
@@ -73,11 +91,6 @@ namespace Monopoly.Logics
             }
         }
 
-        // public void SetPlayerPos(int playerId, int index)
-        // {
-        //     Map.Players[playerId] = index;
-        // }
-        
         public void MovePlayer(int playerId, int diceThrow)
         {
             int playerIndex = Map.Players[playerId];

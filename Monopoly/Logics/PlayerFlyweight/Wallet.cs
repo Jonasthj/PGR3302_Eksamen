@@ -27,7 +27,7 @@
         {
             return new Wallet(wallet.Balance - value);
         }
-        
+
         public override string ToString()
         {
             return "Balance: " + Balance;

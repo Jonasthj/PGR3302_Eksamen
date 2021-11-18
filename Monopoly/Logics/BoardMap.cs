@@ -27,11 +27,6 @@ namespace Monopoly.Logics
         {
             BoardSquares = new ();
             
-            // Players.Add(0, 1);
-            // Players.Add(1, 0);
-            // Players.Add(2, 14);
-            // Players.Add(3, 14);
-            
             // TODO: Change length to MapIndex.Count
             for (int i = 0; i < 20; i++)
             {

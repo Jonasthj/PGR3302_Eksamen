@@ -31,7 +31,7 @@ namespace MonopolyTest.LogicsTest
             _manager.CreatePlayers(4);
             
             PlayerGenerator generator = PlayerGenerator.GetInstance();
-            generator.Delete(1);
+            generator.Blacklist(1);
             
             // TODO: Make assertion that player is added to blacklist.
         }
