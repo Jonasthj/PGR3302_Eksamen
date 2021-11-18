@@ -5,22 +5,14 @@ namespace Monopoly.Logics.CardFactory.Classes
 {
     public class Prison : ISquare
     {
-        #region Properties
-
         private int Id { get;}
         private string Name { get;}
 
-        #endregion
-
-        #region Constructors
-        
         public Prison()
         {
             Id = 6;
             Name = "Prison";
         }
-
-        #endregion
 
         #region Implemented
 
@@ -38,10 +30,6 @@ namespace Monopoly.Logics.CardFactory.Classes
         {
             return Name;
         }
-
-        #endregion
-
-        #region Overrides
 
         public override string ToString()
         {

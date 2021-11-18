@@ -1,38 +1,37 @@
 ﻿using System;
-using System.Drawing;
 using System.IO;
-using Monopoly.Factory.Classes;
+using Monopoly.Logics.CardFactory.Classes;
 using Monopoly.Logics.CardFactory.Interface;
 using NUnit.Framework;
 
-namespace MonopolyTest.FactoryTest
+namespace MonopolyTest.LogicsTest.CardFactoryTest
 {
     public class FactoryTest
     {
         #region Tests
         
         [Test]
-        public void ShouldReturnChanceString()
+        public void ShouldReturnChanceProperties()
         {
-            Guid uuid = Guid.NewGuid();
-            CreateChance chance = new CreateChance(1,null);
+            CreateChance chance = new CreateChance(53,null);
             ISquare square = chance.BuildSquare();
-            
-            StringAssert.Contains(uuid.ToString(),square.ToString());
+
+            Assert.AreEqual(53, square.GetId());
         }
 
        [Test]
-        public void ShouldReturnPrisonString()
+        public void ShouldReturnPrisonProperties()
         {
-            Guid uuid = Guid.NewGuid();
-            CreatePrison prison = new CreatePrison(1, uuid.ToString());
+            CreatePrison prison = new CreatePrison();
             ISquare square = prison.BuildSquare();
             
-            StringAssert.Contains(uuid.ToString(), square.ToString());
+            // Expected = Default Values
+            Assert.AreEqual(6, square.GetId());
+            Assert.AreEqual("Prison", square.GetName());
         }
         
         [Test]
-        public void ShouldReturnPropertyString()
+        public void ShouldReturnPropertyProperties()
         {
             Guid uuid = Guid.NewGuid();
             CreateProperty property = new CreateProperty(5, uuid.ToString(), ConsoleColor.Blue, 123, 123);
@@ -42,32 +41,31 @@ namespace MonopolyTest.FactoryTest
         }
 
         [Test]
-        public void ShouldReturnStartString()
+        public void ShouldReturnStartProperties()
         {
-            Guid uuid = Guid.NewGuid();
-            CreateStart start = new CreateStart(2, uuid.ToString());
+            CreateStart start = new CreateStart();
             ISquare square = start.BuildSquare();
             
-            StringAssert.Contains(uuid.ToString(), square.ToString());
+            // Expected = Default values
+            Assert.AreEqual(0, square.GetId());
+            Assert.AreEqual("Start", square.GetName());
         }
 
         [Test]
         public void ShouldReadRandomSquareString()
         {
-            using (StringWriter stringWriter = new StringWriter())
-            {
-                Console.SetOut(stringWriter);
-                ISquare square = GenerateRandomSquare();
-                square.PrintSquare();
-                string consoleOutput = stringWriter.ToString();
-                
-                Assert.AreEqual(consoleOutput, square.ToString() + "\r\n");
-            }
+            using StringWriter stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
+            ISquare square = GenerateRandomSquare();
+            square.PrintSquare();
+            string consoleOutput = stringWriter.ToString();
+            
+            //TODO: /r?
+            Assert.AreEqual(consoleOutput, square + "\n");
         }
+        
         #endregion
 
-        #region HelperMethods
-        
         private static ISquare GenerateRandomSquare()
         {
             Random random= new Random();
@@ -85,7 +83,7 @@ namespace MonopolyTest.FactoryTest
 
             if (randomNum == 1)
             {
-                CreatePrison prison = new CreatePrison(1, uuid.ToString());
+                CreatePrison prison = new CreatePrison();
                 square = prison.BuildSquare();
             }
 
@@ -97,12 +95,11 @@ namespace MonopolyTest.FactoryTest
 
             if (randomNum == 3)
             {
-                CreateStart start = new CreateStart(2, uuid.ToString());
+                CreateStart start = new CreateStart();
                 square = start.BuildSquare();
             }
 
             return square;
         }
-        #endregion
     }
 }

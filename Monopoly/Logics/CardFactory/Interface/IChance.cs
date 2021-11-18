@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Monopoly.Factory.Classes;
 using Monopoly.Logics.CardFactory.Classes;
 
 namespace Monopoly.Logics.CardFactory.Interface
