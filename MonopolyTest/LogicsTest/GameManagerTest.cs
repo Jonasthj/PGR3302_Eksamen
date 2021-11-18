@@ -1,53 +1,39 @@
-using Monopoly;
-using Monopoly.Factory.Classes;
 using Monopoly.Logics;
+using Monopoly.Logics.PlayerFlyweight.Static;
 using NUnit.Framework;
 
-namespace MonopolyTest
+namespace MonopolyTest.LogicsTest
 {
     public class GameManagerTest
     {
-        
-        /*[Test]
-        public void ShouldAddPlayersToBoardMapAndToStartPosition()
+        private readonly GameManager _manager = GameManager.GetInstance();
+
+        [SetUp]
+        public void Init()
         {
-            GameManager manager = GameManager.GetInstance();
-            manager.CreatePlayers(4);
-            
-            Assert.AreEqual(manager.Map.Players[1], 0);
-            Assert.AreEqual(manager.Map.Players[2], 0);
-            Assert.AreEqual(manager.Map.Players[3], 0);
-            Assert.AreEqual(manager.Map.Players[4], 0);
-        }*/
+            _manager.InitializeMap();
+        }
 
         [Test]
-        public void ShouldAddPlayersAndDeleteOne()
+        public void ShouldAddPlayersToBoardMapAndToStartPosition()
         {
-            // GameManager game = new GameManager();
-            //
-            // //Creating players object on boardmap
-            // int count = Convert.ToInt32(Console.ReadLine());
-            // game.CreatePlayers(count);
-            //
-            // //Setting players values 
-            // for (int i = 1; i < count+1; i++)
-            // {
-            //     string name = Console.ReadLine();
-            //     game.FillPlayersInfo(name, i);
-            // }
-            // foreach (KeyValuePair<int, Player> player in PlayerGenerator.Players)
-            // {
-            //     Console.WriteLine("Key: {0}, {1}", 
-            //         player.Key, player.Value);
-            // }
-            //
-            // PlayerGenerator.Delete(1);
-            //
-            // foreach (KeyValuePair<int, Player> player in PlayerGenerator.Players)
-            // {
-            //     Console.WriteLine("Key: {0}, {1}", 
-            //         player.Key, player.Value);
-            // }
+            _manager.CreatePlayers(4);
+            
+            Assert.AreEqual(_manager.Map.Players[1], 0);
+            Assert.AreEqual(_manager.Map.Players[2], 0);
+            Assert.AreEqual(_manager.Map.Players[3], 0);
+            Assert.AreEqual(_manager.Map.Players[4], 0);
+        }
+
+        [Test]
+        public void ShouldDeletePlayer()
+        {
+            _manager.CreatePlayers(4);
+            
+            PlayerGenerator generator = PlayerGenerator.GetInstance();
+            generator.Delete(1);
+            
+            // TODO: Make assertion that player is added to blacklist.
         }
         
         

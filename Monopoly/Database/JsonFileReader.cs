@@ -8,19 +8,21 @@ namespace Monopoly.Database
     {
         public static JObject GetJsonData()
         {
-            SetJsonDirectory();
+            SetJsonDirectory(@"../../../../Monopoly/Database/");
             
             // JSON Path.
-            string jsonPath = "data.json";
+            const string jsonPath = "data.json";
 
             // Read JSON file.
             return JObject.Parse(File.ReadAllText(jsonPath));;
         }
 
-        private static void SetJsonDirectory()
+        private static void SetJsonDirectory(string path)
         {
-            // TODO: Temp directory solution!!!
-            Directory.SetCurrentDirectory("../../../../Monopoly/Database/");
+            if (Directory.Exists(path))
+            {
+                Directory.SetCurrentDirectory(path);
+            }
         }
     }
 }
