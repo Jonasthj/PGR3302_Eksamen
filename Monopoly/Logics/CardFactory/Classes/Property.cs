@@ -18,7 +18,7 @@ namespace Monopoly.Logics.CardFactory.Classes
 
         #endregion
 
-        #region Constructors
+        #region Methods
 
         public Property(int id, string name, ConsoleColor color, int buyPrice, int rentPrice)
         {
@@ -27,13 +27,8 @@ namespace Monopoly.Logics.CardFactory.Classes
             Color = color;
             BuyPrice = buyPrice;
             RentPrice = rentPrice;
-            // Property is always available at the beginning of the game.
             IsAvailable = true;
         }
-
-        #endregion
-
-        #region Implemented
 
         public void PrintSquare()
         {
@@ -49,26 +44,7 @@ namespace Monopoly.Logics.CardFactory.Classes
         {
             return Name;
         }
-
-        #endregion
-
-        #region Overrides
-
-        public override string ToString()
-        {
-            var price = CheckAvailable(out var owner);
-
-            Console.ForegroundColor = Color;
-            
-            return "-----------------" +
-                   "\n" +
-                   $" {Name}\n"+
-                   $" {owner}" +
-                   $" {price}" +
-                   "\n" +
-                   "-----------------";
-        }
-
+        
         private string CheckAvailable(out string owner)
         {
             string price;
@@ -87,8 +63,7 @@ namespace Monopoly.Logics.CardFactory.Classes
 
             return price;
         }
-
-
+        
         public bool SetAvailability(bool status)
         {
             return IsAvailable = status;
@@ -97,6 +72,21 @@ namespace Monopoly.Logics.CardFactory.Classes
         public int SetOwner(int id)
         {
             return OwnerId = id;
+        }
+        
+        public override string ToString()
+        {
+            var price = CheckAvailable(out var owner);
+
+            Console.ForegroundColor = Color;
+            
+            return "-----------------" +
+                   "\n" +
+                   $" {Name}\n"+
+                   $" {owner}" +
+                   $" {price}" +
+                   "\n" +
+                   "-----------------";
         }
 
         #endregion

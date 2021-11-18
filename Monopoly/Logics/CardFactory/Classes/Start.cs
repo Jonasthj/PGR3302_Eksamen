@@ -12,18 +12,14 @@ namespace Monopoly.Logics.CardFactory.Classes
 
         #endregion
 
-        #region Constructors
+        #region Methods
 
         public Start()
         {
             Id = 0;
             Name = "Start";
         }
-
-        #endregion
-
-        #region Implemented
-
+        
         public void PrintSquare()
         {
             Console.WriteLine(ToString());
@@ -38,11 +34,7 @@ namespace Monopoly.Logics.CardFactory.Classes
         {
             return Name;
         }
-
-        #endregion
-
-        #region Overrides
-
+        
         public override string ToString()
         {
             return "-----------------" +
@@ -54,6 +46,5 @@ namespace Monopoly.Logics.CardFactory.Classes
         }
 
         #endregion
-       
     }
 }
