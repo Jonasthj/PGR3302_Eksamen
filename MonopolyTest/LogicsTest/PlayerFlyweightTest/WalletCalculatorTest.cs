@@ -19,7 +19,7 @@ namespace MonopolyTest.LogicsTest.PlayerFlyweightTest
             Player player = _generator.Get(1);
             player.SetExtrinsicPart("Test", new Wallet(500), false);
             
-            Assert.AreEqual(500, _walletCalculator.CheckBalance(1));
+            Assert.AreEqual(500, player.Wallet.Balance);
         }
 
         [Test]
@@ -30,7 +30,7 @@ namespace MonopolyTest.LogicsTest.PlayerFlyweightTest
             
             _walletCalculator.AddBalance(1, 200);
             
-            Assert.AreEqual(700, _walletCalculator.CheckBalance(1));
+            Assert.AreEqual(700, player.Wallet.Balance);
         }
 
         [Test]
@@ -41,7 +41,7 @@ namespace MonopolyTest.LogicsTest.PlayerFlyweightTest
             
             _walletCalculator.SubtractBalance(1, 200);
             
-            Assert.AreEqual(300, _walletCalculator.CheckBalance(1));
+            Assert.AreEqual(300, player.Wallet.Balance);
         }
 
         #endregion

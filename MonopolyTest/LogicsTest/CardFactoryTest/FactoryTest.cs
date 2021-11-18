@@ -8,8 +8,6 @@ namespace MonopolyTest.LogicsTest.CardFactoryTest
 {
     public class FactoryTest
     {
-        #region Tests
-        
         [Test]
         public void ShouldReturnChanceProperties()
         {
@@ -27,7 +25,7 @@ namespace MonopolyTest.LogicsTest.CardFactoryTest
             
             // Expected = Default Values
             Assert.AreEqual(6, prison.Id);
-            Assert.AreEqual("Prison", prison.Id);
+            Assert.AreEqual("Prison", prison.GetName());
         }
         
         [Test]
@@ -48,7 +46,7 @@ namespace MonopolyTest.LogicsTest.CardFactoryTest
             
             // Expected = Default values
             Assert.AreEqual(0, start.Id);
-            Assert.AreEqual("Start", start.Id);
+            Assert.AreEqual("Start", start.GetName());
         }
 
         [Test]
@@ -64,8 +62,6 @@ namespace MonopolyTest.LogicsTest.CardFactoryTest
             Assert.AreEqual(consoleOutput, square + "\r\n");
         }
         
-        #endregion
-
         private static ISquare GenerateRandomSquare()
         {
             Random random= new Random();

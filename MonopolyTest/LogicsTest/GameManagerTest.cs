@@ -1,4 +1,5 @@
 using Monopoly.Logics;
+using Monopoly.Logics.PlayerFlyweight.Abstract;
 using Monopoly.Logics.PlayerFlyweight.Static;
 using NUnit.Framework;
 
@@ -26,16 +27,20 @@ namespace MonopolyTest.LogicsTest
         }
 
         [Test]
-        public void ShouldDeletePlayer()
+        public void ShouldBlackListPlayer()
         {
             _manager.CreatePlayers(4);
             
             PlayerGenerator generator = PlayerGenerator.GetInstance();
             generator.Blacklist(1);
-            
-            // TODO: Make assertion that player is added to blacklist.
+
+            Player player = _manager.Generator.Get(1);
+
+            foreach (var blackListed in _manager.Generator.BlackListed)
+            {
+                Assert.AreEqual(blackListed, player);
+                break;
+            }
         }
-        
-        
     }
 }
