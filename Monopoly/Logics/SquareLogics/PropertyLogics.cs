@@ -9,6 +9,8 @@ namespace Monopoly.Logics.SquareLogics
     {
         private Property _property;
 
+        #region Methods
+        
         public override void Handle(ISquare square, int playerId)
         {
             _property = (Property) square;
@@ -21,45 +23,50 @@ namespace Monopoly.Logics.SquareLogics
                 ConsoleOutput.Print("This property is available for purchase!", ConsoleColor.Cyan);
                 ConsoleOutput.Print("Would you like to buy it? (y/n)", ConsoleColor.Cyan);
 
-                bool checkKey = true;
-                while (checkKey)
-                {
-                    ConsoleKey answer = ConsoleInput.ReadKey();
-                    if (answer == ConsoleKey.Y)
-                    {
-                        bank.BuyProperty(playerId);
-                        checkKey = false;
-                    }
-                    else if (answer == ConsoleKey.N)
-                    {
-                        checkKey = false;
-                    }
-                    else
-                    {
-                        ConsoleOutput.Print("\nPress (Y) for yes or (N) for no!", ConsoleColor.Red);
-                    }
-                }
-                
-
+                GetPlayerAnswer(playerId, bank);
             }
             else
             {
                 // Make sure the owner doesn't have to pay himself.
-                if (playerId != _property.OwnerId)
+                CheckPropertyOwner(playerId, bank);
+            }
+        }
+
+        private void CheckPropertyOwner(int playerId, Bank bank)
+        {
+            if (playerId != _property.OwnerId)
+            {
+                ConsoleOutput.Print("Someone owns this property!", ConsoleColor.Cyan);
+                ConsoleOutput.Print("Pay up!", ConsoleColor.Cyan);
+
+                bank.RentProperty(playerId, _property.OwnerId);
+            }
+            else
+            {
+                ConsoleOutput.Print("You own this property!", ConsoleColor.Cyan);
+                ConsoleOutput.Print("You can just take a chill pill :)", ConsoleColor.Cyan);
+            }
+        }
+
+        private static void GetPlayerAnswer(int playerId, Bank bank)
+        {
+            bool checkKey = true;
+            while (checkKey)
+            {
+                ConsoleKey answer = ConsoleInput.ReadKey();
+                if (answer == ConsoleKey.Y)
                 {
-                    ConsoleOutput.Print("Someone owns this property!", ConsoleColor.Cyan);
-                    ConsoleOutput.Print("Pay up!", ConsoleColor.Cyan);
-                    
-                    bank.RentProperty(playerId, _property.OwnerId);
+                    bank.BuyProperty(playerId);
+                    checkKey = false;
                 }
+                else if (answer == ConsoleKey.N)
+                    checkKey = false;
                 else
-                {
-                    ConsoleOutput.Print("You own this property!", ConsoleColor.Cyan);
-                    ConsoleOutput.Print("You can just take a chill pill :)", ConsoleColor.Cyan);
-                }
+                    ConsoleOutput.Print("\nPress (Y) for yes or (N) for no!", ConsoleColor.Red);
             }
         }
         
+        #endregion
     }
 
 }

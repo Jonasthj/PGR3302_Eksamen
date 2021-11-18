@@ -9,7 +9,5 @@ namespace Monopoly.Logics.PlayerFlyweight
             Id = 1;
             SetName("Jessica");
         }
-        
-        
     }
 }

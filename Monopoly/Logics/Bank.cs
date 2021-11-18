@@ -7,11 +7,15 @@ namespace Monopoly.Logics
 {
     public class Bank
     {
+        #region Fields
+        
         private readonly Property _property;
         private readonly WalletCalculator _calculator = new ();
         private readonly GameManager _manager = GameManager.GetInstance();
         private readonly PlayerGenerator _playerGenerator = PlayerGenerator.GetInstance();
 
+        #endregion
+        
         public Bank(Property property)
         {
             _property = property;
@@ -20,6 +24,8 @@ namespace Monopoly.Logics
         public Bank()
         {
         }
+        
+        #region Methods
 
         public void BuyProperty(int playerId)
         {
@@ -51,20 +57,16 @@ namespace Monopoly.Logics
                 Bankrupt(playerId);
                 _calculator.AddBalance(ownerId, _property.RentPrice);
             }
-            
         }
 
         /// <description>
         /// The chance cards that withdraw money from the account are already set to negative numbers,
         /// so all calculation is done with Add () since number1 + (-number2) == number1 - number2.
         /// </description>
-
         public void ChanceHandler(int playerId, int value)
         {
             if (value > 0)
-            {
                 _calculator.AddBalance(playerId, value);
-            }
             else if (CreditCheck(playerId, value))
                 _calculator.AddBalance(playerId, value);
             else
@@ -73,7 +75,7 @@ namespace Monopoly.Logics
 
         private bool CreditCheck(int playerId, int price)
         {
-            CheckPlayerRich();
+            CheckPlayersWealth();
 
             int playerBalance = _playerGenerator.Get(playerId).Wallet.Balance;
             int res;
@@ -84,32 +86,28 @@ namespace Monopoly.Logics
                 res = playerBalance + price;
             }
             else
-            {
                 res = playerBalance - price;
-            }
-            
-            
+
             if (res > 0)
                 return true;
 
             return false;
         }
 
-        private void CheckPlayerRich()
+        private void CheckPlayersWealth()
         {
-            bool playerRich = true;
+            bool playersWealthy = true;
             int raiseValue = 200;
 
             foreach (var player in _playerGenerator.Players)
             {
-                if (player.Value.Wallet.Balance < 800 && player.Value.Wallet.Balance > 1)
+                if (player.Value.Wallet.Balance is < 800 and > 1)
                 {
-                    playerRich = false;
+                    playersWealthy = false;
                 }
             }
-            
-            
-            if (!_manager.TaxRaise && playerRich)
+
+            if (!_manager.TaxRaise && playersWealthy)
             {
                 var mapSquares = _manager.Map.MapSquares;
                 foreach (var square in mapSquares)
@@ -160,10 +158,10 @@ namespace Monopoly.Logics
                         _manager.Map.MapSquares[square.Key] = property;
                     }
                 }
-                
             }
-
             _manager.Map.Players[playerId] = -1;
         }
+        
+        #endregion
     }
 }

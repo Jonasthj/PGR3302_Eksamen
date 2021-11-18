@@ -4,6 +4,10 @@ namespace Monopoly.UI
 {
     public static class ConsoleOutput
     {
+        /// <summary>
+        /// We use this class to "override" console.Write..., to avoid redundancy.
+        /// </summary>
+        
         public static void Print(string value)
         {
             Console.WriteLine("\n" + value);
@@ -14,7 +18,6 @@ namespace Monopoly.UI
             Console.ForegroundColor = color;
             Console.WriteLine("\n" + value);
             Console.ForegroundColor = ConsoleColor.White;
-            
         }
 
         public static void PrintNewLine()
@@ -26,7 +29,5 @@ namespace Monopoly.UI
         {
             Print("Press enter to continue..", ConsoleColor.Cyan);
         }
-        
-        
     }
 }

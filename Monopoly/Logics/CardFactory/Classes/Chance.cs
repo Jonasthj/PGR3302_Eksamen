@@ -15,18 +15,19 @@ namespace Monopoly.Logics.CardFactory.Classes
 
         public int Id { get; }
         private string Name { get; }
-        private List<ChanceCard> ChanceCards { get; }
+        public List<ChanceCard> ChanceCards { get; }
         private ChanceCard ChanceCard { get; set; }
 
         #endregion
         
-        #region Methods
         public Chance(int id, List<ChanceCard> chanceCards)
         {
             Id = id;
             Name = "Chance";
             ChanceCards = chanceCards;
         }
+        
+        #region Methods
         
         public void PrintSquare()
         {
@@ -37,17 +38,14 @@ namespace Monopoly.Logics.CardFactory.Classes
         {
             return Name;
         }
-
-        public List<ChanceCard> GetChanceCards()
-        {
-            return ChanceCards;
-        }
-
+        
         public void SetChanceCard(ChanceCard chanceCard)
         {
             ChanceCard = chanceCard;
         }
 
+        #endregion
+        
         public override string ToString()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -59,7 +57,5 @@ namespace Monopoly.Logics.CardFactory.Classes
                    "\n" +
                    "-----------------";
         }
-
-        #endregion
     }
 }

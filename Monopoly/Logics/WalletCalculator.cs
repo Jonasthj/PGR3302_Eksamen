@@ -5,13 +5,7 @@ namespace Monopoly.Logics
 {
     public class WalletCalculator
     {
-        private PlayerGenerator _generator = PlayerGenerator.GetInstance();
-        public int CheckBalance(int playerId)
-        {
-            Player player = _generator.Get(playerId);
-            
-            return player.Wallet.Balance;
-        }
+        private readonly PlayerGenerator _generator = PlayerGenerator.GetInstance();
 
         public void AddBalance(int playerId, int amount)
         {

@@ -7,6 +7,9 @@ namespace Monopoly.Logics
 {
     public class BoardMap
     {
+        
+        #region Fields
+        
         // <mapIndex, Square>
         public readonly Dictionary<int, ISquare> MapSquares = new ();
 
@@ -23,12 +26,15 @@ namespace Monopoly.Logics
         // Is decided when creating one of the horizontal sides.
         private int _sideDifference;
         
+        #endregion
+        
+        #region Methods
+        
         private void InitializeSquares()
         {
             BoardSquares = new ();
             
-            // TODO: Change length to MapIndex.Count
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < MapSquares.Count; i++)
             {
                 BoardSquares.Add("[]");
             }
@@ -112,11 +118,11 @@ namespace Monopoly.Logics
             if (i == player.Value)
             {
                 
-                if (BoardSquares[i].Equals("[]"))
+                if (ReferenceEquals(BoardSquares[i], "[]"))
                     BoardSquares[i] = $"[{player.Key}]";
                 else
                 {
-                    string prevPlayer = BoardSquares[i].ToString().TrimEnd(']');
+                    string prevPlayer = BoardSquares[i]?.ToString()?.TrimEnd(']');
                     BoardSquares[i] = $"{prevPlayer}, {player.Key}]";
                 }
             }
@@ -125,8 +131,7 @@ namespace Monopoly.Logics
         public override string ToString()
         {
             InitializeSquares();
-
-            // string map = "";
+            
             StringBuilder map = new StringBuilder();
 
             map.Append(MakeHorizontalMapTop(10, 15));
@@ -135,6 +140,8 @@ namespace Monopoly.Logics
 
             return map.ToString();
         }
+        
+        #endregion
     }
 }
 

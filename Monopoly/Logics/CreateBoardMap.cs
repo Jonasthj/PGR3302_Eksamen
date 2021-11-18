@@ -8,8 +8,13 @@ namespace Monopoly.Logics
 {
     public class CreateBoardMap
     {
-        private Dictionary<string, AbstractLogics> _controllers = new();
+        private readonly Dictionary<string, AbstractLogics> _controllers = new();
 
+        #region Methods
+        
+        /// <description>
+        /// Filling in information in the squares from the .Json file.
+        /// </description>
         public BoardMap Create()
         {
             BoardMap map = new();
@@ -22,8 +27,40 @@ namespace Monopoly.Logics
             Prison prison = new Prison();
             Start start = new Start();
             List<ISquare> chances = chanceJson.RetrieveAll();
+            
+            AddPropertySquares(map, propertyJson);
+            AddChanceSquares(chances, map);
+            AddStartSquare(map, start);
+            AddPrisonSquare(map, prison);
 
-            // Create Property Squares
+            return map;
+        }
+
+        private void AddPrisonSquare(BoardMap map, Prison prison)
+        {
+            map.MapSquares[prison.Id] = prison;
+            AddController(prison.GetName(), new PrisonLogics());
+        }
+
+        private void AddStartSquare(BoardMap map, Start start)
+        {
+            map.MapSquares[start.Id] = start;
+            AddController(start.GetName(), new StartLogics());
+        }
+
+        private void AddChanceSquares(List<ISquare> chances, BoardMap map)
+        {
+            foreach (var square in chances)
+            {
+                Chance chance = (Chance) square;
+                map.MapSquares[chance.Id] = chance;
+
+                AddController(chance.GetName(), new ChanceLogics());
+            }
+        }
+
+        private void AddPropertySquares(BoardMap map, PropertyJson propertyJson)
+        {
             for (int i = 0; i < 20; i++)
             {
                 map.MapSquares[i] = propertyJson.Retrieve(i);
@@ -31,25 +68,7 @@ namespace Monopoly.Logics
                 {
                     AddController(map.MapSquares[i].GetName(), new PropertyLogics());
                 }
-                
             }
-            // Create Chance Squares
-            foreach (var square in chances)
-            {
-                Chance chance = (Chance) square;
-                map.MapSquares[chance.Id] = chance;
-                
-                AddController(chance.GetName(), new ChanceLogics());
-            }
-            
-            // Create Start and Prison square.
-            map.MapSquares[start.Id] = start;
-            map.MapSquares[prison.Id] = prison;
-            
-            AddController(start.GetName(), new StartLogics());
-            AddController(prison.GetName(), new PrisonLogics());
-
-            return map;
         }
 
         public Dictionary<string, AbstractLogics> GetControllers()
@@ -61,5 +80,7 @@ namespace Monopoly.Logics
         {
             _controllers.TryAdd(name, logics);
         }
+        
+        #endregion
     }
 }

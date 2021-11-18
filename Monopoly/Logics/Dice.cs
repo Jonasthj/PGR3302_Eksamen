@@ -4,7 +4,7 @@ namespace Monopoly.Logics
 {
     public class Dice
     {
-        public int RollDice()
+        public static int RollDice()
         {
             var random = new Random();
             int diceNumber = random.Next(1, 7);

@@ -38,7 +38,7 @@ namespace Monopoly.Logics
 
         public BoardMap Map;
         private Dictionary<string, AbstractLogics> _controllers = new();
-        private readonly PlayerGenerator _generator = PlayerGenerator.GetInstance();
+        public readonly PlayerGenerator Generator = PlayerGenerator.GetInstance();
         public bool TaxRaise { get; set; }
 
         public void InitializeMap()
@@ -73,13 +73,13 @@ namespace Monopoly.Logics
             for (int i = 1; i <= playersCount; i++)
             {
                 Map.Players.Add(i, 0);
-                _generator.Get(i);
+                Generator.Get(i);
             }
         }
 
         public void SetPlayersInfo(string name, int id)
         {
-            Player player = _generator.Get(id);
+            Player player = Generator.Get(id);
             player.SetExtrinsicPart(name, new Wallet(600), false);
         }
 

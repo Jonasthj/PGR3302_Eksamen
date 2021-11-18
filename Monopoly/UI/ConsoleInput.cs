@@ -4,6 +4,10 @@ namespace Monopoly.UI
 {
     public static class ConsoleInput
     {
+        /// <summary>
+        /// We use ConsoleInput in order to validate user input in a more controlled fashion. 
+        /// </summary>
+
         public static string ReadString()
         {
             return Console.ReadLine();

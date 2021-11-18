@@ -10,31 +10,46 @@ namespace Monopoly.Logics.SquareLogics
     {
         private readonly GameManager _manager = GameManager.GetInstance();
         
+        #region Methods
+        
         public override void Handle(ISquare square, int playerId)
         {
-            Chance chance = (Chance)square;
-
-            // Retreive all chanceCards.
-            List<ChanceCard> cardsList = chance.GetChanceCards();
-            // Pick one.
-            ChanceCard chanceCard = cardsList[new Random().Next(cardsList.Count)];
-            chance.SetChanceCard(chanceCard);
-            
-            ConsoleOutput.Print(square.ToString());
+            var chanceCard = PickChanceCard(square);
 
             Bank bank = new Bank();
             bank.ChanceHandler(playerId, chanceCard.Value);
 
-            if (chanceCard.MoveIndex >= 0)
-            {
-                BoardMap map = _manager.Map;
-                map.Players[playerId] = chanceCard.MoveIndex;
-                
-                _manager.SquareController(chanceCard.MoveIndex, playerId);
-            }
+            CheckPlayerShouldMove(playerId, chanceCard);
 
             ConsoleOutput.PrintEnter();
             ConsoleInput.ReadString();
         }
+
+        private void CheckPlayerShouldMove(int playerId, ChanceCard chanceCard)
+        {
+            if (chanceCard.MoveIndex >= 0)
+            {
+                BoardMap map = _manager.Map;
+                map.Players[playerId] = chanceCard.MoveIndex;
+
+                _manager.SquareController(chanceCard.MoveIndex, playerId);
+            }
+        }
+
+        private ChanceCard PickChanceCard(ISquare square)
+        {
+            Chance chance = (Chance) square;
+
+            // Retrieve all chanceCards.
+            List<ChanceCard> cardsList = chance.ChanceCards;
+            // Pick one.
+            ChanceCard chanceCard = cardsList[new Random().Next(cardsList.Count)];
+            chance.SetChanceCard(chanceCard);
+
+            ConsoleOutput.Print(square.ToString());
+            return chanceCard;
+        }
+        
+        #endregion
     }
 }

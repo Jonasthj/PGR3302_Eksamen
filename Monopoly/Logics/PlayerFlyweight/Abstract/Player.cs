@@ -51,12 +51,12 @@ namespace Monopoly.Logics.PlayerFlyweight.Abstract
             InPrison = inPrison;
         }
 
+        #endregion
+        
         public override string ToString()
         {
             return $"   Player {Id}: {Name} \n"
                 +  $"   Wallet: {Wallet.Balance}M";
         }
-        
-        #endregion
     }
 }

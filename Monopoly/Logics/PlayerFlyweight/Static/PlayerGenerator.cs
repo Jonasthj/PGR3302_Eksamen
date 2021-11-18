@@ -15,18 +15,15 @@ namespace Monopoly.Logics.PlayerFlyweight.Static
         #region Singleton Pattern
         
         private static PlayerGenerator _instance = new();
-
-
-        private static readonly object Synclock = new();
+        
+        private static readonly object SyncLock = new();
         
         public static PlayerGenerator GetInstance()
         {
             if (_instance == null)
             {
-                lock (Synclock)
-                {
+                lock (SyncLock)
                     _instance = new PlayerGenerator();
-                }
             }
             return _instance;
         }
@@ -39,19 +36,16 @@ namespace Monopoly.Logics.PlayerFlyweight.Static
         #endregion
 
         public readonly Dictionary<int, Player> Players = new();
-        public HashSet<Player> BlackListed = new ();
+        public readonly HashSet<Player> BlackListed = new ();
 
         /// <description>
         ///  Either returns the existing player, or returns a newly created one.
         /// </description>
-        
         public Player Get(int id)
         {
             Player player;
             if (Players.ContainsKey(id))
-            {
                 player = Players[id];
-            }
             else
             {
                 switch (id)
@@ -73,9 +67,7 @@ namespace Monopoly.Logics.PlayerFlyweight.Static
                 }
                 Players.Add(id, player);
             }
-
             return player;
-
         }
 
         public void Blacklist(int id)
