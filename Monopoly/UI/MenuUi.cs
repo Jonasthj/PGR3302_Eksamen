@@ -155,7 +155,7 @@ namespace Monopoly.UI
             ConsoleOutput.PrintEnter();
             ConsoleInput.ReadString();
             _currentPlayerId++;
-            // Console.Clear();
+            Console.Clear();
             
             ConsoleOutput.Print("Your turn:", ConsoleColor.White);
             PrintPlayerInfo(playerId);
@@ -181,7 +181,7 @@ namespace Monopoly.UI
                 int newIndex = _manager.Map.Players[playerId];
                 if (playerIndex != newIndex)
                 {
-                    // Console.Clear();
+                    Console.Clear();
                     PrintMap();
                 }
 
