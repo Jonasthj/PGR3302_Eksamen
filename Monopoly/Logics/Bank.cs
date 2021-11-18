@@ -53,8 +53,14 @@ namespace Monopoly.Logics
             
         }
 
+        /// <description>
+        /// The chance cards that withdraw money from the account are already set to negative numbers,
+        /// so all calculation is done with Add () since number1 + (-number2) == number1 - number2.
+        /// </description>
+
         public void ChanceHandler(int playerId, int value)
         {
+         
             if (value > 0)
             {
                 _calculator.AddBalance(playerId, value);
@@ -68,8 +74,11 @@ namespace Monopoly.Logics
         private bool CreditCheck(int playerId, int price)
         {
             PlayerGenerator playerGenerator = PlayerGenerator.GetInstance();
-
-            if (playerGenerator.Get(playerId).Wallet.Balance >= price)
+            int playerBalance = playerGenerator.Get(playerId).Wallet.Balance;
+            
+            int res = playerBalance + price;
+            
+            if (res > 0)
                 return true;
 
             return false;
