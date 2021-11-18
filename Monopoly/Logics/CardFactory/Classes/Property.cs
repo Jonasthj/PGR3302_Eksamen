@@ -8,9 +8,9 @@ namespace Monopoly.Logics.CardFactory.Classes
     {
         #region Properties
 
-        public int Id { get;}
+        private int _id;
         private string Name { get;}
-        public ConsoleColor Color { get;}
+        private ConsoleColor Color { get;}
         public int BuyPrice { get; private set; }
         public int RentPrice { get; private set; }
         public bool IsAvailable { get; private set; }
@@ -22,7 +22,7 @@ namespace Monopoly.Logics.CardFactory.Classes
 
         public Property(int id, string name, ConsoleColor color, int buyPrice, int rentPrice)
         {
-            Id = id;
+            _id = id;
             Name = name;
             Color = color;
             BuyPrice = buyPrice;
@@ -41,9 +41,7 @@ namespace Monopoly.Logics.CardFactory.Classes
             owner = "";
 
             if (IsAvailable)
-            {
                 price = $"Buy: {BuyPrice}M";
-            }
             else
             {
                 string playerName = PlayerGenerator.GetInstance().Get(OwnerId).Name;
@@ -74,6 +72,13 @@ namespace Monopoly.Logics.CardFactory.Classes
             RentPrice = value;
         }
         
+        public string GetName()
+        {
+            return Name;
+        }
+        
+        #endregion
+        
         public override string ToString()
         {
             var price = CheckAvailable(out var owner);
@@ -88,12 +93,5 @@ namespace Monopoly.Logics.CardFactory.Classes
                    "\n" +
                    "-----------------";
         }
-
-        public string GetName()
-        {
-            return Name;
-        }
-
-        #endregion
     }
 }

@@ -13,15 +13,13 @@ namespace Monopoly.Database
             const string jsonPath = "data.json";
 
             // Read JSON file.
-            return JObject.Parse(File.ReadAllText(jsonPath));;
+            return JObject.Parse(File.ReadAllText(jsonPath));
         }
 
         private static void SetJsonDirectory(string path)
         {
             if (Directory.Exists(path))
-            {
                 Directory.SetCurrentDirectory(path);
-            }
         }
     }
 }

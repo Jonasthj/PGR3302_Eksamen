@@ -5,12 +5,9 @@ namespace Monopoly.Logics.CardFactory.Classes
 {
     public class Start : ISquare
     {
-        #region Properties
-
         public int Id { get;}
         private string Name { get;}
 
-        #endregion
 
         #region Methods
 
@@ -30,6 +27,8 @@ namespace Monopoly.Logics.CardFactory.Classes
             return Name;
         }
         
+        #endregion
+        
         public override string ToString()
         {
             return "-----------------" +
@@ -39,7 +38,5 @@ namespace Monopoly.Logics.CardFactory.Classes
                    "\n" +
                    "-----------------";
         }
-
-        #endregion
     }
 }

@@ -7,24 +7,15 @@ namespace Monopoly.Database
 {
     public class PropertyJson
     {
-        #region Private fields
 
         private JObject _jsonData;
-
-        #endregion
-
-        #region Constructors
 
         public PropertyJson(JObject jsonContent)
         {
             // Read JSON file.
             _jsonData = jsonContent;
         }
-
-        #endregion
-
-        #region Methods
-
+        
         public ISquare Retrieve(int id)
         {
             // Get the specific card, e.g: Card 1.
@@ -46,7 +37,5 @@ namespace Monopoly.Database
 
             return null;
         }
-
-        #endregion
     }
 }

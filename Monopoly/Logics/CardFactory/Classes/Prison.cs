@@ -14,8 +14,6 @@ namespace Monopoly.Logics.CardFactory.Classes
             Name = "Prison";
         }
 
-        #region Implemented
-
         public void PrintSquare()
         {
             Console.WriteLine(ToString());
@@ -35,8 +33,5 @@ namespace Monopoly.Logics.CardFactory.Classes
                    "\n" +
                    "-----------------";
         }
-
-        #endregion
-        
     }
 }

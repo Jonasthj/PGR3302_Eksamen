@@ -7,13 +7,7 @@ namespace Monopoly.Database
 {
     public class ChanceJson
     {
-        #region Private fields
-
-        private JObject _jsonData;
-
-        #endregion
-
-        #region Constructors
+        private readonly JObject _jsonData;
 
         public ChanceJson(JObject jsonContent)
         {
@@ -21,14 +15,10 @@ namespace Monopoly.Database
             _jsonData = jsonContent;
         }
 
-        #endregion
-
-        #region Methods
-
         public List<ISquare> RetrieveAll()
         {
             // Get the specific card, e.g: Card 1.
-            var jsonCard = _jsonData["Card"]["Chance"];
+            var jsonCard = _jsonData["Card"]?["Chance"];
 
             var indexes = JArray.Parse(jsonCard["indexList"].ToString());
             var cards = JArray.Parse(jsonCard["chanceCards"].ToString());
@@ -58,7 +48,6 @@ namespace Monopoly.Database
                         chanceCards.Add(chanceCard);
 
                         i++;
-
                     }
                 }
 
@@ -66,14 +55,11 @@ namespace Monopoly.Database
                 CreateChance chance = new CreateChance(squareId, chanceCards);
                 ISquare square = chance.BuildSquare();
                 
-
                 squares.Add(square);
             }
 
             // Return the list of all the squares.
             return squares;
         }
-
-        #endregion
     }
 }

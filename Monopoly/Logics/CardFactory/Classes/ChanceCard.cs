@@ -6,11 +6,10 @@ namespace Monopoly.Logics.CardFactory.Classes
         /// <summary>
         /// 
         /// </summary>
-        
+
         #region Properties
 
-        private int Id { get; }
-
+        private int _id;
         private string Content { get; }
         public int Value { get; }
         public int MoveIndex { get; }
@@ -19,7 +18,7 @@ namespace Monopoly.Logics.CardFactory.Classes
 
         public ChanceCard(int id, string content, int value, int newIndex)
         {
-            Id = id;
+            _id = id;
             Content = content;
             Value = value;
             MoveIndex = newIndex;
