@@ -5,12 +5,12 @@ using Monopoly.Logics.PlayerFlyweight.Abstract;
 
 namespace Monopoly.Logics.PlayerFlyweight.Static
 {
-    /*
-     * The Flyweight-"Factory" class, also uses the singleton design pattern - 
-     * In order to globally make available the same instance of PlayerGenerator.
-     * PlayerGenerator both stores and creates Players. 
-     * 
-     */
+    /// <summary>
+    /// The Flyweight-"Factory" class, also uses the singleton design pattern - 
+    /// In order to globally make available the same instance of PlayerGenerator.
+    /// PlayerGenerator both stores and creates Players. 
+    /// </summary>
+    
     public sealed class PlayerGenerator
     {
         #region Singleton Pattern
@@ -39,8 +39,17 @@ namespace Monopoly.Logics.PlayerFlyweight.Static
         
         #endregion
 
+        #region Fields
         
         public readonly Dictionary<int, Player> Players = new();
+        
+        #endregion
+
+        #region Methods
+        
+        /// <description>
+        ///  Either returns the existing player, or returns a newly created one.
+        /// </description>
         public Player Get(int id)
         {
             Player player = null;
@@ -78,5 +87,7 @@ namespace Monopoly.Logics.PlayerFlyweight.Static
         {
             Players.Remove(id);
         }
+        
+        #endregion
     }
 }

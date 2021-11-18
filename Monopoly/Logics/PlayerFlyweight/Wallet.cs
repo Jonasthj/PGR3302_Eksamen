@@ -4,6 +4,11 @@ namespace Monopoly.Flyweight
 {
     public class Wallet
     {
+        /// <summary>
+        /// The Wallet class defines a players balance.
+        /// Has override methods for symbols '+' & '-',
+        /// so that it directly accesses the Wallet.Balance
+        /// </summary>
         #region Properties
 
         public int Balance { get; }
@@ -35,8 +40,6 @@ namespace Monopoly.Flyweight
         {
             return "Balance: " + Balance;
         }
-        
-        // TODO: Operator overloads?
 
         #endregion
     }

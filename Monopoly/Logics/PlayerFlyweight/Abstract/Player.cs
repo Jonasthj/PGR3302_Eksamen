@@ -2,7 +2,9 @@ using Monopoly.Flyweight;
 
 namespace Monopoly.Logics.PlayerFlyweight.Abstract
 {
-    // 
+    /// <summary>
+    /// The Abstract player class that all players inherit from.
+    /// </summary>
     public abstract class Player
     {
         protected int Id;
@@ -10,6 +12,10 @@ namespace Monopoly.Logics.PlayerFlyweight.Abstract
         public Wallet Wallet { get; private set; }
         public bool InPrison { get; set; }
 
+        /// <description>
+        /// // Setting the extrinsic part of the player objects.
+        /// </description>
+         
         public virtual void SetExtrinsicPart(string name, Wallet wallet, bool inPrison)
         {
             Name = name;
