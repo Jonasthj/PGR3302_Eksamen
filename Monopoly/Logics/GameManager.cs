@@ -68,9 +68,11 @@ namespace Monopoly.Logics
         }
         
         //Create x players (as defined in menuUI) and put them in start position on board map.
-        public void CreatePlayers(int playersCount)
+        public void CreatePlayers()
         {
-            for (int i = 1; i <= playersCount; i++)
+            int count = GetPlayerCount();
+            
+            for (int i = 1; i <= count; i++)
             {
                 Map.Players.Add(i, 0);
                 Generator.Get(i);
@@ -109,6 +111,21 @@ namespace Monopoly.Logics
             }
             else
                 Map.Players[playerId] += diceThrow;
+        }
+        
+        public bool IsBlacklisted(int currentPlayerId)
+        {
+            var blacklisted = Generator.BlackListed;
+
+            foreach (var blacklist in blacklisted)
+            {
+                if (currentPlayerId == blacklist.Id)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

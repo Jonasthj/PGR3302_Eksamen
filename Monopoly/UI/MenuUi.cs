@@ -24,9 +24,7 @@ namespace Monopoly.UI
             
             WelcomeMessage();
 
-            // Set players:
-            int playersCount = _manager.GetPlayerCount();
-            _manager.CreatePlayers(playersCount);
+            _manager.CreatePlayers();
             SetPlayers();
         
             // See the start positions.
@@ -113,41 +111,20 @@ namespace Monopoly.UI
             ConsoleOutput.Print($"{_manager.Generator.Players[playerId]}", ConsoleColor.White);
         }
 
-        private bool IsBlacklisted()
-        {
-            var blacklisted = _manager.Generator.BlackListed;
-
-            foreach (var blacklist in blacklisted)
-            {
-                if (_currentPlayerId == blacklist.Id)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
         private void CheckBlacklist()
         {
             var blacklisted = _manager.Generator.BlackListed;
 
             if (blacklisted.Count > 0)
             {
-                if (!IsBlacklisted())
-                {
+                if (!_manager.IsBlacklisted(_currentPlayerId))
                     NextTurn(_currentPlayerId);
-                }
                 else
-                {
                     _currentPlayerId++;
-                }
             }
             else
-            {
                 NextTurn(_currentPlayerId);
-            }
-            
+
             if (_currentPlayerId > _manager.Generator.Players.Count)
                 _currentPlayerId = 1;
         }
@@ -158,7 +135,7 @@ namespace Monopoly.UI
             ConsoleOutput.PrintEnter();
             ConsoleInput.ReadKey();
             _currentPlayerId++;
-            Console.Clear();
+            // Console.Clear();
             
             ConsoleOutput.Print("Your turn:", ConsoleColor.White);
             PrintPlayerInfo(playerId);
@@ -167,7 +144,6 @@ namespace Monopoly.UI
             
             if (!playerInPrison)
             {
-                
                 ConsoleOutput.Print("Press enter to roll the dice", ConsoleColor.Cyan);
                 ConsoleInput.ReadKey();
 
@@ -183,7 +159,7 @@ namespace Monopoly.UI
                 int newIndex = _manager.Map.Players[playerId];
                 if (playerIndex != newIndex)
                 {
-                    Console.Clear();
+                    // Console.Clear();
                     PrintMap();
                 }
 

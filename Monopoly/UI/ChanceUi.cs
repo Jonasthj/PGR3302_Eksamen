@@ -9,8 +9,8 @@ namespace Monopoly.UI
         
         public override void Handle(ISquare square, int playerId)
         {
-            _chanceLogics.HandleChance(square, playerId);
             ConsoleOutput.Print(square.ToString());
+            _chanceLogics.HandleChance(square, playerId);
 
             ConsoleOutput.PrintEnter();
             ConsoleInput.ReadKey();

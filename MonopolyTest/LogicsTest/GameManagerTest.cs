@@ -18,7 +18,7 @@ namespace MonopolyTest.LogicsTest
         [Test]
         public void ShouldAddPlayersToBoardMapAndToStartPosition()
         {
-            _manager.CreatePlayers(4);
+            _manager.CreatePlayers();
             
             Assert.AreEqual(_manager.Map.Players[1], 0);
             Assert.AreEqual(_manager.Map.Players[2], 0);
@@ -29,7 +29,7 @@ namespace MonopolyTest.LogicsTest
         [Test]
         public void ShouldBlackListPlayer()
         {
-            _manager.CreatePlayers(4);
+            _manager.CreatePlayers();
             
             PlayerGenerator generator = PlayerGenerator.GetInstance();
             generator.Blacklist(1);
