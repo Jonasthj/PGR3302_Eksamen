@@ -7,7 +7,8 @@ namespace Monopoly.UI
     public class PrisonUI : AbstractLogics
     {
 
-        private PrisonLogics _prisonLogics = new();
+        private readonly PrisonLogics _prisonLogics = new();
+        
         public override void Handle(ISquare square, int playerId)
         {
             ConsoleOutput.Print(square.ToString(), ConsoleColor.White);

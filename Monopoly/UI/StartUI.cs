@@ -6,7 +6,7 @@ namespace Monopoly.UI
 {
     public class StartUI : AbstractLogics
     {
-        private StartLogics _startLogics = new();
+        private readonly StartLogics _startLogics = new();
 
         public override void Handle(ISquare square, int playerId)
         {
