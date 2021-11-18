@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Monopoly.Database;
 using Monopoly.Logics.CardFactory.Classes;
 using Monopoly.Logics.CardFactory.Interface;
@@ -47,7 +46,7 @@ namespace Monopoly.Logics
         private void AddStartSquare(BoardMap map, Start start)
         {
             map.MapSquares[start.Id] = start;
-            AddController(start.GetName(), new StartLogics());
+            AddController(start.GetName(), new StartUI());
         }
 
         private void AddChanceSquares(List<ISquare> chances, BoardMap map)

@@ -1,17 +1,11 @@
-﻿using System;
-using Monopoly.Logics.CardFactory.Interface;
-using Monopoly.UI;
-
-namespace Monopoly.Logics.SquareLogics
+﻿namespace Monopoly.Logics.SquareLogics
 {
-    public class StartLogics : AbstractLogics
+    public class StartLogics
     {
         private const int Collect = 100;
 
-        public override void Handle(ISquare square, int playerId)
+        public void HandleStartLogic(int playerId)
         {
-            ConsoleOutput.Print(square.ToString(), ConsoleColor.White);
-            
             WalletCalculator calculator = new();
             calculator.AddBalance(playerId, Collect);
         }
