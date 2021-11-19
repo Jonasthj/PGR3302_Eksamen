@@ -11,8 +11,6 @@ namespace MonopolyTest.LogicsTest.PlayerFlyweightTest
     {
         private readonly WalletCalculator _walletCalculator = new WalletCalculator();
         private readonly PlayerGenerator _generator = PlayerGenerator.GetInstance();
-        
-        #region Tests
 
         [Test]
         public void ShouldCheckWalletBalance()
@@ -44,7 +42,5 @@ namespace MonopolyTest.LogicsTest.PlayerFlyweightTest
             
             Assert.AreEqual(300, player.Wallet.Balance);
         }
-
-        #endregion
     }
 }
