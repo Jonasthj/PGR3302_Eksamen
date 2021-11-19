@@ -12,7 +12,7 @@ namespace Monopoly.Logics.SquareLogics
         
         #region Methods
         
-        public ChanceCard HandleChance(ISquare square, int playerId)
+        public ChanceCard HandleChance(ISquare square)
         {
             var chanceCard = PickChanceCard(square);
             return chanceCard;

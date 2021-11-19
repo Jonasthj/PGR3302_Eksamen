@@ -14,7 +14,7 @@ namespace Monopoly.UI
         {
             BankUI bankUI = new ();
             
-            ChanceCard chanceCard = _chanceLogics.HandleChance(square, playerId);
+            ChanceCard chanceCard = _chanceLogics.HandleChance(square);
             ConsoleOutput.Print(square.ToString());
             
             bankUI.ChanceHandler(playerId, chanceCard.Value);
