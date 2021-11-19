@@ -1,5 +1,4 @@
-﻿
-namespace Monopoly.Logics.Objects
+﻿namespace Monopoly.Logics.Objects
 {
     public class ChanceCard
     {

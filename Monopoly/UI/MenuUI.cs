@@ -68,7 +68,7 @@ namespace Monopoly.UI
             PlayerWin();
         }
 
-        private static void WelcomeMessage()
+        private void WelcomeMessage()
         {
             ConsoleOutput.Print("--- Welcome to Monopoly! ---", ConsoleColor.Magenta);
             ConsoleOutput.Print("How many players are you ( 2-4 )", ConsoleColor.Magenta);
@@ -97,7 +97,7 @@ namespace Monopoly.UI
             var winner = GetWinner();
 
             ConsoleOutput.Print("----------------------------------------------", ConsoleColor.Green);
-            ConsoleOutput.Print($"Congratulation! You won the game!", ConsoleColor.Yellow);
+            ConsoleOutput.Print("Congratulation! You won the game!", ConsoleColor.Yellow);
             ConsoleOutput.Print(winner.ToString(), ConsoleColor.Yellow);
             ConsoleOutput.Print("----------------------------------------------", ConsoleColor.Green);
         }

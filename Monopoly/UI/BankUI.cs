@@ -69,7 +69,7 @@ namespace Monopoly.UI
             
             _logic.IncreaseTax(raiseValue);
             
-            ConsoleOutput.Print("There har been a tax reform!\n" +
+            ConsoleOutput.Print("There has been a tax reform!\n" +
                                 $"Therefore taxes have been raised with {raiseValue}M", ConsoleColor.DarkRed);
         }
         

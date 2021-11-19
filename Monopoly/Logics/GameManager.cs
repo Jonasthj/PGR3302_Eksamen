@@ -1,10 +1,8 @@
 using System.Collections.Generic;
 using Monopoly.Logics.CardFactory.Interface;
 using Monopoly.Logics.Objects;
-using Monopoly.Logics.PlayerFlyweight;
 using Monopoly.Logics.PlayerFlyweight.Abstract;
 using Monopoly.Logics.PlayerFlyweight.Singleton;
-using Monopoly.Logics.SquareLogics;
 using Monopoly.Logics.SquareLogics.Abstract;
 
 namespace Monopoly.Logics

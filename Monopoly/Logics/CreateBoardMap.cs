@@ -2,7 +2,6 @@
 using Monopoly.Data;
 using Monopoly.Logics.CardFactory.Classes;
 using Monopoly.Logics.Objects;
-using Monopoly.Logics.SquareLogics;
 using Monopoly.Logics.SquareLogics.Abstract;
 
 namespace Monopoly.Logics

@@ -7,7 +7,7 @@ namespace Monopoly.Data
     {
         public static JObject GetJsonData()
         {
-            SetJsonDirectory(@"../../../../Monopoly/Database/");
+            SetJsonDirectory(@"../../../../Monopoly/Data/");
             
             // JSON Path.
             const string jsonPath = "data.json";
