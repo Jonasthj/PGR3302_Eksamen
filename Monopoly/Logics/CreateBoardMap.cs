@@ -1,78 +1,97 @@
 ﻿using System.Collections.Generic;
 using Monopoly.Database;
 using Monopoly.Logics.CardFactory.Classes;
-using Monopoly.Logics.CardFactory.Interface;
 using Monopoly.Logics.SquareLogics;
-using Monopoly.UI;
 
 namespace Monopoly.Logics
 {
     public class CreateBoardMap
     {
         private readonly Dictionary<string, AbstractLogics> _controllers = new();
-
-        #region Methods
+        private BoardMap _map;
         
-        /// <description>
-        /// Filling in information in the squares from the .Json file.
-        /// </description>
-        public BoardMap Create()
+        #region Methods
+
+        public BoardMap InitializeMap(AbstractLogics startLogic, AbstractLogics prisonLogic, AbstractLogics chanceLogic, AbstractLogics propertyLogic)
         {
-            BoardMap map = new();
+            _map = new BoardMap();
+
+            // AddPropertySquares sets the MapSquares.length.
+            var properties = AddPropertySquares(new PropertyJson());
+            var chances = AddChanceSquares(new ChanceJson());
+            var start = AddStartSquare();
+            var prison = AddPrisonSquare();
+
+            foreach (var chance in chances)
+            {
+                AddController(chance.GetName(), chanceLogic);
+            }
+
+            foreach (var property in properties)
+            {
+                AddController(property.GetName(), prisonLogic);
+            }
+
+            AddController(start.GetName(), startLogic);
+            AddController(prison.GetName(), prisonLogic);
             
-            var jsonData = JsonFileReader.GetJsonData();
-            
-            PropertyJson propertyJson = new(jsonData);
-            ChanceJson chanceJson = new(jsonData);
-            
+            return _map;
+
+        }
+        
+        private void AddController(string name, AbstractLogics logics)
+        {
+            _controllers.TryAdd(name, logics);
+        }
+
+        private Prison AddPrisonSquare()
+        
+        {
             Prison prison = new Prison();
+            _map.MapSquares[prison.Id] = prison;
+
+            return prison;
+        }
+
+        private Start AddStartSquare()
+        {
             Start start = new Start();
-            List<ISquare> chances = chanceJson.RetrieveAll();
-            
-            AddPropertySquares(map, propertyJson);
-            AddChanceSquares(chances, map);
-            AddStartSquare(map, start);
-            AddPrisonSquare(map, prison);
+            _map.MapSquares[start.Id] = start;
 
-            return map;
+            return start;
         }
 
-        private void AddPrisonSquare(BoardMap map, Prison prison)
+        private List<Chance> AddChanceSquares(ChanceJson chanceJson)
         {
-            map.MapSquares[prison.Id] = prison;
-            AddController(prison.GetName(), new PrisonUI());
-        }
-
-        private void AddStartSquare(BoardMap map, Start start)
-        {
-            map.MapSquares[start.Id] = start;
-            AddController(start.GetName(), new StartUI());
-        }
-
-        private void AddChanceSquares(List<ISquare> chances, BoardMap map)
-        {
-            foreach (var square in chances)
+            List<Chance> chances = new List<Chance>();
+            foreach (var square in chanceJson.RetrieveAll())
             {
                 Chance chance = (Chance) square;
-                map.MapSquares[chance.Id] = chance;
-
-                AddController(chance.GetName(), new ChanceUI());
+                _map.MapSquares[chance.Id] = chance;
+                chances.Add(chance);
             }
+
+            return chances;
         }
 
-        private void AddPropertySquares(BoardMap map, PropertyJson propertyJson)
+        private List<Property> AddPropertySquares(PropertyJson propertyJson)
         {
             // Does not contain Start and Prison so add 2.
             int squareCount = propertyJson.GetCount() + 2;
-            
+
+            List<Property> properties = new List<Property>();
+
             for (int i = 0; i < squareCount; i++)
             {
-                map.MapSquares[i] = propertyJson.Retrieve(i);
-                if (map.MapSquares[i] != null)
+                _map.MapSquares[i] = propertyJson.Retrieve(i);
+                if (_map.MapSquares[i] != null)
                 {
-                    AddController(map.MapSquares[i].GetName(), new PropertyUI());
+                    Property property = (Property) _map.MapSquares[i];
+                    properties.Add(property);
                 }
             }
+
+            return properties;
         }
 
         public Dictionary<string, AbstractLogics> GetControllers()
@@ -80,11 +99,6 @@ namespace Monopoly.Logics
             return _controllers;
         }
 
-        private void AddController(string name, AbstractLogics logics)
-        {
-            _controllers.TryAdd(name, logics);
-        }
-        
         #endregion
     }
 }

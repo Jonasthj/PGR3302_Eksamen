@@ -1,7 +1,5 @@
-﻿using System;
-using Monopoly.Logics.CardFactory.Classes;
+﻿using Monopoly.Logics.CardFactory.Classes;
 using Monopoly.Logics.PlayerFlyweight.Static;
-using Monopoly.UI;
 
 namespace Monopoly.Logics
 {

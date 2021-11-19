@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Monopoly.Logics.CardFactory.Classes;
 using Monopoly.Logics.CardFactory.Interface;
-using Monopoly.UI;
 
 namespace Monopoly.Logics.SquareLogics
 {
@@ -12,16 +11,13 @@ namespace Monopoly.Logics.SquareLogics
         
         #region Methods
         
-        public void HandleChance(ISquare square, int playerId)
+        public ChanceCard HandleChance(ISquare square, int playerId)
         {
             var chanceCard = PickChanceCard(square);
-            BankUI bankUI = new ();
-            
-            bankUI.ChanceHandler(playerId, chanceCard.Value);
-            CheckPlayerShouldMove(playerId, chanceCard);
+            return chanceCard;
         }
 
-        private void CheckPlayerShouldMove(int playerId, ChanceCard chanceCard)
+        public void CheckPlayerShouldMove(int playerId, ChanceCard chanceCard)
         {
             if (chanceCard.MoveIndex >= 0)
             {

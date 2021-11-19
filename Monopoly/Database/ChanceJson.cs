@@ -9,10 +9,11 @@ namespace Monopoly.Database
     {
         private readonly JObject _jsonData;
 
-        public ChanceJson(JObject jsonContent)
+
+        public ChanceJson()
         {
             // Read JSON file.
-            _jsonData = jsonContent;
+            _jsonData = JsonFileReader.GetJsonData();
         }
 
         public List<ISquare> RetrieveAll()

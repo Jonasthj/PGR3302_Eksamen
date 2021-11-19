@@ -12,10 +12,10 @@ namespace Monopoly.Database
 
         private JObject _jsonData;
 
-        public PropertyJson(JObject jsonContent)
+        public PropertyJson()
         {
             // Read JSON file.
-            _jsonData = jsonContent;
+            _jsonData = JsonFileReader.GetJsonData();
         }
         
         public ISquare Retrieve(int id)

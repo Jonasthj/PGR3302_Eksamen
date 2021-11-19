@@ -20,17 +20,34 @@ namespace Monopoly.UI
         
         public void StartGame()
         {
-            _manager.InitializeMap();
+            _manager.InitializeMap(new StartUI(), new PrisonUI(), new ChanceUI(), new PropertyUI());
             
             WelcomeMessage();
 
-            _manager.CreatePlayers();
+            _manager.CreatePlayers(GetPlayerCount());
             SetPlayers();
         
             // See the start positions.
             PrintMap();
 
             PlayGame();
+        }
+        public int GetPlayerCount()
+        {
+            int value = 0;
+            bool playersSet = false;
+            
+            while (!playersSet)
+            {
+                value = ConsoleInput.ReadInt();
+
+                if (value is >= 2 and <= 4)
+                    playersSet = true;
+                else
+                    ConsoleOutput.Print("- You must be minimum 2 players and maximum 4!");
+            }
+
+            return value;
         }
 
         private void PlayGame()

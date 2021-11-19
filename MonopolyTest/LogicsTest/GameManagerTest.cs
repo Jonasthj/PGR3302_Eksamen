@@ -1,6 +1,7 @@
 using Monopoly.Logics;
 using Monopoly.Logics.PlayerFlyweight.Abstract;
 using Monopoly.Logics.PlayerFlyweight.Static;
+using Monopoly.UI;
 using NUnit.Framework;
 
 namespace MonopolyTest.LogicsTest
@@ -12,13 +13,13 @@ namespace MonopolyTest.LogicsTest
         [SetUp]
         public void Init()
         {
-            _manager.InitializeMap();
+            _manager.InitializeMap(new StartUI(), new PrisonUI(), new ChanceUI(), new PropertyUI());
         }
 
         [Test]
         public void ShouldAddPlayersToBoardMapAndToStartPosition()
         {
-            _manager.CreatePlayers();
+            _manager.CreatePlayers(4);
             
             Assert.AreEqual(_manager.Map.Players[1], 0);
             Assert.AreEqual(_manager.Map.Players[2], 0);
@@ -29,7 +30,7 @@ namespace MonopolyTest.LogicsTest
         [Test]
         public void ShouldBlackListPlayer()
         {
-            _manager.CreatePlayers();
+            _manager.CreatePlayers(4);
             
             PlayerGenerator generator = PlayerGenerator.GetInstance();
             generator.Blacklist(1);

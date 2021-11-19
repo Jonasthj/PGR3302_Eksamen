@@ -4,7 +4,6 @@ using Monopoly.Logics.PlayerFlyweight;
 using Monopoly.Logics.PlayerFlyweight.Abstract;
 using Monopoly.Logics.PlayerFlyweight.Static;
 using Monopoly.Logics.SquareLogics;
-using Monopoly.UI;
 
 namespace Monopoly.Logics
 {
@@ -41,37 +40,17 @@ namespace Monopoly.Logics
         public readonly PlayerGenerator Generator = PlayerGenerator.GetInstance();
         public bool TaxRaise { get; set; }
 
-        public void InitializeMap()
+        public void InitializeMap(AbstractLogics startLogic, AbstractLogics prisonLogic, AbstractLogics chanceLogic, AbstractLogics propertyLogic)
         {
-            CreateBoardMap createBoardMap = new CreateBoardMap();
+            CreateBoardMap createBoardMap = new ();
             
-            Map = createBoardMap.Create();
+            Map = createBoardMap.InitializeMap(startLogic, prisonLogic, chanceLogic, propertyLogic);
             _controllers = createBoardMap.GetControllers();
         }
-        
-        public int GetPlayerCount()
-        {
-            int value = 0;
-            bool playersSet = false;
-            
-            while (!playersSet)
-            {
-                value = ConsoleInput.ReadInt();
 
-                if (value is >= 2 and <= 4)
-                    playersSet = true;
-                else
-                    ConsoleOutput.Print("- You must be minimum 2 players and maximum 4!");
-            }
-
-            return value;
-        }
-        
         //Create x players (as defined in menuUI) and put them in start position on board map.
-        public void CreatePlayers()
+        public void CreatePlayers(int count)
         {
-            int count = GetPlayerCount();
-            
             for (int i = 1; i <= count; i++)
             {
                 Map.Players.Add(i, 0);
