@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Monopoly</name>
+    </assembly>
+    <members>
+        <member name="M:Monopoly.Logics.BankLogic.Validate(System.Int32,System.Int32)">
+            <description>
+            The chance cards that withdraw money from the account are already set to negative numbers,
+            so all calculation is done with Add () since number1 + (-number2) == number1 - number2.
+            </description>
+        </member>
+        <member name="M:Monopoly.Logics.CardFactory.Abstract.CreateSquare.BuildSquare">
+            <summary>
+            The abstract creator template that all other square-creators inherit from,
+            BuildSquare should return the desired square when overridden. 
+            </summary>
+        </member>
+        <member name="P:Monopoly.Logics.CardFactory.Classes.Chance.Id">
+            <summary>
+            The chance card class, stores all the properties of a chance card,
+            as well as a list of all chance cards to allow for picking a random.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:Monopoly.Logics.Objects.Wallet" -->
+        <member name="T:Monopoly.Logics.PlayerFlyweight.Abstract.Player">
+            <summary>
+            The Abstract player class that all players inherit from.
+            </summary>
+        </member>
+        <member name="T:Monopoly.Logics.PlayerFlyweight.Singleton.PlayerGenerator">
+            <summary>
+            The Flyweight-"Factory" class, also uses the singleton design pattern - 
+            In order to globally make available the same instance of PlayerGenerator.
+            PlayerGenerator both stores and creates Players. 
+            </summary>
+        </member>
+        <member name="M:Monopoly.Logics.PlayerFlyweight.Singleton.PlayerGenerator.Get(System.Int32)">
+            <description>
+             Either returns the existing player, or returns a newly created one.
+            </description>
+        </member>
+        <member name="M:Monopoly.UI.ConsoleIO.ConsoleInput.ReadString">
+            <summary>
+            We use ConsoleInput in order to validate user input in a more controlled fashion. 
+            </summary>
+        </member>
+        <member name="M:Monopoly.UI.ConsoleIO.ConsoleOutput.Print(System.String)">
+            <summary>
+            We use this class to "override" console.Write..., to avoid redundancy.
+            </summary>
+        </member>
+        <member name="F:Monopoly.UI.MenuUI._manager">
+            <summary>
+            MenuUi handles all the interaction between the user and the program.
+            The class only communicates with GameManager who handles the rest of the logic.
+            </summary>
+        </member>
+    </members>
+</doc>

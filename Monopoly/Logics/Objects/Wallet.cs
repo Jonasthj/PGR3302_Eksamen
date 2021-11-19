@@ -1,13 +1,12 @@
 ﻿namespace Monopoly.Logics.Objects
 {
+    /// <summary>
+    /// The Wallet class defines a players balance.
+    /// Has override methods for symbols '+' & '-',
+    /// so that it directly accesses the Wallet.Balance.
+    /// </summary>
     public class Wallet
     {
-        /// <summary>
-        /// The Wallet class defines a players balance.
-        /// Has override methods for symbols '+' & '-',
-        /// so that it directly accesses the Wallet.Balance.
-        /// </summary>
-
         public int Balance { get; }
         
         public Wallet(int balance)
