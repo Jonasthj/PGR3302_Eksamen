@@ -6,7 +6,7 @@ using Monopoly.Logics.PlayerFlyweight.Abstract;
 
 namespace Monopoly.UI
 {
-    public class MenuUI
+    public class MenuUi
     {
         /// <summary>
         /// MenuUi handles all the interaction between the user and the program.
@@ -20,34 +20,19 @@ namespace Monopoly.UI
         
         public void StartGame()
         {
-            _manager.InitializeMap(new StartUI(), new PrisonUI(), new ChanceUI(), new PropertyUI());
+            _manager.InitializeMap();
             
             WelcomeMessage();
 
-            _manager.CreatePlayers(GetPlayerCount());
+            // Set players:
+            int playersCount = _manager.GetPlayerCount();
+            _manager.CreatePlayers(playersCount);
             SetPlayers();
         
             // See the start positions.
             PrintMap();
 
             PlayGame();
-        }
-        public int GetPlayerCount()
-        {
-            int value = 0;
-            bool playersSet = false;
-            
-            while (!playersSet)
-            {
-                value = ConsoleInput.ReadInt();
-
-                if (value is >= 2 and <= 4)
-                    playersSet = true;
-                else
-                    ConsoleOutput.Print("- You must be minimum 2 players and maximum 4!");
-            }
-
-            return value;
         }
 
         private void PlayGame()
@@ -128,20 +113,41 @@ namespace Monopoly.UI
             ConsoleOutput.Print($"{_manager.Generator.Players[playerId]}", ConsoleColor.White);
         }
 
+        private bool IsBlacklisted()
+        {
+            var blacklisted = _manager.Generator.BlackListed;
+
+            foreach (var blacklist in blacklisted)
+            {
+                if (_currentPlayerId == blacklist.Id)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         private void CheckBlacklist()
         {
             var blacklisted = _manager.Generator.BlackListed;
 
             if (blacklisted.Count > 0)
             {
-                if (!_manager.IsBlacklisted(_currentPlayerId))
+                if (!IsBlacklisted())
+                {
                     NextTurn(_currentPlayerId);
+                }
                 else
+                {
                     _currentPlayerId++;
+                }
             }
             else
+            {
                 NextTurn(_currentPlayerId);
-
+            }
+            
             if (_currentPlayerId > _manager.Generator.Players.Count)
                 _currentPlayerId = 1;
         }
@@ -152,7 +158,7 @@ namespace Monopoly.UI
             ConsoleOutput.PrintEnter();
             ConsoleInput.ReadKey();
             _currentPlayerId++;
-            // Console.Clear();
+            Console.Clear();
             
             ConsoleOutput.Print("Your turn:", ConsoleColor.White);
             PrintPlayerInfo(playerId);
@@ -161,6 +167,7 @@ namespace Monopoly.UI
             
             if (!playerInPrison)
             {
+                
                 ConsoleOutput.Print("Press enter to roll the dice", ConsoleColor.Cyan);
                 ConsoleInput.ReadKey();
 
@@ -176,7 +183,7 @@ namespace Monopoly.UI
                 int newIndex = _manager.Map.Players[playerId];
                 if (playerIndex != newIndex)
                 {
-                    // Console.Clear();
+                    Console.Clear();
                     PrintMap();
                 }
 
