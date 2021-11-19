@@ -1,12 +1,11 @@
 ﻿using System;
-using Monopoly.Logics;
 using Monopoly.Logics.CardFactory.Classes;
 using Monopoly.Logics.CardFactory.Interface;
 using Monopoly.Logics.SquareLogics;
 
 namespace Monopoly.UI
 {
-    public class PropertyUi : AbstractLogics
+    public class PropertyUI : AbstractLogics
     {
         private Property _property;
         
@@ -15,7 +14,7 @@ namespace Monopoly.UI
         public override void Handle(ISquare square, int playerId)
         {
             _property = (Property) square;
-            Bank bank = new Bank(_property);
+            BankUI bankUI = new BankUI(_property);
             
             ConsoleOutput.Print(square.ToString());
 
@@ -24,23 +23,23 @@ namespace Monopoly.UI
                 ConsoleOutput.Print("This property is available for purchase!", ConsoleColor.Cyan);
                 ConsoleOutput.Print("Would you like to buy it? (y/n)", ConsoleColor.Cyan);
 
-                GetPlayerAnswer(playerId, bank);
+                GetPlayerAnswer(playerId, bankUI);
             }
             else
             {
                 // Make sure the owner doesn't have to pay himself.
-                CheckPropertyOwner(playerId, bank);
+                CheckPropertyOwner(playerId, bankUI);
             }
         }
 
-        private void CheckPropertyOwner(int playerId, Bank bank)
+        private void CheckPropertyOwner(int playerId, BankUI bankUI)
         {
             if (playerId != _property.OwnerId)
             {
                 ConsoleOutput.Print("Someone owns this property!", ConsoleColor.Cyan);
                 ConsoleOutput.Print("Pay up!", ConsoleColor.Cyan);
 
-                bank.RentProperty(playerId, _property.OwnerId);
+                bankUI.RentProperty(playerId, _property.OwnerId);
             }
             else
             {
@@ -49,7 +48,7 @@ namespace Monopoly.UI
             }
         }
 
-        private static void GetPlayerAnswer(int playerId, Bank bank)
+        private static void GetPlayerAnswer(int playerId, BankUI bankUI)
         {
             bool checkKey = true;
             while (checkKey)
@@ -57,7 +56,7 @@ namespace Monopoly.UI
                 ConsoleKey answer = ConsoleInput.ReadKey();
                 if (answer == ConsoleKey.Y)
                 {
-                    bank.BuyProperty(playerId);
+                    bankUI.BuyProperty(playerId);
                     checkKey = false;
                 }
                 else if (answer == ConsoleKey.N)
