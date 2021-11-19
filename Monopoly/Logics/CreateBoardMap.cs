@@ -29,7 +29,7 @@ namespace Monopoly.Logics
 
             foreach (var property in properties)
             {
-                AddController(property.GetName(), prisonLogic);
+                AddController(property.GetName(), propertyLogic);
             }
 
             AddController(start.GetName(), startLogic);
