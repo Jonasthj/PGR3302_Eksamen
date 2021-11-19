@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using Newtonsoft.Json.Linq;
 
-namespace Monopoly.Database
+namespace Monopoly.Data
 {
     public static class JsonFileReader
     {

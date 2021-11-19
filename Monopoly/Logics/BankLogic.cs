@@ -1,5 +1,5 @@
 ﻿using Monopoly.Logics.CardFactory.Classes;
-using Monopoly.Logics.PlayerFlyweight.Static;
+using Monopoly.Logics.PlayerFlyweight.Singleton;
 
 namespace Monopoly.Logics
 {

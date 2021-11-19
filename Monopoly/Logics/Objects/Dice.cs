@@ -1,6 +1,6 @@
 using System;
 
-namespace Monopoly.Logics
+namespace Monopoly.Logics.Objects
 {
     public class Dice
     {

@@ -1,6 +1,6 @@
 using Monopoly.Logics;
 using Monopoly.Logics.PlayerFlyweight.Abstract;
-using Monopoly.Logics.PlayerFlyweight.Static;
+using Monopoly.Logics.PlayerFlyweight.Singleton;
 using Monopoly.UI;
 using NUnit.Framework;
 

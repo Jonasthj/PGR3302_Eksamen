@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Monopoly.UI
+namespace Monopoly.UI.ConsoleIO
 {
     public static class ConsoleInput
     {

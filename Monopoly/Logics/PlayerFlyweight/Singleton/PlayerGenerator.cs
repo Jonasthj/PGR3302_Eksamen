@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Monopoly.Logics.PlayerFlyweight.Abstract;
+using Monopoly.Logics.PlayerFlyweight.Players;
 
-namespace Monopoly.Logics.PlayerFlyweight.Static
+namespace Monopoly.Logics.PlayerFlyweight.Singleton
 {
     /// <summary>
     /// The Flyweight-"Factory" class, also uses the singleton design pattern - 

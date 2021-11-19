@@ -1,6 +1,6 @@
 using Monopoly.Logics.PlayerFlyweight.Abstract;
 
-namespace Monopoly.Logics.PlayerFlyweight
+namespace Monopoly.Logics.PlayerFlyweight.Players
 {
     public class Player1 : Player
     {

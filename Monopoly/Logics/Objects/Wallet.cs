@@ -1,4 +1,4 @@
-﻿namespace Monopoly.Logics.PlayerFlyweight
+﻿namespace Monopoly.Logics.Objects
 {
     public class Wallet
     {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Monopoly.Logics.CardFactory.Classes;
 using Monopoly.Logics.CardFactory.Interface;
+using Monopoly.Logics.Objects;
 
 namespace Monopoly.Logics.SquareLogics
 {

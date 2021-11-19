@@ -1,6 +1,6 @@
 ﻿using System;
 using Monopoly.Logics.CardFactory.Interface;
-using Monopoly.Logics.PlayerFlyweight.Static;
+using Monopoly.Logics.PlayerFlyweight.Singleton;
 
 namespace Monopoly.Logics.CardFactory.Classes
 {

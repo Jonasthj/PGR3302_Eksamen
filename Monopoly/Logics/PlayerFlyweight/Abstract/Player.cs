@@ -1,3 +1,5 @@
+using Monopoly.Logics.Objects;
+
 namespace Monopoly.Logics.PlayerFlyweight.Abstract
 {
     /// <summary>

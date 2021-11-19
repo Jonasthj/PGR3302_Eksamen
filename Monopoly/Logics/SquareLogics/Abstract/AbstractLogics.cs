@@ -1,6 +1,6 @@
 ﻿using Monopoly.Logics.CardFactory.Interface;
 
-namespace Monopoly.Logics.SquareLogics
+namespace Monopoly.Logics.SquareLogics.Abstract
 {
     public abstract class AbstractLogics
     {

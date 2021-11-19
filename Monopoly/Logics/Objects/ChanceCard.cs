@@ -1,11 +1,8 @@
 ﻿
-namespace Monopoly.Logics.CardFactory.Classes
+namespace Monopoly.Logics.Objects
 {
     public class ChanceCard
     {
-        /// <summary>
-        /// 
-        /// </summary>
 
         #region Properties
 

@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using Monopoly.Logics.CardFactory.Classes;
 using Monopoly.Logics.CardFactory.Interface;
+using Monopoly.Logics.Objects;
 using Newtonsoft.Json.Linq;
 
-namespace Monopoly.Database
+namespace Monopoly.Data
 {
     public class ChanceJson
     {

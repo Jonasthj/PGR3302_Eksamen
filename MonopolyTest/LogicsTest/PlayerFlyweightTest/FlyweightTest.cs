@@ -1,7 +1,8 @@
 using System;
+using Monopoly.Logics.Objects;
 using Monopoly.Logics.PlayerFlyweight;
 using Monopoly.Logics.PlayerFlyweight.Abstract;
-using Monopoly.Logics.PlayerFlyweight.Static;
+using Monopoly.Logics.PlayerFlyweight.Singleton;
 using NUnit.Framework;
 
 namespace MonopolyTest.LogicsTest.PlayerFlyweightTest

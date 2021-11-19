@@ -1,9 +1,4 @@
-using System.Drawing;
-using Monopoly.Database;
-using Newtonsoft.Json.Linq;
-using NUnit.Framework;
-
-namespace MonopolyTest.DatabaseTest
+namespace MonopolyTest.DataTest
 {
     public class PropertyJsonTest
     {

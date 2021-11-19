@@ -2,6 +2,8 @@
 using Monopoly.Logics.CardFactory.Classes;
 using Monopoly.Logics.CardFactory.Interface;
 using Monopoly.Logics.SquareLogics;
+using Monopoly.Logics.SquareLogics.Abstract;
+using Monopoly.UI.ConsoleIO;
 
 namespace Monopoly.UI
 {

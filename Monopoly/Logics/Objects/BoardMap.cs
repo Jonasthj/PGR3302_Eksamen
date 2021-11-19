@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Monopoly.Logics.CardFactory.Interface;
 
-namespace Monopoly.Logics
+namespace Monopoly.Logics.Objects
 {
     public class BoardMap
     {

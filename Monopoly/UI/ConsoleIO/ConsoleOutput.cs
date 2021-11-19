@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Monopoly.UI
+namespace Monopoly.UI.ConsoleIO
 {
     public static class ConsoleOutput
     {
@@ -11,6 +11,7 @@ namespace Monopoly.UI
         public static void Print(string value)
         {
             Console.WriteLine("\n" + value);
+            
         }
         
         public static void Print(string value, ConsoleColor color)

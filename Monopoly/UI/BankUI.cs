@@ -1,6 +1,7 @@
 ﻿using System;
 using Monopoly.Logics;
 using Monopoly.Logics.CardFactory.Classes;
+using Monopoly.UI.ConsoleIO;
 
 namespace Monopoly.UI
 {
